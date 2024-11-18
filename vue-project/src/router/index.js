@@ -6,6 +6,7 @@ import SsafitView from '@/views/SsafitView.vue'
 import YoutubeSearchResult from '@/components/youtube/YoutubeSearchResult.vue'
 import YoutubeDetail from '@/components/youtube/YoutubeDetail.vue'
 import GoalRegist from '@/components/goal/GoalRegist.vue'
+import GoalUpdateText from '@/components/goal/GoalUpdateText.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,11 @@ const router = createRouter({
       path: '/regist',
       name: 'goalRegist',
       component: GoalRegist,
+    },
+    {
+      path: "/update-goal",
+      name: "updateGoal",
+      component: GoalUpdateText
     }
   ],
 })

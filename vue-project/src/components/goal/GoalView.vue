@@ -18,6 +18,7 @@
             <div>
                 <p>{{ userStore.loginUser.nickname }}의 한마디</p>
                 <p>{{ store.goal.text }}</p>
+                <button @click="updateText">수정</button>
             </div>
         </div>
         <div v-if="!store.goal" @click="goalRegist">
@@ -64,6 +65,10 @@
 
     const goalRegist = function() {
         router.push({name: 'goalRegist'});
+    };
+
+    const updateText = function() {
+        router.push({name: 'updateGoal'});
     };
 
 </script>
