@@ -17,7 +17,7 @@ VALUES ('1', 'gusto917', "하고 나니 배고파요"),
         ('11', 'gusto917', "종아리가 얇아졌어요"),
         ('12', 'aabbc0908@naver.com', "얼굴이 작아졌어요");
 
--- goal 샘플 데이터
+-- goal 샘플 데이터 수정
 INSERT INTO `goal` (`email`, `start_date`, `end_date`, `day`, `goal_code`, `goal_description`, `text`, `pledge`)
 -- VALUES ('aabbc0908@naver.com', '2024-11-10', '2024-12-31', 100, '5kg 감량', '나 다이어트 할거다~!', '실패하면 뿌링클 쏜다~!'),
 	VALUES ('gusto917', '2024-12-01', '2024-12-31', 30, 100, '10kg 증량', '나 살찔거야', '실패하면 돈까스에 새우멘치까지 사줌');
