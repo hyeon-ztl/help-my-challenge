@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name="GoalController")
 @CrossOrigin("*")
 public class GoalController {
-
+	
 	private final GoalService goalService;
 
 	public GoalController(GoalService goalService) {
@@ -68,6 +68,7 @@ public class GoalController {
 	@Operation(summary="사용자의 목표를 삭제합니다.")
 	public ResponseEntity<String> removeGoal(@PathVariable("email") String email) {		
 		if(goalService.removeGoal(email)) {
+			System.out.println(email);
 			return new ResponseEntity<String>("사용자의 목표를 성공적으로 삭제하였습니다.", HttpStatus.OK);
 		}
 		
