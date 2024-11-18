@@ -24,10 +24,8 @@ INSERT INTO `goal` (`email`, `start_date`, `end_date`, `day`, `goal_code`, `goal
 
 -- message 샘플 데이터
 INSERT INTO `message` (`goal_id`, `receiver`, `sender`, `sender_nickname`, `content`, `day`)
-VALUES (2, 'gusto917', 'aabbc0908@naver.com', '수원얼짱녀', '5키로 증량 껌이지', 1),
-		(2, 'gusto917', 'aabbc0908@naver.com', '수원최고미인', '돈까스 잘 먹을게~ㅎㅎ', 10),
-        (1, 'aabbc0908@naver.com', 'gusto917', '서울대입구거주남', '유정아 너가 뺄 살이 어딨다고 그래ㅜㅜ', 1),
-        (1, 'aabbc0908@naver.com', 'gusto917', '불타지않은아르민', '유정아 내가 마라엽떡 사줄게', 20);
+VALUES (1, 'gusto917', 'aabbc0908@naver.com', '수원얼짱녀', '5키로 증량 껌이지', 1),
+		(1, 'gusto917', 'aabbc0908@naver.com', '수원최고미인', '돈까스 잘 먹을게~ㅎㅎ', 10);
 
 commit;
 
