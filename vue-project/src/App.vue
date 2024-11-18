@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 수정 -->
     <TheHeaderNav/>
   </div>
 </template>
