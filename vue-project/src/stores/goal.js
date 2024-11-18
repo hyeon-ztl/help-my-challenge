@@ -6,7 +6,8 @@ import router from '@/router'
 const REST_API_URL = `http://localhost:8080/api-goal/goal`;
 
 export const useGoalStore = defineStore('goal', () => {
-  const goal = ref(null);
+  const goal = ref(JSON.parse(sessionStorage.getItem('goal')) || null);
+  
   const getGoal = function(userEmail) {
     axios({
       url: REST_API_URL + "/" + userEmail,
@@ -36,9 +37,24 @@ export const useGoalStore = defineStore('goal', () => {
     })
   }
 
+  const updateGoal = function() {
+    axios({
+      url: REST_API_URL,
+      method: 'PUT',
+      data: goal.value
+    })
+    .then((response)=>{
+      router.push({name: 'challenge'});
+    })
+    .catch(()=>{
+      console.log("goal 수정 에러")
+    })
+  }
+
   return {
     goal,
     getGoal,
     registGoal,
+    updateGoal,
   };
 })
