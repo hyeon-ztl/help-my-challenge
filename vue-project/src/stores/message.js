@@ -13,8 +13,10 @@ export const useMessageStore = defineStore('message', () => {
       method: 'GET'
     })
     .then((response)=>{
-      if(response.data !== '')
+      if(response.data !== '') {
         message.value = response.data;
+        console.log(message.value);
+      }
       else message.value = null;
     })
     .catch(()=>{
@@ -22,8 +24,21 @@ export const useMessageStore = defineStore('message', () => {
     })
   };
 
+  const registMessage = function(inputMessage) {
+    axios({
+      url: REST_API_URL + "/message",
+      method: 'POST',
+      data: inputMessage
+    })
+    .then((response)=>{
+      message.value = response.data;
+      router.push({name: 'messageDetail', params: {receiver: message.value.receiver, day: message.value.day}});
+    })
+  }
+
   return {
     message,
     getMessage,
+    registMessage
   };
 })

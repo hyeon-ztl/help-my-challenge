@@ -30,7 +30,7 @@ export const useGoalStore = defineStore('goal', () => {
       data: goal
     })
     .then(()=>{
-      router.push({name: 'challenge'});
+      router.push({path: `/challenge/${goal.email}`});
     })
     .catch(()=>{
       console.log("등록 에러 발생")

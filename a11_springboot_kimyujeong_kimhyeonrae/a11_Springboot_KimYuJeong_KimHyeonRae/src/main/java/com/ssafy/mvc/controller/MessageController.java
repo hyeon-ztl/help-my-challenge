@@ -81,9 +81,9 @@ public class MessageController {
 	
 	@PostMapping("/message")
 	@Operation(summary="메시지를 등록합니다.")
-	public ResponseEntity<String> registMessage(@RequestBody Message message) {
+	public ResponseEntity<?> registMessage(@RequestBody Message message) {
 		if(service.registMessage(message)) {
-			return new ResponseEntity<String>("메시지를 성공적으로 등록하였습니다.", HttpStatus.CREATED);
+			return new ResponseEntity<Message>(message, HttpStatus.CREATED);
 		}
 		
 		return new ResponseEntity<String>("메시지 등록에 실패하였습니다.", HttpStatus.BAD_REQUEST);

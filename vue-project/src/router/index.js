@@ -8,6 +8,9 @@ import YoutubeDetail from '@/components/youtube/YoutubeDetail.vue'
 import GoalRegist from '@/components/goal/GoalRegist.vue'
 import GoalUpdateText from '@/components/goal/GoalUpdateText.vue'
 
+import MessageRegist from '@/components/message/MessageRegist.vue'
+import MessageDetail from '@/components/message/MessageDetail.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -42,6 +45,16 @@ const router = createRouter({
       path: "/update-goal",
       name: "updateGoal",
       component: GoalUpdateText
+    },
+    {
+      path: "/regist-message/:day",
+      name: "messageRegist",
+      component: MessageRegist
+    },
+    {
+      path: "/message-detail/:receiver/:day",
+      name: "messageDetail",
+      component: MessageDetail
     }
   ],
 })

@@ -8,12 +8,13 @@ public class Message {
 	String senderNickname;
 	String content;
 	int day;
+	int stickerId;
 	
 	public Message() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Message(int messageId, String receiver, String sender, String senderNickname, int goalId, String content, int day) {
+	public Message(int messageId, String receiver, String sender, String senderNickname, int goalId, String content, int day, int stickerId) {
 		this.messageId = messageId;
 		this.receiver = receiver;
 		this.sender = sender;
@@ -21,6 +22,7 @@ public class Message {
 		this.goalId = goalId;
 		this.content = content;
 		this.day = day;
+		this.stickerId = stickerId;
 	}
 
 	public int getMessageId() {
@@ -79,10 +81,19 @@ public class Message {
 		this.day = day;
 	}
 
+	public int getStickerId() {
+		return stickerId;
+	}
+
+	public void setStickerId(int stickerId) {
+		this.stickerId = stickerId;
+	}
+
 	@Override
 	public String toString() {
 		return "Message [messageId=" + messageId + ", goalId=" + goalId + ", receiver=" + receiver + ", sender="
-				+ sender + ", senderNickname=" + senderNickname + ", content=" + content + ", day=" + day + "]";
+				+ sender + ", senderNickname=" + senderNickname + ", content=" + content + ", day=" + day
+				+ ", stickerId=" + stickerId + "]";
 	}
 	
 }

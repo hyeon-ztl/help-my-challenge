@@ -43,6 +43,7 @@ CREATE TABLE `message` (
     `goal_id` INT NOT NULL,                            -- 목표 ID (goal 테이블의 외래키)
     `content` TEXT NOT NULL,                           -- 메시지 내용
     `day` INT NOT NULL,                     		   -- 일차
+    `stickerId` INT NOT NULL,						   -- 스티커
 
     -- 외래 키 설정
     FOREIGN KEY (`goal_id`) REFERENCES `goal`(`goal_id`) ON DELETE CASCADE
