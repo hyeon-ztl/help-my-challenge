@@ -46,9 +46,9 @@ public class GoalController {
 	
 	@PostMapping("/goal")
 	@Operation(summary="사용자의 목표를 등록합니다.")
-	public ResponseEntity<String> registGoal(@RequestBody Goal goal) {
+	public ResponseEntity<?> registGoal(@RequestBody Goal goal) {
 		if(goalService.registGoal(goal)) {
-			return new ResponseEntity<String>("목표 등록에 성공하였습니다.", HttpStatus.CREATED);
+			return new ResponseEntity<Goal>(goal, HttpStatus.CREATED);
 		}
 		
 		return new ResponseEntity<String>("목표 등록에 실패하였습니다.", HttpStatus.BAD_REQUEST);

@@ -23,10 +23,9 @@ export const useMessageStore = defineStore('message', () => {
       messages.value[day] = null; // 오류 발생 시 null 저장
     }
   };
-  
-  
 
   const registMessage = function(inputMessage) {
+    console.log(inputMessage);
     axios({
       url: `${REST_API_URL}/message`,
       method: 'POST',

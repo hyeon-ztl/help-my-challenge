@@ -5,7 +5,7 @@
 <mapper namespace="com.ssafy.mvc.model.dao.GoalDao">
 	
 	<!-- 목표 등록 -->
-	<insert id="insertGoal" parameterType="Goal">
+	<insert id="insertGoal" parameterType="Goal" keyProperty="goalId" useGeneratedKeys="true">
 		INSERT INTO goal (email, start_date, end_date, day, goal_code, goal_description, text, pledge)
 		VALUES (#{email}, #{startDate}, #{endDate}, #{day}, #{goalCode}, #{goalDescription}, #{text}, #{pledge});
 	</insert>

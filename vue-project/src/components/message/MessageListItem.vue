@@ -11,10 +11,32 @@
         <div v-else-if="store.messages[props.day] === null && userStore.loginUser !== null">
             <button
                 v-if="userStore.loginUser.email !== route.params.email"
-                @click="registMessage"
+                @click="modalOpen"
             >
                 등록
             </button>
+            <div class="modal-wrap" v-show="modalCheck">
+            <div class="modal-container">
+                    <MessageRegist :day="props.day"/>
+                <div class="modal-btn">
+                    <button @click="modalClose">닫기</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- 등록 버튼을 눌렀을 때 로그인하지 않은 경우 -->
+        <div v-else-if="store.messages[props.day] === null && userStore.loginUser === null">
+            <button @click="modalOpen">등록</button>
+
+            <div class="modal-wrap" v-show="modalCheck">
+            <div class="modal-container">
+                    <TheLogin/>
+                <div class="modal-btn">
+                    <button @click="modalClose">닫기</button>
+                </div>
+            </div>
+            </div>
         </div>
 
         <!-- 메시지가 있는 경우 메시지 내용 표시 -->
@@ -34,7 +56,7 @@
                     <button @click="modalClose">닫기</button>
                 </div>
             </div>
-        </div>
+            </div>
         </div>
 
         
@@ -54,6 +76,8 @@ import { useGoalStore } from '@/stores/goal';
 import { useRoute, useRouter } from 'vue-router';
 
 import MessageDetail from './MessageDetail.vue';
+import MessageRegist from './MessageRegist.vue';
+import TheLogin from '../common/TheLogin.vue';
 
 const props = defineProps({
     day: Number, // 부모 컴포넌트에서 전달받는 필수 day 값

@@ -10,7 +10,7 @@
                 <input type="text" id="content" v-model="message.content">
             </div>
             <div>
-                <select v-model="stickerId" id="stickerId">
+                <select v-model="message.stickerId" id="stickerId">
                     <option value="1">스티커1</option>
                     <option value="2">스티커2</option>
                     <option value="3">스티커3</option>
@@ -37,13 +37,17 @@
     const store = useMessageStore();
     const route = useRoute();
 
+    const props = defineProps({
+        day: Number,
+    });
+
     const message = ref({
         receiver: goalStore.goal.email,
         sender: userStore.loginUser.email,
         senderNickname: '',
         goalId: goalStore.goal.goalId,
         content: '',
-        day: route.params.day,
+        day: props.day,
         stickerId: ''
     });
 

@@ -29,8 +29,10 @@ export const useGoalStore = defineStore('goal', () => {
       method: 'POST',
       data: goal
     })
-    .then(()=>{
-      router.push({path: `/challenge/${goal.email}`});
+    .then((response)=>{
+      console.log(response.data);
+      router.push({name: 'challenge', params:{email: goal.email}});
+      window.location.reload();
     })
     .catch(()=>{
       console.log("등록 에러 발생")
@@ -44,7 +46,8 @@ export const useGoalStore = defineStore('goal', () => {
       data: goal.value
     })
     .then((response)=>{
-      router.push({name: 'challenge'});
+      router.push({name: 'challenge', params:{email: goal.email}});
+      window.location.reload();
     })
     .catch(()=>{
       console.log("goal 수정 에러")

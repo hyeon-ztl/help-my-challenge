@@ -9,7 +9,7 @@
             </div>
             <div>
                 <p>challenge</p>
-                <p>{{ store.goal.day }} 도전</p>
+                <p>{{ store.goal.day }}일 도전</p>
             </div>
             <div>
             <p>실패 공약</p>
@@ -19,11 +19,21 @@
                 <p>{{ store.goal.email }}의 한마디</p>
                 <p>{{ store.goal.text }}</p>
                 <p v-if="userStore.loginUser !== null">
-                    <button @click="updateText" v-if="userStore.loginUser.email === route.params.email">수정</button>
+                    <button @click="modalOpen" v-if="userStore.loginUser.email === route.params.email">수정</button>
+                
+                    <div class="modal-wrap" v-show="modalCheck">
+                    <div class="modal-container">
+                            <GoalUpdateText/>
+                        <div class="modal-btn">
+                            <button @click="modalClose">닫기</button>
+                        </div>
+                    </div>
+                    </div>
+                
                 </p>
             </div>
         </div>
-        <div v-if="!store.goal" @click="goalRegist">
+        <div v-if="!store.goal">
             <div>
                 <p>목표를 등록해주세요.</p>
             </div>
@@ -39,17 +49,32 @@
                 <p>한마디</p>
                 <p>한마디를 등록해주세요.</p>
             </div>
+
+            <div>
+                <button @click="modalOpen">등록</button>
+            </div>
+
+            <div class="modal-wrap" v-show="modalCheck">
+            <div class="modal-container">
+                    <GoalRegist/>
+                <div class="modal-btn">
+                    <button @click="modalClose">닫기</button>
+                </div>
+            </div>
+            </div>
         </div>
 
     </div>
 </template>
 
 <script setup>
-    import { onMounted, computed } from 'vue';
+    import { ref, onMounted, computed } from 'vue';
     import { useRoute, useRouter } from 'vue-router';
     import { useGoalStore } from '@/stores/goal';
     import { useUserStore } from '@/stores/user';
-    import MessageDetail from '../message/MessageDetail.vue';
+    
+    import GoalRegist from './GoalRegist.vue';
+    import GoalUpdateText from './GoalUpdateText.vue';
 
     const store = useGoalStore();
     const userStore = useUserStore();
@@ -69,16 +94,42 @@
         return Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
     });
 
-    const goalRegist = function() {
-        router.push({name: 'goalRegist'});
-    };
-
     const updateText = function() {
         router.push({name: 'updateGoal'});
+    };
+
+    const modalCheck = ref(false);
+
+    const modalOpen = function() {
+        modalCheck.value = !modalCheck.value;
+    };
+
+    const modalClose = function() {
+        modalCheck.value = !modalCheck.value;
     };
 
 </script>
 
 <style scoped>
-
+    /* dimmed */
+    .modal-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    }
+    /* modal or popup */
+    .modal-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    }
 </style>
