@@ -1,13 +1,29 @@
 <template>
     <div>
-        <!-- 수신자 이메일이랑 day로 메시지를 조회해야할듯 -->
-         <!-- 없으면 등록 -->
-          <!-- 있으면 가져오기 -->
-        메시지
+        <p>{{ props.day }} 일차 메시지</p>
+        <div v-if="store.message === null && userStore.loginUser !== null">
+            <button v-if="userStore.loginUser.email !== route.params.email">등록</button>
+        </div>
     </div>
 </template>
 
-<script setup>
+<script setup> 
+    import { onMounted } from 'vue';
+    import { useMessageStore } from '@/stores/message';
+    import { useUserStore } from '@/stores/user';
+    import { useRoute } from 'vue-router';
+
+    const store = useMessageStore();
+    const userStore = useUserStore();
+    const route = useRoute();
+
+    const props = defineProps({
+        day: Number,
+    });
+
+    onMounted(()=>{ // 사용자의 해당 일차의 메시지 가져오기
+        store.getMessage(userStore.loginUser.email, props.day);
+    });
 
 </script>
 

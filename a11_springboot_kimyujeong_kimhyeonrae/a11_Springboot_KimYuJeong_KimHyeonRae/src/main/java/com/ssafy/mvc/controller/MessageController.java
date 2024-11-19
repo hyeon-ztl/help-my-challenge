@@ -68,9 +68,9 @@ public class MessageController {
 		
 		Message message = service.searchMessageByDay(info);
 		
-		if(message == null) { // 해당 날짜에 메시지가 없으면 랜덤 메시지 가져오기
-			message = service.createRandomMessage(day);			
-		}
+//		if(message == null) { // 해당 날짜에 메시지가 없으면 랜덤 메시지 가져오기
+//			message = service.createRandomMessage(day);			
+//		}
 		
 		if(message != null) {
 			return new ResponseEntity<Message>(message, HttpStatus.OK);

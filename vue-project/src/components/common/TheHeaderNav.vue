@@ -5,7 +5,7 @@
             <nav>
                 <h1>SSAFIT</h1>
                 <router-link :to="{name: 'ssafit'}">SSAFIT</router-link> |
-                <router-link v-if="store.loginUser !== null" :to="{name: 'challenge'}">CHALLENGE</router-link> |
+                <router-link v-if="store.loginUser !== null" :to="{path: `/challenge/${store.loginUser.email}`}">CHALLENGE</router-link> |
                 <img v-if="store.loginUser === null" @click="kakaoLogin" src="@/assets/kakao_login_medium_narrow.png" width="111">
                 <div v-if="store.loginUser !== null">
                     <img :src="store.loginUser.profileImage">

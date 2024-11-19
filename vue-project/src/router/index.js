@@ -29,7 +29,7 @@ const router = createRouter({
       component: YoutubeDetail
     },
     {
-      path: '/challenge',
+      path: '/challenge/:email',
       name: 'challenge',
       component: ChallengeView,
     },

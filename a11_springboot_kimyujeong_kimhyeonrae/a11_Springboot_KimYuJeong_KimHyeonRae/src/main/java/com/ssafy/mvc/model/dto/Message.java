@@ -7,23 +7,20 @@ public class Message {
 	String sender;
 	String senderNickname;
 	String content;
-	String sentDate;
-	String openDate;
+	int day;
 	
 	public Message() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Message(int messageId, String receiver, String sender, String senderNickname, int goalId, String content, String sentDate,
-			String openDate) {
+	public Message(int messageId, String receiver, String sender, String senderNickname, int goalId, String content, int day) {
 		this.messageId = messageId;
 		this.receiver = receiver;
 		this.sender = sender;
 		this.senderNickname = senderNickname;
 		this.goalId = goalId;
 		this.content = content;
-		this.sentDate = sentDate;
-		this.openDate = openDate;
+		this.day = day;
 	}
 
 	public int getMessageId() {
@@ -50,7 +47,7 @@ public class Message {
 		this.sender = sender;
 	}
 	
-	public String getSenderNickName() {
+	public String getSenderNickname() {
 		return senderNickname;
 	}
 
@@ -74,26 +71,18 @@ public class Message {
 		this.content = content;
 	}
 
-	public String getSentDate() {
-		return sentDate;
+	public int getDay() {
+		return day;
 	}
 
-	public void setSentDate(String sentDate) {
-		this.sentDate = sentDate;
-	}
-
-	public String getOpenDate() {
-		return openDate;
-	}
-
-	public void setOpenDate(String openDate) {
-		this.openDate = openDate;
+	public void setDay(int day) {
+		this.day = day;
 	}
 
 	@Override
 	public String toString() {
-		return "Message [messageId=" + messageId + ", receiver=" + receiver + ", sender=" + sender + ", goalId="
-				+ goalId + ", content=" + content + ", sentDate=" + sentDate + ", openDate=" + openDate + "]";
+		return "Message [messageId=" + messageId + ", goalId=" + goalId + ", receiver=" + receiver + ", sender="
+				+ sender + ", senderNickname=" + senderNickname + ", content=" + content + ", day=" + day + "]";
 	}
 	
 }

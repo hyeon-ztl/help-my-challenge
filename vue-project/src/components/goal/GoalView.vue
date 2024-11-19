@@ -1,8 +1,8 @@
 <template>
     <div>
         <div v-if="store.goal">
-            <p v-if="diff < 0">{{ userStore.loginUser.nickname }} 운동 시작 {{ -diff }}일 전</p>
-            <p v-if="diff > 0">{{ userStore.loginUser.nickname }} 운동 시작 {{ diff }}일차</p>
+            <p v-if="diff < 0">{{ store.goal.email }}님 운동 시작 {{ -diff }}일 전</p>
+            <p v-if="diff > 0">{{ store.goal.email }}님 운동 시작 {{ diff }}일차</p>
             <div>
                 <p>{{store.goal.goalName}} {{ store.goal.goalDescription }}</p>
                 <p>{{ store.goal.startDate }} 시작</p>
@@ -16,9 +16,11 @@
             <p>{{ store.goal.pledge }}</p>
             </div>
             <div>
-                <p>{{ userStore.loginUser.nickname }}의 한마디</p>
+                <p>{{ store.goal.email }}의 한마디</p>
                 <p>{{ store.goal.text }}</p>
-                <button @click="updateText">수정</button>
+                <p v-if="userStore.loginUser !== null">
+                    <button @click="updateText" v-if="userStore.loginUser.email === route.params.email">수정</button>
+                </p>
             </div>
         </div>
         <div v-if="!store.goal" @click="goalRegist">
@@ -34,7 +36,7 @@
                 <p>공약을 등록해주세요</p>
             </div>
             <div>
-                <p>{{ userStore.loginUser.nickname }}의 한마디</p>
+                <p>한마디</p>
                 <p>한마디를 등록해주세요.</p>
             </div>
         </div>
@@ -43,16 +45,18 @@
 
 <script setup>
     import { onMounted, computed } from 'vue';
-    import { useRouter } from 'vue-router';
+    import { useRoute, useRouter } from 'vue-router';
     import { useGoalStore } from '@/stores/goal';
     import { useUserStore } from '@/stores/user';
 
     const store = useGoalStore();
     const userStore = useUserStore();
     const router = useRouter();
+    const route = useRoute();
 
     onMounted(()=>{
-        store.getGoal(userStore.loginUser.email);
+        console.log(route.params.email);
+        store.getGoal(route.params.email);
     });
 
     const diff = computed(()=> {
