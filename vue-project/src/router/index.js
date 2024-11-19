@@ -51,11 +51,6 @@ const router = createRouter({
       name: "messageRegist",
       component: MessageRegist
     },
-    {
-      path: "/message-detail/:receiver/:day",
-      name: "messageDetail",
-      component: MessageDetail
-    }
   ],
 })
 
