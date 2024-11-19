@@ -1,38 +1,140 @@
 <template>
     <div>
         <p>{{ props.day }} 일차 메시지</p>
-        <div v-if="store.message === null && userStore.loginUser !== null">
-            <button v-if="userStore.loginUser.email !== route.params.email" 
-                @click="registMessage">등록</button>
+
+        <!-- 로딩 중 상태 -->
+        <div v-if="isLoading">
+            <p>로딩 중...</p>
         </div>
+
+        <!-- 메시지가 없는 경우 등록 버튼 표시 -->
+        <div v-else-if="store.messages[props.day] === null && userStore.loginUser !== null">
+            <button
+                v-if="userStore.loginUser.email !== route.params.email"
+                @click="registMessage"
+            >
+                등록
+            </button>
+        </div>
+
+        <!-- 메시지가 있는 경우 메시지 내용 표시 -->
+        <div v-else-if="store.messages[props.day]">
+            <p>보낸 사람: {{ store.messages[props.day].senderNickname }}</p>
+            <div v-if="userStore.loginUser !== null">
+                <button 
+                    v-if="canViewMessage && (userStore.loginUser.email === route.params.email || userStore.loginUser.email === store.messages[props.day].sender)"
+                    @click="modalOpen"
+                    >조회</button>
+            </div>
+
+            <div class="modal-wrap" v-show="modalCheck">
+            <div class="modal-container">
+                    <MessageDetail :message="store.messages[props.day]"/>
+                <div class="modal-btn">
+                    <button @click="modalClose">닫기</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        
+
+        <!-- 예외 처리 -->
+        <!-- <div v-else>
+            <p>등록된 메시지가 없습니다.</p>
+        </div> -->
     </div>
 </template>
 
-<script setup> 
-    import { onMounted } from 'vue';
-    import { useMessageStore } from '@/stores/message';
-    import { useUserStore } from '@/stores/user';
-    import { useRoute, useRouter } from 'vue-router';
+<script setup>
+import { ref, watch, computed } from 'vue';
+import { useMessageStore } from '@/stores/message';
+import { useUserStore } from '@/stores/user';
+import { useGoalStore } from '@/stores/goal';
+import { useRoute, useRouter } from 'vue-router';
 
-    const store = useMessageStore();
-    const userStore = useUserStore();
-    const route = useRoute();
-    const router = useRouter();
+import MessageDetail from './MessageDetail.vue';
 
-    const props = defineProps({
-        day: Number,
-    });
+const props = defineProps({
+    day: Number, // 부모 컴포넌트에서 전달받는 필수 day 값
+});
 
-    onMounted(()=>{ // 사용자의 해당 일차의 메시지 가져오기
-        store.getMessage(userStore.loginUser.email, props.day);
-    });
+const isLoading = ref(true); // 로딩 상태
+const store = useMessageStore(); // Pinia 스토어: 메시지 관리
+const userStore = useUserStore(); // Pinia 스토어: 사용자 관리
+const goalStore = useGoalStore();
+const route = useRoute();
+const router = useRouter();
 
-    const registMessage = function() {
-        router.push({name: 'messageRegist', params:{day: props.day}});
-    };
+// 메시지 등록 페이지로 이동
+const registMessage = function () {
+    router.push({ name: 'messageRegist', params: { day: props.day } });
+};
 
+// 메시지 로드 함수
+const loadMessage = async () => {
+    isLoading.value = true; // 로딩 상태 활성화
+    try {
+        await store.getMessage(route.params.email, props.day);
+    } catch (error) {
+        console.error(`Failed to load message for day ${props.day}:`, error);
+    } finally {
+        isLoading.value = false; // 로딩 상태 비활성화
+    }
+};
+
+// 컴포넌트 마운트 시 메시지 로드
+loadMessage();
+
+// `store.messages`의 특정 day가 변경되었을 때 반응형으로 UI 갱신
+watch(
+    () => store.messages[props.day],
+    (newValue) => {
+        if (newValue) {
+            console.log(`Day ${props.day} message updated:`, newValue);
+        }
+    }
+);
+
+const modalCheck = ref(false);
+
+const modalOpen = function() {
+    modalCheck.value = !modalCheck.value;
+    // router.push({name: 'messageDetail', params:{receiver: route.params.email, day: props.day}});
+};
+
+const modalClose = function() {
+    modalCheck.value = !modalCheck.value;
+}
+
+const canViewMessage = computed(() => {
+    const today = new Date();
+    const startDate = new Date(goalStore.goal.startDate); // goal.startDate를 Date 객체로 변환
+    startDate.setDate(startDate.getDate() + props.day); // 목표 시작일에 props.day를 더한 날짜
+    return today >= startDate; // 현재 날짜가 열람 가능 날짜 이후인지 확인
+});
 </script>
 
 <style scoped>
-
+/* dimmed */
+.modal-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+/* modal or popup */
+.modal-container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
 </style>

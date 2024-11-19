@@ -40,6 +40,7 @@
                 <p>한마디를 등록해주세요.</p>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -48,6 +49,7 @@
     import { useRoute, useRouter } from 'vue-router';
     import { useGoalStore } from '@/stores/goal';
     import { useUserStore } from '@/stores/user';
+    import MessageDetail from '../message/MessageDetail.vue';
 
     const store = useGoalStore();
     const userStore = useUserStore();
