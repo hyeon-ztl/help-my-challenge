@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <!-- 수정 -->
-    <TheHeaderNav/>
+  <div class="container">
+    <div class="phone-box">
+      <TheHeaderNav/>
+    </div>
   </div>
 </template>
 
