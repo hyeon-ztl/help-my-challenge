@@ -19,17 +19,43 @@
                 <p>{{ store.goal.email }}의 한마디</p>
                 <p>{{ store.goal.text }}</p>
                 <div v-if="userStore.loginUser !== null">
-                    <button @click="modalOpen" v-if="userStore.loginUser.email === route.params.email">수정</button>
+                    <button @click="goalTextUpdateModalToggle" v-if="userStore.loginUser.email === route.params.email">한마디수정</button>
                 
-                    <div class="modal-wrap" v-show="modalCheck">
+                    <div class="modal-wrap" v-show="goalTextUpdateModal">
                     <div class="modal-container">
                             <GoalUpdateText/>
                         <div class="modal-btn">
-                            <button @click="modalClose">닫기</button>
+                            <button @click="goalTextUpdateModalToggle">닫기</button>
                         </div>
                     </div>
                     </div>
                 </div>
+            </div>
+
+            <div v-if="new Date() < new Date(store.goal.startDate)">
+                <button @click="goalModalToggle" v-if="userStore.loginUser.email === route.params.email">목표수정하기</button>
+                
+                <div class="modal-wrap" v-show="goalModal">
+                <div class="modal-container">
+                        <GoalUpdate/>
+                    <div class="modal-btn">
+                        <button @click="goalModalToggle">닫기</button>
+                    </div>
+                </div>
+                </div> 
+            </div>
+
+            <div v-if="new Date() > new Date(store.goal.startDate)">
+                <button @click="goalModalToggle" v-if="userStore.loginUser.email === route.params.email">목표삭제하기</button>
+                
+                <div class="modal-wrap" v-show="goalModal">
+                <div class="modal-container">
+                        <GoalDelete/>
+                    <div class="modal-btn">
+                        <button @click="goalModalToggle">닫기</button>
+                    </div>
+                </div>
+                </div> 
             </div>
         </div>
         <div v-if="!store.goal">
@@ -68,12 +94,14 @@
 
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { useGoalStore } from '@/stores/goal';
 import { useUserStore } from '@/stores/user';
 
 import GoalRegist from './GoalRegist.vue';
 import GoalUpdateText from './GoalUpdateText.vue';
+import GoalUpdate from './GoalUpdate.vue';
+import GoalDelete from './GoalDelete.vue';
 
 const store = useGoalStore();
 const userStore = useUserStore();
@@ -95,15 +123,16 @@ const diff = computed(() => {
   return Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
 });
 
-const modalCheck = ref(false);
-
-const modalOpen = function() {
-  modalCheck.value = !modalCheck.value;
+const goalTextUpdateModal = ref(false);
+const goalTextUpdateModalToggle = function() {
+    goalTextUpdateModal.value = !goalTextUpdateModal.value;
 };
 
-const modalClose = function() {
-  modalCheck.value = !modalCheck.value;
+const goalModal = ref(false);
+const goalModalToggle = function() {
+    goalModal.value = !goalModal.value;
 };
+
 </script>
 
 <style scoped>

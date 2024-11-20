@@ -47,7 +47,7 @@ export const useGoalStore = defineStore('goal', () => {
     .catch(()=>{
       console.log("등록 에러 발생")
     })
-  }
+  };
 
   const updateGoal = function() {
     axios({
@@ -62,7 +62,7 @@ export const useGoalStore = defineStore('goal', () => {
     .catch(()=>{
       console.log("goal 수정 에러")
     })
-  }
+  };
 
   return {
     goal,
