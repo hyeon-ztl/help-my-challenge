@@ -11,9 +11,10 @@
             </thead>
             <tbody>
                 <tr v-for="review in store.reviewList" :key="review.reviewId">
-                    <td>{{ review.email }}</td>
+                    <td>{{ review.nickname }}</td>
                     <td v-if="updateReviewId !== review.reviewId"> 
                         {{ review.content }}
+                        {{ review.registDay }}
                         <button v-if="userStore.loginUser && userStore.loginUser.email === review.email"
                             @click="updateMode(review.reviewId)">수정</button>
                         <button v-if="userStore.loginUser && userStore.loginUser.email === review.email" 
@@ -39,7 +40,7 @@
     const userStore = useUserStore();
 
     const props = defineProps({
-        videoId: Number,
+        videoId: String,
     });
 
     watch(()=>props.videoId, (newVideoId)=>{

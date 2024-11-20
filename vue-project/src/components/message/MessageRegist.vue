@@ -10,13 +10,16 @@
                 <input type="text" id="content" v-model="message.content">
             </div>
             <div>
-                <select v-model="message.stickerId" id="stickerId">
+                <!-- <select v-model="message.stickerId" id="stickerId">
                     <option value="1">스티커1</option>
                     <option value="2">스티커2</option>
                     <option value="3">스티커3</option>
                     <option value="4">스티커4</option>
-                    <option value="5">스티커5</option>
-                </select>
+                </select> -->
+                <img src="/src/assets/sticker/sticker1.png" @click="message.stickerId = 1">
+                <img src="/src/assets/sticker/sticker2.png" @click="message.stickerId = 2">
+                <img src="/src/assets/sticker/sticker3.png" @click="message.stickerId = 3">
+                <img src="/src/assets/sticker/sticker4.png" @click="message.stickerId = 4">
             </div>
             <div>
                 <button @click="registMessage">등록</button>
@@ -42,7 +45,7 @@
     });
 
     const message = ref({
-        receiver: goalStore.goal.email,
+        receiver: route.params.email,
         sender: userStore.loginUser.email,
         senderNickname: '',
         goalId: goalStore.goal.goalId,

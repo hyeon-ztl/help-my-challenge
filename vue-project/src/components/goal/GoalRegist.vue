@@ -2,7 +2,7 @@
     <div>
        <fieldset>
             <p>이름</p>
-            <p>{{ userStore.loginUser.nickname }}</p>
+            <p>{{ route.params.email }}</p>
             <label for="startDate">시작 일자</label> 
             <input type="text" id="startDate" v-model="goal.startDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"> <br>
             <label for="endDate">종료 일자</label>
@@ -27,14 +27,16 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import { useUserStore } from '@/stores/user';
 import { useGoalStore } from '@/stores/goal';
 
 const store = useGoalStore();
 const userStore = useUserStore();
+const route = useRoute();
 
 const goal = ref({
-    email: userStore.loginUser.email,
+    email: route.params.email,
     startDate: '',
     endDate: '',
     day: '',

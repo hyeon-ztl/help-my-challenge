@@ -13,6 +13,7 @@
     import { useUserStore } from '@/stores/user';
     const store = useYoutubeStore();
     const userStore = useUserStore();
+
 </script>
 
 <style scoped>

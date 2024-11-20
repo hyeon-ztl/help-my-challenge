@@ -18,7 +18,7 @@
             <div>
                 <p>{{ store.goal.email }}의 한마디</p>
                 <p>{{ store.goal.text }}</p>
-                <p v-if="userStore.loginUser !== null">
+                <div v-if="userStore.loginUser !== null">
                     <button @click="modalOpen" v-if="userStore.loginUser.email === route.params.email">수정</button>
                 
                     <div class="modal-wrap" v-show="modalCheck">
@@ -29,8 +29,7 @@
                         </div>
                     </div>
                     </div>
-                
-                </p>
+                </div>
             </div>
         </div>
         <div v-if="!store.goal">
@@ -81,10 +80,15 @@
     const router = useRouter();
     const route = useRoute();
 
-    onMounted(()=>{
-        console.log(route.params.email);
-        store.getGoal(route.params.email);
+    onMounted(() => {
+        if (!store.goal) {
+            console.log("Fetching goal for:", route.params.email);
+            store.getGoal(route.params.email);
+        } else {
+            console.log("Goal already loaded:", store.goal);
+        }
     });
+
 
     const diff = computed(()=> {
         const today = new Date();

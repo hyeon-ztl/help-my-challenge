@@ -6,16 +6,20 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class Review {
 	private int reviewId;
 	private String email;
+	private String nickname;
 	private String content;
 	private String videoId;
+	private String registDay;
 	
 	public Review() {}
 
-	public Review(int reviewId, String email, String content, String videoId) {
+	public Review(int reviewId, String email, String nickname, String content, String videoId, String registDay) {
 		this.reviewId = reviewId;
 		this.email = email;
+		this.nickname = nickname;
 		this.content = content;
 		this.videoId = videoId;
+		this.registDay = registDay;
 	}
 
 	public int getReviewId() {
@@ -34,6 +38,14 @@ public class Review {
 		this.email = email;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -50,9 +62,18 @@ public class Review {
 		this.videoId = videoId;
 	}
 
+	public String getRegistDay() {
+		return registDay;
+	}
+
+	public void setRegistDay(String registDay) {
+		this.registDay = registDay;
+	}
+
 	@Override
 	public String toString() {
-		return "Review [reviewId=" + reviewId + ", email=" + email + ", content=" + content + ", videoId=" + videoId + "]";
+		return "Review [reviewId=" + reviewId + ", email=" + email + ", nickname=" + nickname + ", content=" + content
+				+ ", videoId=" + videoId + ", registDay=" + registDay + "]";
 	}
 	
 }

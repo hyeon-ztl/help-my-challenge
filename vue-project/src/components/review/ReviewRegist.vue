@@ -22,7 +22,7 @@
     const userStore = useUserStore();
 
     const props = defineProps({
-        videoId: Number,
+        videoId: String,
     });
     
     watch(()=>props.videoId, (newVideoId)=>{
@@ -31,6 +31,7 @@
     
     const review = ref({
         email: userStore.loginUser.email,
+        nickname: userStore.loginUser.nickname,
         videoId: props.videoId,
         content: '',
     });

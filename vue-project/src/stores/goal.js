@@ -14,6 +14,7 @@ export const useGoalStore = defineStore('goal', () => {
       method: 'GET'
     })
     .then((response)=>{
+      console.log("response");
       console.log(response.data);
       goal.value = response.data;
       sessionStorage.setItem('goal', JSON.stringify(goal.value));

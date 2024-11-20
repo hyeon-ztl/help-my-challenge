@@ -41,6 +41,7 @@
 
         <!-- 메시지가 있는 경우 메시지 내용 표시 -->
         <div v-else-if="store.messages[props.day]">
+            <img v-if="stickerUrl" :src="stickerUrl">
             <p>보낸 사람: {{ store.messages[props.day].senderNickname }}</p>
             <div v-if="userStore.loginUser !== null">
                 <button 
@@ -58,13 +59,6 @@
             </div>
             </div>
         </div>
-
-        
-
-        <!-- 예외 처리 -->
-        <!-- <div v-else>
-            <p>등록된 메시지가 없습니다.</p>
-        </div> -->
     </div>
 </template>
 
@@ -89,11 +83,6 @@ const userStore = useUserStore(); // Pinia 스토어: 사용자 관리
 const goalStore = useGoalStore();
 const route = useRoute();
 const router = useRouter();
-
-// 메시지 등록 페이지로 이동
-const registMessage = function () {
-    router.push({ name: 'messageRegist', params: { day: props.day } });
-};
 
 // 메시지 로드 함수
 const loadMessage = async () => {
@@ -137,6 +126,15 @@ const canViewMessage = computed(() => {
     startDate.setDate(startDate.getDate() + props.day); // 목표 시작일에 props.day를 더한 날짜
     return today >= startDate; // 현재 날짜가 열람 가능 날짜 이후인지 확인
 });
+
+const stickerUrl = computed(() => {
+  if (store.messages[props.day]?.stickerId) {
+    return new URL(`/src/assets/sticker/sticker${store.messages[props.day].stickerId}.png`, import.meta.url).href;
+  }
+  return null; // 이미지가 없을 경우
+});
+
+
 </script>
 
 <style scoped>
