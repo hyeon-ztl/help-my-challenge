@@ -13,13 +13,11 @@ const router = createRouter({
       path: '/',
       name: 'ssafit',
       component: SsafitView,
-      children: [
-        {
-          path: 'search-result',
-          name: 'searchResult',
-          component: YoutubeSearchResult
-        },  
-      ]
+    },
+    {
+      path: '/search/:keyword',
+      name: 'searchResult',
+      component: YoutubeSearchResult,
     },
     {
       path: '/detail',

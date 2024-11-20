@@ -9,17 +9,12 @@
                 <label for="content">내용</label>
                 <input type="text" id="content" v-model="message.content">
             </div>
-            <div>
-                <!-- <select v-model="message.stickerId" id="stickerId">
-                    <option value="1">스티커1</option>
-                    <option value="2">스티커2</option>
-                    <option value="3">스티커3</option>
-                    <option value="4">스티커4</option>
-                </select> -->
-                <img src="/src/assets/sticker/sticker1.png" @click="message.stickerId = 1">
-                <img src="/src/assets/sticker/sticker2.png" @click="message.stickerId = 2">
-                <img src="/src/assets/sticker/sticker3.png" @click="message.stickerId = 3">
-                <img src="/src/assets/sticker/sticker4.png" @click="message.stickerId = 4">
+            <div class="sticker-container">
+                <img v-for="id in stickers" :key="id" 
+                    :src="`/src/assets/sticker/sticker${id}.png`" 
+                    :class="{ selected: message.stickerId === id }"
+                    @click="selectSticker(id)"
+                    >
             </div>
             <div>
                 <button @click="registMessage">등록</button>
@@ -44,6 +39,12 @@
         day: Number,
     });
 
+    const stickers = [1, 2, 3, 4]; // 스티커 ID 배열
+
+    const selectSticker = (id) => {
+        message.value.stickerId = id;
+    };
+
     const message = ref({
         receiver: route.params.email,
         sender: userStore.loginUser.email,
@@ -62,5 +63,21 @@
 </script>
 
 <style scoped>
+    .sticker-container img {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border: 2px solid transparent; /* 기본 테두리 없음 */
+    cursor: pointer;
+    transition: border 0.3s ease;
+    }
 
+    .sticker-container img:hover {
+    border: 2px solid #ccc; /* 호버 시 연한 테두리 */
+    }
+
+    .sticker-container img.selected {
+    border: 2px solid #007BFF; /* 선택된 이미지의 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    }
 </style>

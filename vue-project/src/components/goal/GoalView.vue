@@ -67,51 +67,43 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, computed } from 'vue';
-    import { useRoute, useRouter } from 'vue-router';
-    import { useGoalStore } from '@/stores/goal';
-    import { useUserStore } from '@/stores/user';
-    
-    import GoalRegist from './GoalRegist.vue';
-    import GoalUpdateText from './GoalUpdateText.vue';
+import { ref, onMounted, computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useGoalStore } from '@/stores/goal';
+import { useUserStore } from '@/stores/user';
 
-    const store = useGoalStore();
-    const userStore = useUserStore();
-    const router = useRouter();
-    const route = useRoute();
+import GoalRegist from './GoalRegist.vue';
+import GoalUpdateText from './GoalUpdateText.vue';
 
-    onMounted(() => {
-        if (!store.goal) {
-            console.log("Fetching goal for:", route.params.email);
-            store.getGoal(route.params.email);
-        } else {
-            console.log("Goal already loaded:", store.goal);
-        }
-    });
+const store = useGoalStore();
+const userStore = useUserStore();
+const route = useRoute();
 
+const props = defineProps({
+    email: String,
+})
 
-    const diff = computed(()=> {
-        const today = new Date();
-        const start = new Date(store.goal.startDate);
+onMounted(() => {
+  store.getGoal(route.params.email);
+});
 
-        const diffInMilliseconds = today-start;
-        return Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
-    });
+const diff = computed(() => {
+  const today = new Date();
+  const start = new Date(store.goal?.startDate);
 
-    const updateText = function() {
-        router.push({name: 'updateGoal'});
-    };
+  const diffInMilliseconds = today - start;
+  return Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+});
 
-    const modalCheck = ref(false);
+const modalCheck = ref(false);
 
-    const modalOpen = function() {
-        modalCheck.value = !modalCheck.value;
-    };
+const modalOpen = function() {
+  modalCheck.value = !modalCheck.value;
+};
 
-    const modalClose = function() {
-        modalCheck.value = !modalCheck.value;
-    };
-
+const modalClose = function() {
+  modalCheck.value = !modalCheck.value;
+};
 </script>
 
 <style scoped>

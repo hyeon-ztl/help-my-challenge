@@ -11,14 +11,14 @@
 
 <script setup>
     import { onMounted } from 'vue';
+    import { useRoute } from 'vue-router';
     import { useGoalStore } from '@/stores/goal';
-    import { useUserStore } from '@/stores/user';
 
     const store = useGoalStore();
-    const userStore = useUserStore();
+    const route = useRoute();
 
     onMounted(()=>{
-        store.getGoal(userStore.loginUser.email);
+        store.getGoal(route.params.email);
     });
 
     const updateText = function() {

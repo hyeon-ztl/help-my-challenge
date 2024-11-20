@@ -4,7 +4,15 @@
             <legend>리뷰 등록</legend>
             <div>
                 <label for="content">내용</label>
-                <input type="text" v-model="review.content" id="content">
+                <textarea 
+                    v-model="review.content" 
+                    id="content" 
+                    rows="5" 
+                    cols="30" 
+                    maxlength="200"
+                    @keyup.enter="registReview">
+                </textarea>
+                <p>{{ review.content.length }}/200</p>
             </div>
             <div>
                 <button @click="registReview">등록</button>

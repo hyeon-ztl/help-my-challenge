@@ -24,7 +24,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
       },
     })
       .then((response) => {
-        localStorage.setItem('keyword', searchKeyword);
+        sessionStorage.setItem('keyword', searchKeyword);
         videoList.value = response.data.items;
       })
       .catch(() => {
@@ -34,25 +34,10 @@ export const useYoutubeStore = defineStore('youtube', () => {
 
   // 비디오 클릭
   const clickVideo = function(clickedVideo) {
-    localStorage.setItem('clickedVideo', clickedVideo.id.videoId);
+    sessionStorage.setItem('clickedVideo', clickedVideo.id.videoId);
     video.value = clickedVideo.id.videoId;
     router.push({name: 'detail'});
   };
-
-  // 새로고침 시 검색 복원
-  onMounted(() => {
-    const savedKeyword = localStorage.getItem('keyword');
-    if (savedKeyword) {
-      youtubeSearch(savedKeyword);
-    } else {
-      youtubeSearch('홈트');
-    }
-
-    const savedVideo = localStorage.getItem('clickedVideo');
-    if(savedVideo) {
-      video.value = savedVideo;
-    }
-  });
 
   return {
     videoList,

@@ -6,17 +6,26 @@ import router from '@/router'
 const REST_API_URL = `http://localhost:8080/api-goal/goal`;
 
 export const useGoalStore = defineStore('goal', () => {
+  // const goal = ref(JSON.parse(sessionStorage.getItem('goal')) || null);
   const goal = ref(JSON.parse(sessionStorage.getItem('goal')) || null);
   
-  const getGoal = function(userEmail) {
+  const getGoal = function(email) {
+    console.log("getGoal 호출됨, email:", email);
+    console.trace();
+    if (!email) {
+      console.error("getGoal 호출 실패: email is undefined");
+      return; // email이 없으면 실행 중단
+    }
+
     axios({
-      url: REST_API_URL + "/" + userEmail,
+      url: REST_API_URL + "/" + email,
       method: 'GET'
     })
     .then((response)=>{
       console.log("response");
       console.log(response.data);
       goal.value = response.data;
+      console.log(goal.value);
       sessionStorage.setItem('goal', JSON.stringify(goal.value));
     })
     .catch(()=>{
@@ -49,7 +58,7 @@ export const useGoalStore = defineStore('goal', () => {
     .then((response)=>{
       router.push({name: 'challenge', params:{email: goal.email}});
       window.location.reload();
-    })
+    }) 
     .catch(()=>{
       console.log("goal 수정 에러")
     })
