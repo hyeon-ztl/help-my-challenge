@@ -39,6 +39,7 @@
             </div>
         </div>
 
+        <!-- 해당 날짜가 되어도 메시지가 없는 경우 랜덤 메시지 가져오기 -->
         <!-- 메시지가 있는 경우 메시지 내용 표시 -->
         <div v-else-if="store.messages[props.day]">
             <img v-if="stickerUrl" :src="stickerUrl">
