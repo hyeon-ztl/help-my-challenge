@@ -16,3 +16,86 @@
   z-index: 9999;
   font-size: 10px;
 }
+
+/* 검색창 */
+.search-input{
+
+}
+
+.search-button{
+
+}
+
+.search-layout {
+  position: absolute;
+  width: 80%; /* 너비를 %로 설정 */
+  /* max-width: 339px; 최대 너비 제한 */
+  height: 27px;
+  top: 50%; /* 부모 컨테이너 상단에서 20px 아래 */
+  left: 50%; /* 부모 컨테이너 기준으로 수평 중앙 */
+  transform: translateX(-50%); /* 자신의 너비 기준으로 정확히 중앙 정렬 */
+  border: 1px solid #ddd; 
+}
+
+/*헤더 메인 요소 */
+.header-ssafit-main-btn{
+    
+}
+
+.header-ssafit-video-btn{
+
+}
+
+/* 헤더 요소 */
+.header-layout{
+  position:absolute;
+  top: 2px;
+  display: flex; /* Flexbox 활성화 */
+  flex-direction: row-reverse; /* 오른쪽에서 왼쪽 정렬 */
+  justify-content: flex-start; /* 요소 시작 위치를 왼쪽으로 */
+  align-items: center; /* 세로로 중앙 정렬 */
+  width: 95%; /* 부모 요소의 크기 지정 */
+  height: 30px;
+  gap: 10px; /* 요소 간 간격 */
+  /* border: 1px solid #ddd;  */
+}
+
+.header-layout *{
+  display:flex;
+  margin-right : 10px;
+}
+
+.header-kakao-img{
+  height: 16px;
+  width: 16px;
+  background-size: cover; /* 비율 유지하며 영역에 맞게 자름 */
+  background-position: center; /* 중앙 정렬 */
+  background-repeat: no-repeat; /* 반복 방지 */
+  border-radius: 10px; /* 원형 또는 둥근 모서리 효과 (옵션) */
+}
+
+.header-login-word{
+  font-size: 14px
+}
+
+.header-login-btn {
+  margin-right: 0px;
+
+  background: #FFFFFF;
+  border-radius: 5px;
+  width: 60px;
+  height: 17px;
+
+  font-family: 'AppleSDGothicNeoSB00';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  border: 0;
+  color: #767676;
+
+  display: flex; /* Flexbox 활성화 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  text-align: center; /* 텍스트 정렬 */
+}

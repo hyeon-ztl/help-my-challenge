@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class = "search-layout">
       <h2>검색</h2>
       <input type="text" v-model.trim="keyword" @keyup.enter="search"/>
       <button @click="search">검색</button>
@@ -17,10 +17,13 @@
     const search = function () {
       router.push({name: 'searchResult', params:{keyword: keyword.value}});
     };
+
+    
   
   </script>
   
   <style scoped>
-  /* 스타일 작성 */
+ 
+
   </style>
   
