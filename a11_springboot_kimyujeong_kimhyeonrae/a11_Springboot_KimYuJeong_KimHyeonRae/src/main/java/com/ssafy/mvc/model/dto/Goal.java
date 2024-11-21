@@ -3,6 +3,7 @@ package com.ssafy.mvc.model.dto;
 public class Goal {
 	int goalId;
 	String email;
+	String name;
 	String startDate;
 	String endDate;
 	int day;
@@ -16,10 +17,11 @@ public class Goal {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Goal(int goalId, String email, String startDate, String endDate, int day, int goalCode, String goalName,
+	public Goal(int goalId, String email, String name, String startDate, String endDate, int day, int goalCode, String goalName,
 			String goalDescription, String text, String pledge) {
 		this.goalId = goalId;
 		this.email = email;
+		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.day = day;
@@ -44,6 +46,14 @@ public class Goal {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getStartDate() {
@@ -112,9 +122,9 @@ public class Goal {
 
 	@Override
 	public String toString() {
-		return "Goal [goalId=" + goalId + ", email=" + email + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", day=" + day + ", goalCode=" + goalCode + ", goalName=" + goalName + ", goalDescription="
-				+ goalDescription + ", text=" + text + ", pledge=" + pledge + "]";
+		return "Goal [goalId=" + goalId + ", email=" + email + ", name=" + name + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", day=" + day + ", goalCode=" + goalCode + ", goalName=" + goalName
+				+ ", goalDescription=" + goalDescription + ", text=" + text + ", pledge=" + pledge + "]";
 	}
 	
 }

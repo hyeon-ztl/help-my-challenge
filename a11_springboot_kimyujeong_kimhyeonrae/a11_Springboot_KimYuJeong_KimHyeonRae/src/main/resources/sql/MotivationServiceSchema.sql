@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS `goal`;
 CREATE TABLE `goal` (
     `goal_id` INT PRIMARY KEY AUTO_INCREMENT,          -- 목표 고유 ID
     `email` VARCHAR(50) NOT NULL,                      -- 목표를 설정한 사용자, 카카오 API에 맞게 수정
+    `name` VARCHAR(50) NOT NULL,
     `start_date` DATE NOT NULL,                        -- 시작 날짜
     `end_date` DATE NOT NULL,                          -- 종료 날짜
     `day` int NOT NULL,								   -- 일차수
@@ -153,5 +154,6 @@ INSERT INTO `random_message` (`sender_nickname`, `content`) VALUES
 ("익명", "작은 진전도 진전이다."),
 ("익명", "당신과 목표 사이에 있는 유일한 장애물은 그것을 이룰 수 없다고 말하는 이야기다.");
 
-
 commit;
+
+SELECT * FROM `random_message`;

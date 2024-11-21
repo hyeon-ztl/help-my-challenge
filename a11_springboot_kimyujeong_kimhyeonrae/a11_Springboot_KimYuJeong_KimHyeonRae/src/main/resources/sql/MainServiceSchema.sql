@@ -13,9 +13,6 @@ CREATE TABLE `review` (
     `regist_day` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO `review` (`email`, `nickname`, `video_id`, `content`)
-VALUES ('aabbc0908@naver.com', '김유정', 'AVCDES', '너무 힘들다 진자');
-
 commit;
 
 SELECT * FROM review;

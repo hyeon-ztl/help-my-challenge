@@ -1,48 +1,44 @@
 <template>
-    <div>
-        <fieldset>
-            <div>
-                <label for="senderNickname">from</label> <br/>
-                <input type="text" id="senderNickname" v-model="message.senderNickname" placeholder=" 닉네임 입력">
-            </div>
-            <div>
-                <label for="content">내용</label> <br/>
-                <textarea 
-                    v-model="message.content" 
-                    id="content" 
-                    rows="5" 
-                    cols="30" 
-                    maxlength="500"
-                    placeholder=" 내용 입력"
-                    >
-                </textarea>
-                <p>{{ message.content.length }}/500</p>
-            </div>
-            <div class="sticker-container">
-                <img v-for="id in stickers" :key="id" 
-                    :src="`/src/assets/sticker/sticker${id}.png`" 
-                    :class="{ selected: message.stickerId === id }"
-                    @click="selectSticker(id)"
-                    >
-            </div>
-            <div>
-                <button @click="registMessage">등록</button>
-            </div>
-        </fieldset>
+    <div id="modal-user-input">
+        <div>
+            <label for="senderNickname" class="modal-alarm">From</label>
+            <input type="text" id="senderNickname" v-model="message.senderNickname" placeholder=" 닉네임 입력" class="modal-input">
+        </div>
+            <label for="content" class="modal-alarm">내용</label>
+            <textarea 
+                v-model="message.content" 
+                id="content" 
+                rows="5" 
+                cols="30" 
+                maxlength="500"
+                placeholder=" 내용 입력"
+                class="modal-textarea"
+                >
+            </textarea>
+            <p class="textarea-content-length">{{ message.content.length }}/500</p>
+
+        <p class="modal-alarm">스티커 선택</p>
+        <div id="sticker-container">
+            <img v-for="id in stickers" :key="id" 
+                :src="`/src/assets/sticker/sticker${id}.png`" 
+                :class="{ selected: message.stickerId === id }"
+                @click="selectSticker(id)"
+                >
+        </div>
+        <button @click="triggerConfirm" class="modal-regist-btn">등록</button>
     </div>
 </template>
 
 <script setup>
-    import { ref } from 'vue';
+    import { ref, defineEmits } from 'vue';
     import { useRoute } from 'vue-router';
     import { useGoalStore } from '@/stores/goal';
     import { useUserStore } from '@/stores/user';
-    import { useMessageStore } from '@/stores/message';
 
     const goalStore = useGoalStore();
     const userStore = useUserStore();
-    const store = useMessageStore();
     const route = useRoute();
+    const emit = defineEmits(['open-confirm-modal']);
 
     const props = defineProps({
         day: Number,
@@ -64,29 +60,13 @@
         stickerId: ''
     });
 
-    const registMessage = function() {
-        console.log(message.value);
-        store.registMessage(message.value);
+    const triggerConfirm = function() {
+        emit('open-confirm-modal', message.value);
     }
 
 </script>
 
 <style scoped>
-    .sticker-container img {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    border: 2px solid transparent; /* 기본 테두리 없음 */
-    cursor: pointer;
-    transition: border 0.3s ease;
-    }
 
-    .sticker-container img:hover {
-    border: 2px solid #ccc; /* 호버 시 연한 테두리 */
-    }
 
-    .sticker-container img.selected {
-    border: 2px solid #007BFF; /* 선택된 이미지의 테두리 */
-    border-radius: 5px; /* 둥근 모서리 */
-    }
 </style>

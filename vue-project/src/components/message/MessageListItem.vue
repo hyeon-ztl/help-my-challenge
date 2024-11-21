@@ -2,19 +2,31 @@
     <div>
         <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p>
 
-        <!-- 로딩 중 상태 -->
-        <div v-if="isLoading">
-            <p>로딩 중...</p>
-        </div>
-
         <!-- 메시지가 없는 경우 등록 버튼 표시 -->
-        <div v-else-if="store.messages[props.day] === null && userStore.loginUser !== null">
-            <button v-if="userStore.loginUser.email !== route.params.email" @click="modalOpen">등록</button>
+        <div v-if="store.messages[props.day] === null && userStore.loginUser !== null">
+            <button v-if="userStore.loginUser.email !== route.params.email" @click="modalToggle">등록</button>
             <div class="modal-wrap" v-show="modalCheck">
             <div class="modal-container">
-                    <MessageRegist :day="props.day"/>
+                    <MessageRegist :day="props.day" @open-confirm-modal="openConfirmModal"/>
                 <div class="modal-btn">
-                    <button @click="modalClose">닫기</button>
+                    <button @click="modalToggle" class="modal-close-btn">X</button>
+                </div>
+            </div>
+            </div>
+            
+            <!-- 메시지 등록 시 확인 모달 -->
+            <div class="modal-wrap" v-show="registModal">
+            <div class="modal-container">
+                <div class="modal-background">
+                    <p class="modal-alarm">메시지 업로드 시 수정 및 삭제가 불가능합니다.</p>
+                    <p class="modal-alarm">등록하시겠습니까?</p>
+                    <div id="modal-alarm-btns">
+                        <button @click="registMessage" class="modal-regist-btn">등록</button>
+                        <button @click="closeConfirmModal" class="modal-regist-btn" id="modal-alarm-btns-cancel">취소</button>
+                    </div>
+                </div>
+                <div class="modal-btn">
+                    <button @click="closeConfirmModal" class="modal-close-btn">X</button>
                 </div>
             </div>
             </div>
@@ -22,13 +34,13 @@
 
         <!-- 등록 버튼을 눌렀을 때 로그인하지 않은 경우 -->
         <div v-else-if="store.messages[props.day] === null && userStore.loginUser === null">
-            <button @click="modalOpen">등록</button>
+            <button @click="modalToggle">등록</button>
 
             <div class="modal-wrap" v-show="modalCheck">
             <div class="modal-container">
                     <TheLogin/>
                 <div class="modal-btn">
-                    <button @click="modalClose">닫기</button>
+                    <button @click="modalToggle" class="modal-close-btn">X</button>
                 </div>
             </div>
             </div>
@@ -49,20 +61,20 @@
 
             <!-- 메시지 조회 가능 날짜 이후 모달 -->
             <div class="modal-wrap" v-show="afterMessageOpenDayModal">
-            <div class="modal-container">
+            <div class="modal-container"  id="message-detail-container">
                     <MessageDetail :message="store.messages[props.day]"/>
                 <div class="modal-btn">
-                    <button @click="afterMessageOpenDayModalToggle">닫기</button>
+                    <button @click="afterMessageOpenDayModalToggle" class="modal-close-btn"  id="message-detail-btn">X</button>
                 </div>
             </div>
             </div>
 
             <!-- 메시지 조회 가능 날짜 이전 모달 -->
             <div class="modal-wrap" v-show="beforeMessageOpenDayModal">
-            <div class="modal-container">
+            <div class="modal-container" id="message-detail-impossible-container">
                     <MessageDetailBeforeOpenDay/>
                 <div class="modal-btn">
-                    <button @click="beforeMessageOpenDayModalToggle">닫기</button>
+                    <button @click="beforeMessageOpenDayModalToggle" class="modal-close-btn"  id="message-detail-btn">X</button>
                 </div>
             </div>
             </div>
@@ -76,7 +88,7 @@ import { ref, watch, computed } from 'vue';
 import { useMessageStore } from '@/stores/message';
 import { useUserStore } from '@/stores/user';
 import { useGoalStore } from '@/stores/goal';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 
 import MessageDetail from './MessageDetail.vue';
 import MessageDetailBeforeOpenDay from './MessageDetailBeforeOpenDay.vue';
@@ -92,7 +104,6 @@ const store = useMessageStore(); // Pinia 스토어: 메시지 관리
 const userStore = useUserStore(); // Pinia 스토어: 사용자 관리
 const goalStore = useGoalStore();
 const route = useRoute();
-const router = useRouter();
 
 // 메시지 로드 함수
 const loadMessage = async () => {
@@ -128,15 +139,11 @@ const currDate = computed(() => {
     return `${year}-${month}-${day}`;
 });
 
+// 모달
 const modalCheck = ref(false);
-
-const modalOpen = function() {
+const modalToggle = function() {
     modalCheck.value = !modalCheck.value;
 };
-
-const modalClose = function() {
-    modalCheck.value = !modalCheck.value;
-}
 
 const canViewMessage = computed(() => {
     const today = new Date();
@@ -155,6 +162,23 @@ const beforeMessageOpenDayModalToggle = function() {
     beforeMessageOpenDayModal.value = !beforeMessageOpenDayModal.value;
 };
 
+
+// 메시지 등록 관련 모달
+const messageToRegist = ref(null); // 메시지 등록
+const registMessage = function() {
+    store.registMessage(messageToRegist.value);
+}
+
+const registModal = ref(false); // 등록 확인용
+const openConfirmModal = function(message) {
+    modalToggle();
+    registModal.value = !registModal.value;
+    messageToRegist.value = message;
+}
+const closeConfirmModal = function() {
+    registModal.value = !registModal.value;
+}
+
 // 스티커 url
 const stickerUrl = computed(() => {
   if (store.messages[props.day]?.stickerId) {
@@ -163,29 +187,8 @@ const stickerUrl = computed(() => {
   return null;
 });
 
-
 </script>
 
 <style scoped>
-    /* 모달 관련 CSS - dimmed */
-    .modal-wrap {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    }
-    /* 모달 관련 CSS - modal or popup */
-    .modal-container {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 550px;
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-    }
+
 </style>

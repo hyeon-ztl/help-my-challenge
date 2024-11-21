@@ -6,13 +6,13 @@
 	
 	<!-- 목표 등록 -->
 	<insert id="insertGoal" parameterType="Goal" keyProperty="goalId" useGeneratedKeys="true">
-		INSERT INTO goal (email, start_date, end_date, day, goal_code, goal_description, text, pledge)
-		VALUES (#{email}, #{startDate}, #{endDate}, #{day}, #{goalCode}, #{goalDescription}, #{text}, #{pledge});
+		INSERT INTO goal (email, name, start_date, end_date, day, goal_code, goal_description, text, pledge)
+		VALUES (#{email}, #{name}, #{startDate}, #{endDate}, #{day}, #{goalCode}, #{goalDescription}, #{text}, #{pledge});
 	</insert>
 	
 	<!-- 목표 조회 -->
 	<select id="selectGoal" parameterType="String" resultType="Goal">
-		SELECT g.goal_id AS goalId, g.email AS email, g.start_date AS startDate, g.end_date AS endDate, g.day AS day, g.goal_code AS goalCode, t.goal_name AS goalName, g.goal_description AS goalDescription, g.text AS text, g.pledge AS pledge  
+		SELECT g.goal_id AS goalId, g.email AS email, g.name AS name, g.start_date AS startDate, g.end_date AS endDate, g.day AS day, g.goal_code AS goalCode, t.goal_name AS goalName, g.goal_description AS goalDescription, g.text AS text, g.pledge AS pledge  
 		FROM goal g LEFT OUTER JOIN goal_type t ON g.goal_code = t.goal_code
 		WHERE email = #{email};
 	</select>
@@ -20,7 +20,7 @@
 	<!-- 목표 수정 -->
 	<update id="updateGoal" parameterType="Goal">
 		UPDATE goal
-		SET start_date = #{startDate}, end_date = #{endDate}, day = #{day}, goal_code = #{goalCode}, goal_description = #{goalDescription}, text = #{text}, pledge = #{pledge}
+		SET name = #{name}, start_date = #{startDate}, end_date = #{endDate}, day = #{day}, goal_code = #{goalCode}, goal_description = #{goalDescription}, text = #{text}, pledge = #{pledge}
 		WHERE email = #{email};
 	</update>
 	

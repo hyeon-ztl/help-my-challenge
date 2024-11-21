@@ -1,181 +1,221 @@
-/* Modal 스타일 정의 */
+/* 모달 관련 CSS - dimmed */
+.modal-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
 
-/* 윗팝업 */
+/* 모달 관련 CSS - modal or popup */
 .modal-container {
-    position: absolute;
-    width: 351px;
-    height: 539px;
-    left: 20px;
-    top: calc(50% - 539px / 2 - 0.5px);
+    display: flex;  
+    position: relative;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* 팝업 사각형 */
-.modal-popup {
+.modal-close-btn {
     position: absolute;
-    width: 351px;
-    height: 539px;
-    left: calc(50% - 351px / 2 + 0.5px);
-    top: 152px;
+    right: 30px;
+    background-color: #fff;
+    border: none;
+
+    font-size: large;
+    color: #767676;
+}
+
+#message-detail-btn {
+    background: #F0F9E3;
+}
+
+.modal-container * {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-background {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 100%;
+
+    align-items: center;
+
     background: #FFFFFF;
-    border-radius: 8px;
 }
 
-/* 내용부분 */
-.modal-content {
-    position: absolute;
-    width: 299px;
-    height: 335px;
-    left: calc(50% - 299px / 2 + 0.5px);
-    top: 272px;
+#modal-user-input {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 100%;
+
+    background: #FFFFFF;
 }
 
-/* Rectangle 7 */
-.modal-rectangle {
-    position: absolute;
-    width: 299px;
-    height: 319px;
-    left: calc(50% - 299px / 2 + 0.5px);
-    top: 288px;
+#message-detail-background {
+    background: #F0F9E3;
+    width: 100%; /* 부모 요소의 전체 너비를 채움 */
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    margin: 0; /* 외부 여백 제거 */
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#message-detail-container {
+    height: 400px;
+    width: 600px;
+    background: #F0F9E3;
+}
+
+#message-detail-impossible-background {
+    background: #F0F9E3;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+#message-detail-impossible-container {
+    height: 200px;
+    width: 400px;
+    background: #F0F9E3;
+}
+
+.modal-input {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+
+    color: #767676;
     background: #F4F3EC;
-    border-radius: 5px;
+
+    border-radius: 5px; /* 둥근 모서리 */
+    border: none; /* 테두리 제거 */
+    outline: none; /* 클릭 시 외곽선 제거 */
+    padding: 8px; /* 안쪽 여백 */
+    margin-bottom: 16px; /* 아래 요소와 간격 */
 }
 
-/* 내용 */
-.modal-text {
-    position: absolute;
-    width: 19px;
-    height: 12px;
-    left: 51px;
-    top: 272px;
+.modal-textarea {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 12px;
+    line-height: 15px;
+
     color: #767676;
+    background: #F4F3EC;
+
+    border-radius: 5px; /* 둥근 모서리 */
+    border: none; /* 테두리 제거 */
+    outline: none; /* 클릭 시 외곽선 제거 */
+    padding: 8px; /* 안쪽 여백 */
+    margin-bottom: 16px; /* 아래 요소와 간격 */
 }
 
-/* 0 / 500 */
-.modal-counter {
-    position: absolute;
-    width: 35px;
-    height: 12px;
-    left: 303px;
-    top: 586px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-    color: #767676;
+#message-detail-content {
+    color: black;
 }
 
-/* 내용 입력 */
-.modal-input-text {
-    position: absolute;
-    width: 48px;
-    height: 15px;
-    left: 61px;
-    top: 302px;
+.textarea-content-length {
+    text-align: right; /* 텍스트를 오른쪽으로 정렬 */
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     color: #767676;
+    margin-top: 0; /* 상단 간격 */
+    margin-bottom: 0; /* 하단 간격 제거 */
 }
 
-/* 프롬부분 */
-.modal-from {
-    position: absolute;
-    width: 299px;
-    height: 57px;
-    left: calc(50% - 299px / 2 + 0.5px);
-    top: 200px;
-}
+.modal-regist-btn {
+    display: flex; /* 플렉스 박스로 설정 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
 
-/* Rectangle 6 */
-.modal-from-rectangle {
-    position: absolute;
-    width: 299px;
-    height: 40px;
-    left: calc(50% - 299px / 2 + 0.5px);
-    top: 217px;
-    background: #F4F3EC;
-    border-radius: 5px;
-}
+    border-radius: 5px; /* 둥근 모서리 */
+    border: none;
 
-/* From. */
-.modal-from-text {
-    position: absolute;
-    width: 27px;
-    height: 12px;
-    left: 50px;
-    top: 200px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-    color: #767676;
-}
-
-/* 닉네임 입력 */
-.modal-nickname {
-    position: absolute;
-    width: 59px;
-    height: 15px;
-    left: 60px;
-    top: 230px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    color: #767676;
-}
-
-/* 다음버튼 */
-.modal-next-button {
-    position: absolute;
-    width: 299px;
-    height: 40px;
-    left: calc(50% - 299px / 2 + 2.5px);
-    top: 623px;
     background: #B8D989;
-    border-radius: 5px;
-}
 
-/* 다음 */
-.modal-next-text {
-    position: absolute;
-    width: 26px;
-    height: 21px;
-    left: calc(50% - 26px / 2 + 1px);
-    top: 632px;
     font-family: 'AppleSDGothicNeoB00';
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 21px;
+
     color: #FFFFFF;
+    padding: 10px 16px; /* 버튼 안쪽 여백 */
+    margin-top: 24px; /* 위 요소와 간격 */
 }
 
-/* 🦆 icon "close" */
-.modal-close-icon {
-    position: absolute;
-    width: 9.24px;
-    height: 9.23px;
-    left: 344px;
-    top: 168px;
+#sticker-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* 스티커 간격 조정 */
+    margin-top: 16px; /* 위 요소와 간격 */
 }
 
-/* Vector */
-.modal-vector {
-    position: absolute;
-    left: 88.21%;
-    right: 9.43%;
-    top: 19.91%;
-    bottom: 79%;
-    background: #767676;
+#sticker-container img {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border: 2px solid transparent; /* 기본 테두리 없음 */
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+#sticker-container img:hover {
+    border: 2px solid #ccc; /* 호버 시 연한 테두리 */
+}
+
+#sticker-container img.selected {
+    border: 2px solid #B8D989; /* 선택된 이미지의 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+}
+
+.login-btn {
+    align-items: center;
+    margin-top: 8px;
+}
+
+.modal-alarm {
+    font-family: 'Inter';
+    font-style: normal;
+    color: black;
+    margin-bottom: 8px; /* 라벨과 다음 요소 간격 */
+}
+
+#modal-alarm-btns {
+    flex-direction: row;
+    justify-content: center;
+}
+
+#modal-alarm-btns > button {
+    width: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.modal-background > button {
+    width: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#modal-alarm-btns-cancel {
+    background-color: #767676;
 }
