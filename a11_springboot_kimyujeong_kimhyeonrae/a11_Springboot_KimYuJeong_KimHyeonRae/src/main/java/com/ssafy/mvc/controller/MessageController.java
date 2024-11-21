@@ -1,5 +1,6 @@
 package com.ssafy.mvc.controller;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,26 +59,36 @@ public class MessageController {
 		return new ResponseEntity<String>("해당 메시지는 존재하지 않습니다.", HttpStatus.NO_CONTENT);
 	}
 	
-	@GetMapping("/open/{receiver}/{day}")
+	@GetMapping("/open/{receiver}/{startDate}/{day}")
 	@Operation(summary="해당 일차에 해당하는 메시지를 조회합니다.")
-	public ResponseEntity<?> searchMessageByDay(@PathVariable("receiver") String receiver, @PathVariable("day") int day) {
-		Map<String, String> info = new HashMap<>();
-		
-		info.put("receiver", receiver);
-		info.put("day", day+""); // 문자열로 변환해서 보내기
-		
-		Message message = service.searchMessageByDay(info);
-		
-//		if(message == null) { // 해당 날짜에 메시지가 없으면 랜덤 메시지 가져오기
-//			message = service.createRandomMessage(day);			
-//		}
-		
-		if(message != null) {
-			return new ResponseEntity<Message>(message, HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<String>("해당 날짜에 메시지가 존재하지 않습니다.", HttpStatus.NO_CONTENT);
+	public ResponseEntity<?> searchMessageByDay(@PathVariable("receiver") String receiver, @PathVariable("startDate") String startDate, @PathVariable("day") int day) {
+	    Map<String, String> info = new HashMap<>();
+	    info.put("receiver", receiver);
+	    info.put("day", day + ""); // 문자열로 변환해서 보내기
+
+	    // StartDate + day 계산
+	    LocalDate startDateParsed = LocalDate.parse(startDate); // "YYYY-MM-DD" 형식으로 파싱
+	    LocalDate targetDate = startDateParsed.plusDays(day); // StartDate + day
+	    LocalDate currentDate = LocalDate.now(); // 현재 날짜
+
+	    Message message;
+
+	    if (targetDate.isBefore(currentDate) || targetDate.isEqual(currentDate)) {
+	        // StartDate + day가 현재 날짜 이전이면 랜덤 메시지 생성
+	    	System.out.println("목표 시작 날짜 : " + startDateParsed + ", 타겟 날짜 : " + targetDate + ", 오늘 날짜 : " + currentDate);
+	        message = service.createRandomMessage(day % 94 + 1);
+	    } else {
+	        // 해당 일차에 해당하는 메시지 조회
+	        message = service.searchMessageByDay(info);
+	    }
+
+	    if (message != null) {
+	        return new ResponseEntity<>(message, HttpStatus.OK);
+	    }
+
+	    return new ResponseEntity<>("해당 날짜에 메시지가 존재하지 않습니다.", HttpStatus.NO_CONTENT);
 	}
+
 	
 	@PostMapping("/message")
 	@Operation(summary="메시지를 등록합니다.")

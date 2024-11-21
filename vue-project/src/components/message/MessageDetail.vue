@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <p>
+    <div id="message-detail-background">
+        <p class="modal-label">
             From. {{ props.message.senderNickname }}
         </p>
-        <p>
+        <p id="message-detail-content">
             {{ props.message.content }}
         </p>
     </div>

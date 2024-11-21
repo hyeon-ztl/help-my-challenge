@@ -26,5 +26,5 @@ public interface MessageDao {
 	int deleteMessageByMessageId(int messageId);
 	
 	// 랜덤 메시지 가져오기
-	Message searchRandomMessage(int randomNumber);
+	Message selectRandomMessage(int day);
 }
