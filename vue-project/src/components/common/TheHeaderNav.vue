@@ -13,11 +13,11 @@
                         <button @click="logout" class="header-login-btn">LOGOUT</button>
                     </div>
                     <!-- 검색했을때 메인 싸핏 -->
-                    <router-link :to="{name: 'ssafit'}" v-if="isntMain" class="header-ssafit-video-btn">SSAFIT</router-link> 
+                    <router-link :to="{name: 'ssafit'}" v-if="!isMain" class="header-ssafit-video-btn">SSAFIT</router-link> 
                 </div>
 
                 <!-- 검색안했을때 메인 싸핏 -->
-                <div v-if="!isntMain" class="header-ssafit-main-btn">SSAFIT</div>
+                <div v-if="isMain" class="header-ssafit-main-btn">SSAFIT</div>
 
                 <!-- 챌린지 들어가면 챌린지 버튼 없어지기 비활성화 -->
                 <router-link v-if="store.loginUser !== null && !hideChallenge" :to="{path: `/challenge/${store.loginUser.email}`}" class="challenge">CHALLENGE</router-link> 
@@ -44,13 +44,13 @@
 
     // App.vue에서 내려준 hideChallenge, isMain 상태를 받아옵니다.
     defineProps({
-    hideChallenge: {
+    isChallengeView: {
     type: Boolean,
     default: false,
     },
 
     // Main인지 확인하는 변수
-    isntMain:{
+    isMain:{
         type:Boolean,
         default: false,
     },
