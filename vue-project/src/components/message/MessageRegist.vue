@@ -2,12 +2,21 @@
     <div>
         <fieldset>
             <div>
-                <label for="senderNickname">from</label>
-                <input type="text" id="senderNickname" v-model="message.senderNickname">
+                <label for="senderNickname">from</label> <br/>
+                <input type="text" id="senderNickname" v-model="message.senderNickname" placeholder=" 닉네임 입력">
             </div>
             <div>
-                <label for="content">내용</label>
-                <input type="text" id="content" v-model="message.content">
+                <label for="content">내용</label> <br/>
+                <textarea 
+                    v-model="message.content" 
+                    id="content" 
+                    rows="5" 
+                    cols="30" 
+                    maxlength="500"
+                    placeholder=" 내용 입력"
+                    >
+                </textarea>
+                <p>{{ message.content.length }}/500</p>
             </div>
             <div class="sticker-container">
                 <img v-for="id in stickers" :key="id" 

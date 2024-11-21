@@ -48,8 +48,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public Message createRandomMessage(int randomNumber) {
-		return dao.searchRandomMessage(randomNumber);
+	public Message createRandomMessage(int day) {
+		return dao.selectRandomMessage(day);
 	}
 
 }

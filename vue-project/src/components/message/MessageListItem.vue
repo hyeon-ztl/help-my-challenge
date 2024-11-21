@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>{{ props.day }} 일차 메시지</p>
+        <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p>
 
         <!-- 로딩 중 상태 -->
         <div v-if="isLoading">
@@ -8,14 +8,8 @@
         </div>
 
         <!-- 메시지가 없는 경우 등록 버튼 표시 -->
-         <!-- 해당 날짜 이전이면 등록 -->
         <div v-else-if="store.messages[props.day] === null && userStore.loginUser !== null">
-            <button
-                v-if="userStore.loginUser.email !== route.params.email"
-                @click="modalOpen"
-            >
-                등록
-            </button>
+            <button v-if="userStore.loginUser.email !== route.params.email" @click="modalOpen">등록</button>
             <div class="modal-wrap" v-show="modalCheck">
             <div class="modal-container">
                     <MessageRegist :day="props.day"/>
@@ -39,27 +33,40 @@
             </div>
             </div>
         </div>
-
-        <!-- 해당 날짜가 되어도 메시지가 없는 경우 랜덤 메시지 가져오기 => 백엔드에서 구현해야할듯 -->
         
-        <div v-else-if="store.messages[props.day]"> <!-- 메시지가 있는 경우 메시지 내용 표시 -->
+        <!-- 메시지가 있는 경우 메시지 내용 표시 -->
+        <div v-else-if="store.messages[props.day]"> 
             <img v-if="stickerUrl" :src="stickerUrl">
             <p>보낸 사람: {{ store.messages[props.day].senderNickname }}</p>
             <div v-if="userStore.loginUser !== null">
-                <button 
-                    v-if="canViewMessage && (userStore.loginUser.email === route.params.email || userStore.loginUser.email === store.messages[props.day].sender)"
-                    @click="modalOpen"
-                    >조회</button>
+                <!-- 메시지 조회 가능 날짜 이후 -->
+                <button v-if="canViewMessage && (userStore.loginUser.email === route.params.email || userStore.loginUser.email === store.messages[props.day].sender)"
+                    @click="afterMessageOpenDayModalToggle">조회</button>
+                <!-- 메시지 조회 가능 날짜 이전  -->
+                <button v-if="!canViewMessage && (userStore.loginUser.email === route.params.email || userStore.loginUser.email === store.messages[props.day].sender)"
+                    @click="beforeMessageOpenDayModalToggle">조회</button>
             </div>
 
-            <div class="modal-wrap" v-show="modalCheck">
+            <!-- 메시지 조회 가능 날짜 이후 모달 -->
+            <div class="modal-wrap" v-show="afterMessageOpenDayModal">
             <div class="modal-container">
                     <MessageDetail :message="store.messages[props.day]"/>
                 <div class="modal-btn">
-                    <button @click="modalClose">닫기</button>
+                    <button @click="afterMessageOpenDayModalToggle">닫기</button>
                 </div>
             </div>
             </div>
+
+            <!-- 메시지 조회 가능 날짜 이전 모달 -->
+            <div class="modal-wrap" v-show="beforeMessageOpenDayModal">
+            <div class="modal-container">
+                    <MessageDetailBeforeOpenDay/>
+                <div class="modal-btn">
+                    <button @click="beforeMessageOpenDayModalToggle">닫기</button>
+                </div>
+            </div>
+            </div>
+
         </div>
     </div>
 </template>
@@ -72,6 +79,7 @@ import { useGoalStore } from '@/stores/goal';
 import { useRoute, useRouter } from 'vue-router';
 
 import MessageDetail from './MessageDetail.vue';
+import MessageDetailBeforeOpenDay from './MessageDetailBeforeOpenDay.vue';
 import MessageRegist from './MessageRegist.vue';
 import TheLogin from '../common/TheLogin.vue';
 
@@ -90,7 +98,7 @@ const router = useRouter();
 const loadMessage = async () => {
     isLoading.value = true; // 로딩 상태 활성화
     try {
-        await store.getMessage(route.params.email, props.day);
+        await store.getMessage(route.params.email, goalStore.goal.startDate, props.day);
     } catch (error) {
         console.error(`Failed to load message for day ${props.day}:`, error);
     } finally {
@@ -102,20 +110,28 @@ const loadMessage = async () => {
 loadMessage();
 
 // `store.messages`의 특정 day가 변경되었을 때 반응형으로 UI 갱신
-watch(
-    () => store.messages[props.day],
-    (newValue) => {
-        if (newValue) {
-            console.log(`Day ${props.day} message updated:`, newValue);
-        }
+watch(() => store.messages[props.day], (newValue) => {
+    if (newValue) {
+        console.log(`Day ${props.day} message updated:`, newValue);
     }
-);
+});
+
+// 시작일로부터 day를 날짜로 계산하기
+const currDate = computed(() => {
+    const startDate = new Date(goalStore.goal.startDate);
+    startDate.setDate(startDate.getDate() + props.day);
+
+    const year = startDate.getFullYear();
+    const month = String(startDate.getMonth() + 1).padStart(2, '0');
+    const day = String(startDate.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+});
 
 const modalCheck = ref(false);
 
 const modalOpen = function() {
     modalCheck.value = !modalCheck.value;
-    // router.push({name: 'messageDetail', params:{receiver: route.params.email, day: props.day}});
 };
 
 const modalClose = function() {
@@ -124,41 +140,52 @@ const modalClose = function() {
 
 const canViewMessage = computed(() => {
     const today = new Date();
-    const startDate = new Date(goalStore.goal.startDate); // goal.startDate를 Date 객체로 변환
-    startDate.setDate(startDate.getDate() + props.day); // 목표 시작일에 props.day를 더한 날짜
-    return today >= startDate; // 현재 날짜가 열람 가능 날짜 이후인지 확인
+    const startDate = new Date(goalStore.goal.startDate);
+    startDate.setDate(startDate.getDate() + props.day);
+    return today >= startDate;
 });
 
+// 메시지 조회 관련 모달
+const afterMessageOpenDayModal = ref(false);
+const afterMessageOpenDayModalToggle = function() {
+    afterMessageOpenDayModal.value = !afterMessageOpenDayModal.value;
+}
+const beforeMessageOpenDayModal = ref(false);
+const beforeMessageOpenDayModalToggle = function() {
+    beforeMessageOpenDayModal.value = !beforeMessageOpenDayModal.value;
+};
+
+// 스티커 url
 const stickerUrl = computed(() => {
   if (store.messages[props.day]?.stickerId) {
     return new URL(`/src/assets/sticker/sticker${store.messages[props.day].stickerId}.png`, import.meta.url).href;
   }
-  return null; // 이미지가 없을 경우
+  return null;
 });
 
 
 </script>
 
 <style scoped>
-/* dimmed */
-.modal-wrap {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-}
-/* modal or popup */
-.modal-container {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 550px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-sizing: border-box;
-}
+    /* 모달 관련 CSS - dimmed */
+    .modal-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    }
+    /* 모달 관련 CSS - modal or popup */
+    .modal-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    }
 </style>

@@ -1,0 +1,181 @@
+/* Modal 스타일 정의 */
+
+/* 윗팝업 */
+.modal-container {
+    position: absolute;
+    width: 351px;
+    height: 539px;
+    left: 20px;
+    top: calc(50% - 539px / 2 - 0.5px);
+}
+
+/* 팝업 사각형 */
+.modal-popup {
+    position: absolute;
+    width: 351px;
+    height: 539px;
+    left: calc(50% - 351px / 2 + 0.5px);
+    top: 152px;
+    background: #FFFFFF;
+    border-radius: 8px;
+}
+
+/* 내용부분 */
+.modal-content {
+    position: absolute;
+    width: 299px;
+    height: 335px;
+    left: calc(50% - 299px / 2 + 0.5px);
+    top: 272px;
+}
+
+/* Rectangle 7 */
+.modal-rectangle {
+    position: absolute;
+    width: 299px;
+    height: 319px;
+    left: calc(50% - 299px / 2 + 0.5px);
+    top: 288px;
+    background: #F4F3EC;
+    border-radius: 5px;
+}
+
+/* 내용 */
+.modal-text {
+    position: absolute;
+    width: 19px;
+    height: 12px;
+    left: 51px;
+    top: 272px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #767676;
+}
+
+/* 0 / 500 */
+.modal-counter {
+    position: absolute;
+    width: 35px;
+    height: 12px;
+    left: 303px;
+    top: 586px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #767676;
+}
+
+/* 내용 입력 */
+.modal-input-text {
+    position: absolute;
+    width: 48px;
+    height: 15px;
+    left: 61px;
+    top: 302px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #767676;
+}
+
+/* 프롬부분 */
+.modal-from {
+    position: absolute;
+    width: 299px;
+    height: 57px;
+    left: calc(50% - 299px / 2 + 0.5px);
+    top: 200px;
+}
+
+/* Rectangle 6 */
+.modal-from-rectangle {
+    position: absolute;
+    width: 299px;
+    height: 40px;
+    left: calc(50% - 299px / 2 + 0.5px);
+    top: 217px;
+    background: #F4F3EC;
+    border-radius: 5px;
+}
+
+/* From. */
+.modal-from-text {
+    position: absolute;
+    width: 27px;
+    height: 12px;
+    left: 50px;
+    top: 200px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #767676;
+}
+
+/* 닉네임 입력 */
+.modal-nickname {
+    position: absolute;
+    width: 59px;
+    height: 15px;
+    left: 60px;
+    top: 230px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #767676;
+}
+
+/* 다음버튼 */
+.modal-next-button {
+    position: absolute;
+    width: 299px;
+    height: 40px;
+    left: calc(50% - 299px / 2 + 2.5px);
+    top: 623px;
+    background: #B8D989;
+    border-radius: 5px;
+}
+
+/* 다음 */
+.modal-next-text {
+    position: absolute;
+    width: 26px;
+    height: 21px;
+    left: calc(50% - 26px / 2 + 1px);
+    top: 632px;
+    font-family: 'AppleSDGothicNeoB00';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+
+/* 🦆 icon "close" */
+.modal-close-icon {
+    position: absolute;
+    width: 9.24px;
+    height: 9.23px;
+    left: 344px;
+    top: 168px;
+}
+
+/* Vector */
+.modal-vector {
+    position: absolute;
+    left: 88.21%;
+    right: 9.43%;
+    top: 19.91%;
+    bottom: 79%;
+    background: #767676;
+}

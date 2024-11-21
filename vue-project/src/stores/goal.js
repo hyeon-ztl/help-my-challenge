@@ -22,10 +22,7 @@ export const useGoalStore = defineStore('goal', () => {
       method: 'GET'
     })
     .then((response)=>{
-      console.log("response");
-      console.log(response.data);
       goal.value = response.data;
-      console.log(goal.value);
       sessionStorage.setItem('goal', JSON.stringify(goal.value));
     })
     .catch(()=>{
@@ -64,10 +61,25 @@ export const useGoalStore = defineStore('goal', () => {
     })
   };
 
+  const deleteGoal = function(email) {
+    axios({
+      url: REST_API_URL + "/" + email,
+      method: 'DELETE'
+    })
+    .then(()=>{
+      router.push({name: 'challenge', params:{email: email}});
+      window.location.reload();
+    })
+    .catch(()=>{
+      console.log("goal 삭제 에러")
+    })
+  }
+
   return {
     goal,
     getGoal,
     registGoal,
     updateGoal,
+    deleteGoal,
   };
 })

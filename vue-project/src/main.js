@@ -7,6 +7,7 @@ import './assets/css/global-background.css'; // 글로벌 CSS 임포트
 import './assets/css/global-component.css'; // 글로벌 CSS 임포트
 import './assets/css/global-layout.css'; // 글로벌 CSS 임포트
 import './assets/css/global-font.css'; // 글로벌 CSS 임포트
+import './assets/css/challenge/global-modal.css'; // 모달 css 임포트
 
 const app = createApp(App)
 

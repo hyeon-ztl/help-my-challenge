@@ -9,9 +9,9 @@ export const useMessageStore = defineStore('message', () => {
   const messages = ref({}); // day별 메시지 저장
   const currentMessage = ref(null); // 현재 선택된 메시지
 
-  const getMessage = async function (email, day) {
+  const getMessage = async function (email, startDate, day) {
     try {
-      const response = await axios.get(`${REST_API_URL}/open/${email}/${day}`);
+      const response = await axios.get(`${REST_API_URL}/open/${email}/${startDate}/${day}`);
       if (response.data !== '') {
         messages.value[day] = response.data; // day별 메시지 저장
         sessionStorage.setItem('messages', JSON.stringify(messages.value)); // 세션 스토리지 업데이트

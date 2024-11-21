@@ -23,6 +23,7 @@ CREATE TABLE `goal` (
     `email` VARCHAR(50) NOT NULL,                      -- 목표를 설정한 사용자, 카카오 API에 맞게 수정
     `start_date` DATE NOT NULL,                        -- 시작 날짜
     `end_date` DATE NOT NULL,                          -- 종료 날짜
+    `day` int NOT NULL,								   -- 일차수
     `goal_code` INT NOT NULL,                  		   -- 목표 종류
     `goal_description` TEXT NOT NULL,                  -- 목표 내용
     `text` TEXT NOT NULL,							   -- 문구
@@ -42,6 +43,7 @@ CREATE TABLE `message` (
     `goal_id` INT NOT NULL,                            -- 목표 ID (goal 테이블의 외래키)
     `content` TEXT NOT NULL,                           -- 메시지 내용
     `day` INT NOT NULL,                     		   -- 일차
+    `stickerId` INT NOT NULL,						   -- 스티커
 
     -- 외래 키 설정
     FOREIGN KEY (`goal_id`) REFERENCES `goal`(`goal_id`) ON DELETE CASCADE

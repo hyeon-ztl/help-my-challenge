@@ -5,9 +5,9 @@
 <mapper namespace="com.ssafy.mvc.model.dao.MessageDao">
 
 	<!-- 메시지 삽입 -->
-	<insert id="insertMessage" parameterType="Message">
-		INSERT INTO message (receiver, sender, sender_nickname, goal_id, content, sent_date, open_date)
-		VALUES (#{receiver}, #{sender}, #{senderNickName}, #{goalId}, #{content}, #{sentDate}, #{openDate});
+	<insert id="insertMessage" parameterType="Message" keyProperty="messageId" useGeneratedKeys="true">
+		INSERT INTO message (receiver, sender, sender_nickname, goal_id, content, day, stickerId)
+		VALUES (#{receiver}, #{sender}, #{senderNickname}, #{goalId}, #{content}, #{day}, #{stickerId});
 	</insert>
 	
 	<!--  전체 메시지 조회 -->

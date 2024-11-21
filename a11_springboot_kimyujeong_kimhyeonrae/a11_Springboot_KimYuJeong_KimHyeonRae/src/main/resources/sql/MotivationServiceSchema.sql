@@ -53,11 +53,11 @@ CREATE TABLE `message` (
 DROP TABLE IF EXISTS `random_message`;
 CREATE TABLE `random_message` (
 	`message_id` INT PRIMARY KEY AUTO_INCREMENT,
-    `writer` TEXT NOT NULL,
+    `sender_nickname` TEXT NOT NULL,
     `content` TEXT NOT NULL
 );
 
-INSERT INTO `random_message` (`writer`, `content`) VALUES
+INSERT INTO `random_message` (`sender_nickname`, `content`) VALUES
 ("익명", "가장 나쁜 운동은 하지 않는 운동이다."),
 ("익명", "스스로를 밀어붙여라. 아무도 대신해주지 않는다."),
 ("마야 안젤루", "아무것도 하지 않으면 아무 일도 일어나지 않는다."),

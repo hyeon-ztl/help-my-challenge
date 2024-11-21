@@ -7,11 +7,14 @@
 </template>
 
 <script setup>
+    import { useRoute } from 'vue-router';
     import { useGoalStore } from '@/stores/goal';
+
+    const route = useRoute();
     const store = useGoalStore();
 
     const deleteGoal = function() {
-        store.deleteGoal();
+        store.deleteGoal(route.params.email);
     };
 
 </script>

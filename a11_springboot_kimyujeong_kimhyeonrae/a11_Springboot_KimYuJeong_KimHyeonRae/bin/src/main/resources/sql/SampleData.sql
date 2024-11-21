@@ -17,17 +17,15 @@ VALUES ('1', 'gusto917', "하고 나니 배고파요"),
         ('11', 'gusto917', "종아리가 얇아졌어요"),
         ('12', 'aabbc0908@naver.com', "얼굴이 작아졌어요");
 
--- goal 샘플 데이터
-INSERT INTO `goal` (`email`, `start_date`, `end_date`, `goal_code`, `goal_description`, `text`, `pledge`)
-VALUES ('aabbc0908@naver.com', '2024-11-10', '2024-12-31', 100, '5kg 감량', '나 다이어트 할거다~!', '실패하면 뿌링클 쏜다~!'),
-		('gusto917', '2024-12-01', '2024-12-31', 100, '10kg 증량', '나 살찔거야', '실패하면 돈까스에 새우멘치까지 사줌');
+-- goal 샘플 데이터 수정
+INSERT INTO `goal` (`email`, `start_date`, `end_date`, `day`, `goal_code`, `goal_description`, `text`, `pledge`)
+-- VALUES ('aabbc0908@naver.com', '2024-11-10', '2024-12-31', 100, '5kg 감량', '나 다이어트 할거다~!', '실패하면 뿌링클 쏜다~!'),
+	VALUES ('gusto917', '2024-12-01', '2024-12-31', 30, 100, '10kg 증량', '나 살찔거야', '실패하면 돈까스에 새우멘치까지 사줌');
 
 -- message 샘플 데이터
-INSERT INTO `message` (`goal_id`, `receiver`, `sender`, `sender_nickname`, `content`, `day`)
-VALUES (2, 'gusto917', 'aabbc0908@naver.com', '수원얼짱녀', '5키로 증량 껌이지', 1),
-		(2, 'gusto917', 'aabbc0908@naver.com', '수원최고미인', '돈까스 잘 먹을게~ㅎㅎ', 10),
-        (1, 'aabbc0908@naver.com', 'gusto917', '서울대입구거주남', '유정아 너가 뺄 살이 어딨다고 그래ㅜㅜ', 1),
-        (1, 'aabbc0908@naver.com', 'gusto917', '불타지않은아르민', '유정아 내가 마라엽떡 사줄게', 20);
+INSERT INTO `message` (`goal_id`, `receiver`, `sender`, `sender_nickname`, `content`, `day`, `stickerId`)
+VALUES (1, 'gusto917', 'aabbc0908@naver.com', '수원얼짱녀', '5키로 증량 껌이지', 1, 1),
+		(1, 'gusto917', 'aabbc0908@naver.com', '수원최고미인', '돈까스 잘 먹을게~ㅎㅎ', 10, 3);
 
 commit;
 
@@ -35,3 +33,5 @@ SELECT * FROM `review`;
 SELECT * FROM `goal_type`;
 SELECT * FROM `goal`;
 SELECT * FROM `message`;
+
+DESC `goal`;

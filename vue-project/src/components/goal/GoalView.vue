@@ -46,7 +46,7 @@
             </div>
 
             <div v-if="new Date() > new Date(store.goal.startDate)">
-                <button @click="goalModalToggle" v-if="userStore.loginUser.email === route.params.email">목표삭제하기</button>
+                <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email">목표삭제하기</button>
                 
                 <div class="modal-wrap" v-show="goalModal">
                 <div class="modal-container">
@@ -57,6 +57,7 @@
                 </div>
                 </div> 
             </div>
+
         </div>
         <div v-if="!store.goal">
             <div>
@@ -76,14 +77,14 @@
             </div>
 
             <div>
-                <button @click="modalOpen">등록</button>
+                <button @click="goalRegistModalToggle">등록</button>
             </div>
 
-            <div class="modal-wrap" v-show="modalCheck">
+            <div class="modal-wrap" v-show="goalRegistModal">
             <div class="modal-container">
                     <GoalRegist/>
                 <div class="modal-btn">
-                    <button @click="modalClose">닫기</button>
+                    <button @click="goalRegistModalToggle">닫기</button>
                 </div>
             </div>
             </div>
@@ -93,7 +94,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useGoalStore } from '@/stores/goal';
 import { useUserStore } from '@/stores/user';
@@ -122,6 +123,11 @@ const diff = computed(() => {
   const diffInMilliseconds = today - start;
   return Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
 });
+
+const goalRegistModal = ref(false);
+const goalRegistModalToggle = function() {
+    goalRegistModal.value = !goalRegistModal.value;
+}
 
 const goalTextUpdateModal = ref(false);
 const goalTextUpdateModalToggle = function() {

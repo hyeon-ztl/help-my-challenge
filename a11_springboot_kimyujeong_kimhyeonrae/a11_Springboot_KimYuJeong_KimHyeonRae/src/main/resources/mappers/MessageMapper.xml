@@ -42,9 +42,9 @@
 	</delete>
 	
 	<!-- 랜덤 메시지 가져오기 -->
-	<select id="selectRandomMessage" parameterType="int">
-		SELECT * FROM message
-		WHERE message_id = #{randomNumber};
+	<select id="selectRandomMessage" parameterType="int" resultType="Message">
+		SELECT * FROM random_message
+		WHERE message_id = #{day};
 	</select>
 	
 </mapper>
