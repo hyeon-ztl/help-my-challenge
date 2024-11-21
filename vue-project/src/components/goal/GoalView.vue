@@ -35,7 +35,7 @@
 
             <!-- 목표 시작 이전 목표 수정 가능 -->
             <div v-if="new Date() < new Date(store.goal.startDate)">
-                <button @click="goalModalToggle" v-if="userStore.loginUser.email === route.params.email">목표수정하기</button>
+                <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email">목표수정하기</button>
                 
                 <div class="modal-wrap" v-show="goalModal">
                 <div class="modal-container">
