@@ -30,12 +30,16 @@ html, body {
   
   /* 핸드폰 박스 */
   .phone-box {
+  box-sizing: border-box;
   position: relative;
-  padding: 1.2rem;
+  padding-inline: 1.2rem;
+  padding-top: 0.8rem;
   width: 500px; /* 모바일 인터페이스 너비 */
   min-height: 100vh; /* 화면 끝까지 채우는 높이 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
-  display: block;
+  display: flex;
+  justify-content: center;
+  
   /* overflow-y: auto; 내부 콘텐츠에 스크롤 가능 */
   border: 3px solid red;
   }
@@ -47,6 +51,7 @@ html, body {
   }
   
   .phone-box {
+    padding-inline: 1.2rem;
     width: 100%; /* 화면 너비 전체 사용 */
     height: auto; /* 콘텐츠 높이에 따라 크기 조정 */
     border-radius: 0; /* 둥근 모서리 제거 */
@@ -55,3 +60,14 @@ html, body {
   }
   }
   
+    /* 핸드폰 박스 */
+    .phone-box * {
+      /* border: 1px solid lightblue;  */
+   }
+
+  /* 모든 요소와 가상 요소에 border-box 적용 */
+  /* *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  } */

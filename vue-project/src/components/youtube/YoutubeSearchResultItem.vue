@@ -1,7 +1,7 @@
 <template>
-    <li @click="clickVideo">
-        <img :src="video.snippet.thumbnails.default.url">
-        <span>{{ videoTitle }}</span>
+    <li @click="clickVideo" class="result-item">
+        <img :src="video.snippet.thumbnails.default.url" class="result-item-img">
+        <span class="result-item-title">{{ videoTitle }}</span>
     </li>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="phone-box" :class="[currentRouteClass]" >
-      <TheHeaderNav :hideChallenge="isChallengeView" :isMain="isMain"/>
+      <TheHeaderNav :hide-challenge="isChallengeView" :isnt-main="isntMain"/>
     </div>
   </div>
 </template>
@@ -23,9 +23,7 @@ const route = useRoute();
   });
 
   // 쿼리스트링에 검색어가 있는지 확인
-  const isMain = computed(() => {
-  return !route.query.q; // 쿼리스트링에 'q'가 없으면 메인 화면
-  });
+  const isntMain = computed(() => route.path.startsWith('/search'));
 
   import TheHeaderNav from '@/components/common/TheHeaderNav.vue';
 </script>

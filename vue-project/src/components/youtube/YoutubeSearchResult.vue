@@ -1,8 +1,10 @@
 <template>
     <div>
         <YoutubeSearch/>
-        <hr>
+
+        <div class="box-border-radius result-box">
         <YoutubeSearchResultItem v-for="video in store.videoList" :key="video.id.videoId" :video="video"/>
+        </div>
     </div>
 </template>
 

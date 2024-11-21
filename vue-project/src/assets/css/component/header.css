@@ -1,0 +1,73 @@
+
+/*헤더 메인 요소 */
+.header-ssafit-main-btn {
+    position: absolute; /* 부모 요소(.phone-box)를 기준으로 위치 설정 */
+    top: 48%; /* 부모의 높이의 50% 지점 */
+    left: 50%; /* 부모의 너비의 50% 지점 */
+    transform: translate(-50%, -50%); /* 정확히 중앙 정렬 */
+    text-align: center;
+    font-family: 'AppleSDGothicNeoB00';
+    font-size: 30px;
+    color: rgb(28, 97, 245);
+  }
+  
+  
+  /* 헤더 요소 */
+  .header-layout {
+    position: relative;
+    display: flex; /* Flexbox 활성화 */
+  
+    flex-direction: row-reverse; /* 오른쪽에서 왼쪽 정렬 */
+    justify-content: flex-start; /* 요소 시작 위치를 왼쪽으로 */
+    align-items: center; /* 세로로 중앙 정렬 */
+    width: 500px; /* 부모 요소의 크기 지정 */
+    height: 10px;
+    gap: 10px; /* 요소 간 간격 */
+    /* border: 1px solid #ddd; */
+  }
+  
+  .header-layout *{
+    display:flex;
+    margin-right : 10px;
+  }
+  
+  .header-ssafit-video-btn{
+    margin-left: 10px;
+    margin-right: auto;
+  }
+  
+  /* 헤더 세부요소들 */
+  
+  .header-kakao-img{
+    height: 16px;
+    width: 16px;
+    background-size: cover; /* 비율 유지하며 영역에 맞게 자름 */
+    background-position: center; /* 중앙 정렬 */
+    background-repeat: no-repeat; /* 반복 방지 */
+    border-radius: 10px; /* 원형 또는 둥근 모서리 효과 (옵션) */
+  }
+  
+  .header-login-word{
+    font-size: 14px
+  }
+  
+  .header-login-btn {
+    margin-right: 0px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    width: 60px;
+    height: 17px;
+  
+    font-family: 'AppleSDGothicNeoM00';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    border: 0;
+    color: #767676;
+  
+    display: flex; /* Flexbox 활성화 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    text-align: center; /* 텍스트 정렬 */
+  }
