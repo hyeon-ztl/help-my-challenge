@@ -20,8 +20,12 @@
     };
 
     // 쿼리스트링에 검색어가 있는지 확인
-    const isMainSearch = computed(() => route.path.startsWith('/'));
-  
+    const isMainSearch = computed(() => {
+    console.log('현재 경로:', route.path); // 현재 경로 확인
+    return route.path === '/'; // 경로가 정확히 '/'인 경우만 true
+    });
+
+
   </script>
   
   <style scoped>

@@ -1,7 +1,6 @@
 .result-box {
-
     width: 100%;
-    height: auto;
+    min-height: 100vh; /* 화면 끝까지 채우는 높이 */
     margin-top: 1.2rem;
     margin-inline: auto;
     max-width: calc(100% - 2.4rem); /* 패딩 제외 */
@@ -20,6 +19,8 @@
     height: auto;
     /* background-color: aqua; */
     margin-block: 1.2rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .result-item-img {
@@ -28,12 +29,10 @@
     background-size: cover; /* 비율 유지하며 영역에 맞게 자름 */
     background-position: center; /* 중앙 정렬 */
     background-repeat: no-repeat; /* 반복 방지 */
-    border-radius: 10px; /* 원형 또는 둥근 모서리 효과 (옵션)*/
-    
+    border-radius: 10px; 
   }
 
   .result-item-title {
-   
     margin:1.2rem;
     font-size: 20px;
     color: black;

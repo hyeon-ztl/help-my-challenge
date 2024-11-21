@@ -20,7 +20,7 @@
                 <div v-if="isMain" class="header-ssafit-main-btn">SSAFIT</div>
 
                 <!-- 챌린지 들어가면 챌린지 버튼 없어지기 비활성화 -->
-                <router-link v-if="store.loginUser !== null && !hideChallenge" :to="{path: `/challenge/${store.loginUser.email}`}" class="challenge">CHALLENGE</router-link> 
+                <router-link v-if="store.loginUser !== null && !hideChallenge" :to="{path: `/challenge/${store.loginUser.email}`}" class="challenge-btn">CHALLENGE</router-link> 
             </nav>
         </header>
 

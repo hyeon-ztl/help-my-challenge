@@ -23,7 +23,7 @@ const route = useRoute();
   });
 
   // 쿼리스트링에 검색어가 있는지 확인
-  const isMain = computed(() => route.path.startsWith('/'));
+  const isMain = computed(() => route.path === '/');
 
   import TheHeaderNav from '@/components/common/TheHeaderNav.vue';
 </script>
