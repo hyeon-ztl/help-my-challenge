@@ -47,8 +47,16 @@
     
     /* 메세지 요소요소들 설정하기 */
     /* 외부 사용자 */
+
+    
+
     /* 메세지 등록버튼 */
     .message-out-regist-btn {
+
+    }
+
+    /* 조회버튼 하위요소 (기일 도래 이전 / 이후 ) */
+    .message-inner-look-btn * {
 
     }
 
@@ -56,9 +64,9 @@
     .message-out-nickname {
 
     }
-    
-    /* 조회버튼 하위요소 (기일 도래 이전 / 이후 ) */
-    .message-inner-look-btn * {
+
+    /* 스티커 이미지 */
+    .message-img-container {
 
     }
 

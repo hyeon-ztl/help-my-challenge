@@ -49,7 +49,7 @@
         
         <!-- 메시지가 있는 경우 메시지 내용 표시 -->
         <div v-else-if="store.messages[props.day]"> 
-            <img v-if="stickerUrl" :src="stickerUrl">
+            <img v-if="stickerUrl" :src="stickerUrl" class="message-img-container">
             <p class="message-out-nickname">보낸 사람: {{ store.messages[props.day].senderNickname }}</p>
             <div v-if="userStore.loginUser !== null" class="message-inner-look-btn">
                 <!-- 메시지 조회 가능 날짜 이후 -->
