@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="message-component">
         <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p>
 
         <!-- 메시지가 없는 경우 등록 버튼 표시 -->

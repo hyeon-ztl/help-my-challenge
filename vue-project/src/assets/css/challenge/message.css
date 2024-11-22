@@ -6,3 +6,9 @@
     flex-direction: column;
     align-content: center;
 }
+
+.week-container {
+    border: 1px solid blue;
+    display: flex;
+    justify-content: space-around;
+}
