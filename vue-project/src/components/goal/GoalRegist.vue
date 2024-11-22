@@ -22,7 +22,7 @@
             placeholder="종료 날짜를 선택하세요"
             class="modal-input"
         />
-        <p v-if="errorMessage" class="modal-alarm" style="color: red;">{{ errorMessage }}</p>
+        <p v-if="goal.startDate > goal.endDate" class="modal-alarm">종료일은 시작일 이후여야 합니다.</p>
 
         <label for="goalCode" class="modal-alarm">목표 설정</label>
         <select name="goalCode" id="goalCode" v-model="goal.goalCode" class="modal-input">
@@ -88,14 +88,11 @@ const customLocale = {
     },
 };
 
+
 // 종료일 설정
-const errorMessage = ref('');
-watch([goal.value.startDate, goal.value.endDate], ([newStartDate, newEndDate]) => {
+watch(() => [goal.value.startDate, goal.value.endDate], ([newStartDate, newEndDate]) => {
     if (newStartDate && newEndDate && new Date(newEndDate) < new Date(newStartDate)) { // 종료일자가 시작일자 이전인지 확인
-        errorMessage.value = '종료일은 시작일보다 이후여야 합니다.';
         goal.value.endDate = null; // 종료일 초기화
-    } else {
-        errorMessage.value = ''; // 에러 메시지 제거
     }
 });
 

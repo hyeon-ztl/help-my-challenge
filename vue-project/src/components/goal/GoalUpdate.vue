@@ -19,10 +19,11 @@
             :format="dateFormat"
             :locale="customLocale"
             :week-starts-on="0" 
-            
+
             class="modal-input"
             :placeholder="store.goal.endDate"
         />
+        <p>{{ errorMessage }}</p>
 
         <label for="goalCode" class="modal-alarm">목표 설정</label>
         <select name="goalCode" id="goalCode" v-model="store.goal.goalCode" class="modal-input">
@@ -89,6 +90,7 @@
         return Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24)); // 올림 처리
     };
 
+    const errorMessage = ref('');
     const updateGoal = function() {
         if(tempStartDate.value !== null) {
             tempStartDate.value = formatDate(tempStartDate.value);
@@ -100,7 +102,13 @@
         if(tempEndDate.value !== null) {
             tempEndDate.value = formatDate(tempEndDate.value);
             if(tempEndDate.value !== store.goal.EndDate) {
-                store.goal.endDate = tempEndDate.value;
+                if(new Date(store.goal.startDate) > new Date(tempEndDate.value)) {
+                    errorMessage.value = '종료일은 시작일 이후여야 합니다!';
+                    tempEndDate.value = null;
+                    return;
+                } else {
+                    store.goal.endDate = tempEndDate.value;
+                }
             }
         } 
 
