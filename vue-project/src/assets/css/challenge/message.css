@@ -52,11 +52,17 @@
 
     }
 
+    /* 사용자 닉네임 */
     .message-out-nickname {
 
     }
     
     /* 조회버튼 하위요소 (기일 도래 이전 / 이후 ) */
     .message-inner-look-btn * {
+
+    }
+
+    /* 몇일차 메세지 */
+    .message-date-word {
 
     }
