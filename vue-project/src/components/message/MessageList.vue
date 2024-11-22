@@ -1,6 +1,6 @@
 <template>
-    <div class="day-container">
-      <div v-if="store.goal">
+    <div>
+      <div v-if="store.goal" class="day-container">
         <!-- 빈칸 추가 -->
         <div v-for="blank in Array.from({ length: startDay }, () => null)" :key="blank" class="day-item blank"></div>
         
