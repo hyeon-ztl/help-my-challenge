@@ -33,8 +33,18 @@ export const useSharingStore = defineStore('share', () => {
         ],
       });
     };
+
+    const sendX = (shareMessage) => {
+      const twitterBaseUrl = 'https://twitter.com/intent/tweet';
+      const tweetText = encodeURIComponent(
+        `${shareMessage.title}\n\n${shareMessage.description}\n\n자세히 보기: ${shareMessage.url}`
+      );
+      const tweetUrl = `${twitterBaseUrl}?text=${tweetText}`;
+      window.open(tweetUrl, '_blank');
+    };
   
     return {
       sendKakao,
+      sendX
     };
   });
