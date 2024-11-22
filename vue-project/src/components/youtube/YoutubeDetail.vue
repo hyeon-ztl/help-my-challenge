@@ -8,8 +8,9 @@
             referrerpolicy="strict-origin-when-cross-origin" 
             allowfullscreen>
         </iframe>
+        <div>{{videoTitle}}</div>
         <div class="detail-box box-border-radius">
-            <ReviewView/>
+            <ReviewView />
         </div>
     </div>
 </template>
@@ -18,23 +19,27 @@
     import { computed } from 'vue';
     import { useYoutubeStore } from '@/stores/youtube';
     import ReviewView from '@/views/ReviewView.vue';
+    import _ from 'lodash';
 
     const store = useYoutubeStore();
 
     const videoUrl = computed(()=>{
         const videoSrc = store.video;
-        console.log(videoSrc);
+        // console.log(videoSrc);
         return `https://www.youtube.com/embed/${videoSrc}`;
     });
+
     
 </script>
 
 <style scoped>
 .align-result {
     margin-top: 1.2rem;
+    width: 100%;
     display:flex;
     flex-direction:column;
     align-items: center;
+    
 }
 
 .detail-box {

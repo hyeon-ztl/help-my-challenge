@@ -1,7 +1,9 @@
 <template>
-    <div>
+    <div class="review-regist-layout">
         <ReviewRegist v-if="userStore.loginUser"
             :video-id="store.video"/>
+    </div>
+    <div class="review-list-layout">
         <ReviewList :video-id="store.video"/>
     </div>
 </template>

@@ -1,0 +1,39 @@
+.review-regist-layout{
+    margin-top: 1.2rem;
+    width: 100%;
+    border: 1px solid grey;
+}
+
+.review-list-layout{
+    width: 100%;
+    border: 1px solid grey;
+}
+
+/*gpt 나중에 수정하기*/
+
+.regist-input-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 16px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.regist-input-realbox {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 14px;
+}
+
+.regist-input-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

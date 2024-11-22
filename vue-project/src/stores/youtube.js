@@ -35,6 +35,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
   // 비디오 클릭
   const clickVideo = function(clickedVideo) {
     sessionStorage.setItem('clickedVideo', clickedVideo.id.videoId);
+    // sessionStroage.setItem('VideoInfo', clickVideo);
     video.value = clickedVideo.id.videoId;
     router.push({name: 'detail'});
   };

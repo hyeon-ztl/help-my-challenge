@@ -20,6 +20,8 @@
        return _.unescape(props.video.snippet.title);
     });
 
+    console.log(props.video);
+
     const clickVideo = function() {
         store.clickVideo(props.video);
     };
