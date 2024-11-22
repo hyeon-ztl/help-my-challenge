@@ -49,7 +49,7 @@
             </div>
             </div>
         </div>
-        
+    
         <!-- 메시지가 있는 경우 메시지 내용 표시 -->
         <div v-else-if="store.messages[props.day]"> 
             <img v-if="stickerUrl" :src="stickerUrl" class="message-img-container">
