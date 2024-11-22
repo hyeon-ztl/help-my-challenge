@@ -41,7 +41,7 @@ html, body {
   justify-content: center;
   
   /* overflow-y: auto; 내부 콘텐츠에 스크롤 가능 */
-  border: 3px solid red;
+  /* border: 3px solid red; */
   }
   
   /* 반응형 스타일 */

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="message-container">
         <p>응원의 한마디 남기기</p>
         <MessageList/>
     </div>

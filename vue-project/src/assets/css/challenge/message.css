@@ -1,0 +1,8 @@
+.message-container {
+    margin-top: 2rem;
+    width: 100%;
+    border: 3px solid red;
+    display: flex; 
+    flex-direction: column;
+    align-content: center;
+}
