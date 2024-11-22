@@ -22,6 +22,7 @@
             placeholder="종료 날짜를 선택하세요"
             class="modal-input"
         />
+        <p v-if="errorMessage" class="modal-alarm" style="color: red;">{{ errorMessage }}</p>
 
         <label for="goalCode" class="modal-alarm">목표 설정</label>
         <select name="goalCode" id="goalCode" v-model="goal.goalCode" class="modal-input">
@@ -37,14 +38,14 @@
         <input type="text" id="pledge" v-model="goal.pledge" placeholder="성공 못하면 밥 사드립니다." class="modal-input">
         
         <div id="modal-alarm-btns">
-            <button @click="triggerConfirm" class="modal-regist-btn">등록</button>
+            <button @click="triggerConfirm" class="modal-regist-btn" :disabled="isButtonDisabled">등록</button>
             <button @click="resetGoal" class="modal-regist-btn" id="modal-alarm-btns-cancel">초기화</button>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { ref, watch, computed, defineEmits } from 'vue';
 import { useRoute } from 'vue-router';
 import Datepicker from 'vue3-datepicker'
 import { ko } from 'date-fns/locale';
@@ -86,6 +87,24 @@ const customLocale = {
         ...ko.options,
     },
 };
+
+// 종료일 설정
+const errorMessage = ref('');
+watch([goal.value.startDate, goal.value.endDate], ([newStartDate, newEndDate]) => {
+    if (newStartDate && newEndDate && new Date(newEndDate) < new Date(newStartDate)) { // 종료일자가 시작일자 이전인지 확인
+        errorMessage.value = '종료일은 시작일보다 이후여야 합니다.';
+        goal.value.endDate = null; // 종료일 초기화
+    } else {
+        errorMessage.value = ''; // 에러 메시지 제거
+    }
+});
+
+// 등록 버튼 비활성화 조건 (계산된 속성)
+const isButtonDisabled = computed(() => {
+    // 시작일과 종료일이 모두 있어야 하고 종료일이 시작일보다 이후여야 활성화
+    if (!goal.value.startDate || !goal.value.endDate) return true; // 둘 중 하나라도 없으면 비활성화
+    return new Date(goal.value.endDate) < new Date(goal.value.startDate); // 종료일이 시작일보다 이전이면 비활성화
+});
 
 // 날짜 포맷팅 함수
 const formatDate = (date) => {
