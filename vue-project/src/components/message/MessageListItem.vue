@@ -1,36 +1,39 @@
 <template>
-    <div class="message-component">
+    <div >
         <!-- <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p> -->
 
-        <!-- 메시지가 없는 경우 등록 버튼 표시 -->
-        <div v-if="store.messages[props.day] === null && userStore.loginUser !== null">
-            <!-- 등록버튼 -->
-            <button v-if="userStore.loginUser.email !== route.params.email" @click="modalToggle" class="message-out-regist-btn">+</button>
-            <div class="modal-wrap" v-show="modalCheck">
-            <div class="modal-container">
-                    <MessageRegist :day="props.day" @open-confirm-modal="openConfirmModal"/>
-                <div class="modal-btn">
-                    <button @click="modalToggle" class="modal-close-btn">X</button>
-                </div>
-            </div>
-            </div>
-            
-            <!-- 메시지 등록 시 확인 모달 -->
-            <div class="modal-wrap" v-show="registModal">
-            <div class="modal-container">
-                <div class="modal-background">
-                    <p class="modal-alarm">메시지 업로드 시 수정 및 삭제가 불가능합니다.</p>
-                    <p class="modal-alarm">등록하시겠습니까?</p>
-                    <div id="modal-alarm-btns">
-                        <button @click="registMessage" class="modal-regist-btn">등록</button>
-                        <button @click="closeConfirmModal" class="modal-regist-btn" id="modal-alarm-btns-cancel">취소</button>
+        <!-- 메시지가 없는 경우 뒤에 배경 표시 -->
+        <div v-if="store.messages[props.day] === null" class="message-none-circle">
+            <!-- 로그인을 한 경우 등록버튼 표시 -->
+            <div v-if="userStore.loginUser !== null">
+                <!-- 등록버튼 -->
+                <button v-if="userStore.loginUser.email !== route.params.email" @click="modalToggle" class="message-out-regist-btn">+</button>
+                <div class="modal-wrap" v-show="modalCheck">
+                <div class="modal-container">
+                        <MessageRegist :day="props.day" @open-confirm-modal="openConfirmModal"/>
+                    <div class="modal-btn">
+                        <button @click="modalToggle" class="modal-close-btn">X</button>
                     </div>
                 </div>
-                <div class="modal-btn">
-                    <button @click="closeConfirmModal" class="modal-close-btn">X</button>
                 </div>
-            </div>
-            </div>
+            
+                <!-- 메시지 등록 시 확인 모달 -->
+                <div class="modal-wrap" v-show="registModal">
+                <div class="modal-container">
+                    <div class="modal-background">
+                        <p class="modal-alarm">메시지 업로드 시 수정 및 삭제가 불가능합니다.</p>
+                        <p class="modal-alarm">등록하시겠습니까?</p>
+                        <div id="modal-alarm-btns">
+                            <button @click="registMessage" class="modal-regist-btn">등록</button>
+                            <button @click="closeConfirmModal" class="modal-regist-btn" id="modal-alarm-btns-cancel">취소</button>
+                        </div>
+                    </div>
+                    <div class="modal-btn">
+                        <button @click="closeConfirmModal" class="modal-close-btn">X</button>
+                    </div>
+                </div>
+                </div>
+            </div>    
         </div>
 
         <!-- 등록 버튼을 눌렀을 때 로그인하지 않은 경우 -->
@@ -82,7 +85,7 @@
 
         </div>
 
-        <div class="message-date-word">{{ currDate }}({{ props.day+1 }}일차) 메시지</div>
+        <div class="message-date-word">{{ props.day+1 }}일차</div>
     </div>
 </template>
 

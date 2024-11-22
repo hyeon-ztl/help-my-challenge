@@ -31,11 +31,11 @@
     padding-inline: 1.0rem; 
     }
     
-    .day-item.blank {
-        background-color: transparent; /* 빈칸은 투명 */
-    }
+ .day-item.blank {
+    background-color: transparent; /* 빈칸은 투명 */
+}
     
-    /* 메세지 아이템 각요소의 틀 */
+ /* 메세지 아이템 각요소의 틀 */
     .day-item {
     border: 1px solid blue;
     height: 100px; /* 각 칸 높이 */
@@ -43,34 +43,94 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}   
+
+/* ===========메세지 요소요소들 설정하기 =============*/
+
+    
+    /* 몇일차 메세지 */
+    .message-date-word {
+        margin-top: 20px;
+        font-size: 10px;
+        color: #333;
+        text-align: center;
     }
     
-    /* 메세지 요소요소들 설정하기 */
-    /* 외부 사용자 */
-
-    
-
-    /* 메세지 등록버튼 */
-    .message-out-regist-btn {
-
+/* == 등록됐을때 ==*/
+/* 이미지 */
+.message-img-container {
+    position: relative; /* 부모 요소의 기준점을 설정 */
+    width: 100px; /* 이미지 크기 */
+    height: 100px; /* 이미지 크기 */
+    border-radius: 50%; /* 원형으로 만들기 */
+    background-color: transparent; /* 기본 투명 배경 */
+    overflow: hidden; /* 내부 요소가 넘치지 않도록 */
+  }
+  
+  /* 사용자 닉네임 */
+  .message-out-nickname {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 2px 5px;
+      border-radius: 5px;
+      border: 1px solid white;
+      text-align: center;
     }
 
     /* 조회버튼 하위요소 (기일 도래 이전 / 이후 ) */
     .message-inner-look-btn * {
-
+        /* position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1; */
+    }
+    
+    
+    
+    /* == 등록 안됐을때 == */
+    /* 메세지 없을때 보이는 원 */
+    .message-none-circle{
+        width: 100%; /* 부모 요소 크기에 맞춤 */
+        aspect-ratio: 1 / 1; 
+        background-color: #d3d3d3; /* 빈 원의 색상 */
+        border-radius: 50%; /* 원형으로 만듦 */
     }
 
-    /* 사용자 닉네임 */
-    .message-out-nickname {
-
-    }
-
-    /* 스티커 이미지 */
-    .message-img-container {
-
-    }
-
-    /* 몇일차 메세지 */
-    .message-date-word {
-
-    }
+    
+    /* 메세지 등록버튼 */
+    .message-out-regist-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ff4757;
+        color: white;
+        border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1;
+        }
+    
+    
+    
