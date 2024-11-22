@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <!-- <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p> -->
 
         <!-- 메시지가 없는 경우 뒤에 배경 표시 -->
@@ -52,17 +52,18 @@
     
         <!-- 메시지가 있는 경우 메시지 내용 표시 -->
         <div v-else-if="store.messages[props.day]"> 
-            <img v-if="stickerUrl" :src="stickerUrl" class="message-img-container">
-            <p class="message-out-nickname">보낸 사람: {{ store.messages[props.day].senderNickname }}</p>
-            <div v-if="userStore.loginUser !== null" class="message-inner-look-btn">
-                <!-- 메시지 조회 가능 날짜 이후 -->
-                <button v-if="canViewMessage && (userStore.loginUser.email === route.params.email || userStore.loginUser.email === store.messages[props.day].sender)"
-                    @click="afterMessageOpenDayModalToggle">조회</button>
-                <!-- 메시지 조회 가능 날짜 이전  -->
-                <button v-if="!canViewMessage && (userStore.loginUser.email === route.params.email || userStore.loginUser.email === store.messages[props.day].sender)"
-                    @click="beforeMessageOpenDayModalToggle">조회</button>
+            <div class="message-click-container">
+                <img v-if="stickerUrl" :src="stickerUrl" class="message-img-container">
+                <p class="message-out-nickname">보낸 사람: {{ store.messages[props.day].senderNickname }}</p>
+                <div v-if="userStore.loginUser !== null" class="message-inner-look-btn">
+                    <!-- 메시지 조회 가능 날짜 이후 -->
+                    <button v-if="canViewMessage && (userStore.loginUser.email === route.params.email || userStore.loginUser.email === store.messages[props.day].sender)"
+                        @click="afterMessageOpenDayModalToggle">조회</button>
+                    <!-- 메시지 조회 가능 날짜 이전  -->
+                    <button v-if="!canViewMessage && (userStore.loginUser.email === route.params.email || userStore.loginUser.email === store.messages[props.day].sender)"
+                        @click="beforeMessageOpenDayModalToggle">조회</button>
+                </div>
             </div>
-
             <!-- 메시지 조회 가능 날짜 이후 모달 -->
             <div class="modal-wrap" v-show="afterMessageOpenDayModal">
             <div class="modal-container"  id="message-detail-container">

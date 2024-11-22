@@ -15,6 +15,7 @@
     grid-template-columns: repeat(7, 1fr); /* 7열 고정 */
     gap: 10px; /* 각 칸 사이 간격 */
     padding-inline: 1.0rem;
+    margin-bottom: 0.5rem;
 }
 
 .week-container *{
@@ -42,65 +43,71 @@
     width: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 }   
 
 /* ===========메세지 요소요소들 설정하기 =============*/
 
     
-    /* 몇일차 메세지 */
-    .message-date-word {
-        margin-top: 20px;
-        font-size: 10px;
-        color: #333;
-        text-align: center;
-    }
+ /* 몇일차 메세지 */
+.message-date-word {
+    margin-top: 20px;
+    font-size: 10px;
+    color: #333;
+    text-align: center;
+}
     
 /* == 등록됐을때 ==*/
+/* 클릭할 컨테이너 */
+.message-click-container {
+    position: relative;
+    width: 100%;
+    border: 2px solid orange;
+        
+}
+
 /* 이미지 */
 .message-img-container {
+    /* 얘를 앱솔루트로 바꿔야지 전부다 요소가 겹치는데 앱솔루트로 바꾸면 컨테이너가 이상해짐 */
     position: relative; /* 부모 요소의 기준점을 설정 */
-    width: 100px; /* 이미지 크기 */
-    height: 100px; /* 이미지 크기 */
-    border-radius: 50%; /* 원형으로 만들기 */
-    background-color: transparent; /* 기본 투명 배경 */
-    overflow: hidden; /* 내부 요소가 넘치지 않도록 */
+    width: 100%; /* 부모 요소 너비 */
+    aspect-ratio: 1 / 1; 
+    background-size: cover; /* 비율 유지하며 부모 요소를 꽉 채움 */
+    background-position: center; /* 이미지 중앙 정렬 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
+  
+    background-color: transparent; /* 기본 배경 투명 */
+    overflow: hidden; /* 내부 요소 넘침 방지 */
+    z-index: 0.9; /* 버튼보다 뒤에 배치 */
   }
   
   /* 사용자 닉네임 */
   .message-out-nickname {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 2px 5px;
-      border-radius: 5px;
-      border: 1px solid white;
-      text-align: center;
-    }
+    position: absolute;
+    z-index: 2;
+    /* border: 1px solid magenta; */
+
+  }
 
     /* 조회버튼 하위요소 (기일 도래 이전 / 이후 ) */
-    .message-inner-look-btn * {
-        /* position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 14px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1; */
+    .message-inner-look-btn {
+        position: absolute;
+        
     }
     
-    
+    .message-inner-look-btn button {
+        border: 1px solid magenta;
+        z-index: 3;
+        position: absolute;
+        width: 100%; /* 부모 요소와 동일한 너비 */
+        height: 100%; /* 부모 요소와 동일한 높이 */
+        top: 0;
+        left: 0;
+        background-color: transparent; /* 배경 투명 */
+        border: none;
+        opacity: 10; /* 완전히 숨기기 */
+        cursor: pointer; /* 커서 유지 */
+      }
     
     /* == 등록 안됐을때 == */
     /* 메세지 없을때 보이는 원 */
@@ -129,8 +136,9 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 1;
-        }
+            z-index: -1;
+    }  
     
+
     
     
