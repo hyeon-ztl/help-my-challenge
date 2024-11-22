@@ -19,6 +19,7 @@
             :format="dateFormat"
             :locale="customLocale"
             :week-starts-on="0" 
+            
             class="modal-input"
             :placeholder="store.goal.endDate"
         />
