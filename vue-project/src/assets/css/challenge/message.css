@@ -1,3 +1,4 @@
+/* 메세지 전체 레이아웃 */
 .message-container {
     margin-top: 2rem;
     width: 100%;
@@ -7,8 +8,55 @@
     align-content: center;
 }
 
+/* 상단 요일부분 */
 .week-container {
     border: 1px solid blue;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7열 고정 */
+    gap: 10px; /* 각 칸 사이 간격 */
+    padding-inline: 1.0rem;
 }
+
+.week-container *{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 메세지 전체 정렬 */
+.day-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7열 고정 */
+    gap: 10px; 
+    padding-inline: 1.0rem; 
+    }
+    
+    .day-item.blank {
+        background-color: transparent; /* 빈칸은 투명 */
+    }
+    
+    /* 메세지 아이템 각요소의 틀 */
+    .day-item {
+    border: 1px solid blue;
+    height: 100px; /* 각 칸 높이 */
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    
+    /* 메세지 요소요소들 설정하기 */
+    /* 외부 사용자 */
+    /* 메세지 등록버튼 */
+    .message-out-regist-btn {
+
+    }
+
+    .message-out-nickname {
+
+    }
+    
+    /* 조회버튼 하위요소 (기일 도래 이전 / 이후 ) */
+    .message-inner-look-btn * {
+
+    }

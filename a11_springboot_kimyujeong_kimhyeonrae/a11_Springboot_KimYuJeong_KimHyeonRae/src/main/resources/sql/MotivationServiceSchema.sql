@@ -58,6 +58,9 @@ CREATE TABLE `random_message` (
     `content` TEXT NOT NULL
 );
 
+SELECT *
+FROM goal;
+
 INSERT INTO `random_message` (`sender_nickname`, `content`) VALUES
 ("익명", "가장 나쁜 운동은 하지 않는 운동이다."),
 ("익명", "스스로를 밀어붙여라. 아무도 대신해주지 않는다."),

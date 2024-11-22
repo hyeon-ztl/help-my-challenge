@@ -1,10 +1,11 @@
 <template>
     <div class="message-component">
-        <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p>
+        <!-- <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p> -->
 
         <!-- 메시지가 없는 경우 등록 버튼 표시 -->
         <div v-if="store.messages[props.day] === null && userStore.loginUser !== null">
-            <button v-if="userStore.loginUser.email !== route.params.email" @click="modalToggle">등록</button>
+            <!-- 등록버튼 -->
+            <button v-if="userStore.loginUser.email !== route.params.email" @click="modalToggle" class="message-out-regist-btn">+</button>
             <div class="modal-wrap" v-show="modalCheck">
             <div class="modal-container">
                     <MessageRegist :day="props.day" @open-confirm-modal="openConfirmModal"/>
@@ -49,8 +50,8 @@
         <!-- 메시지가 있는 경우 메시지 내용 표시 -->
         <div v-else-if="store.messages[props.day]"> 
             <img v-if="stickerUrl" :src="stickerUrl">
-            <p>보낸 사람: {{ store.messages[props.day].senderNickname }}</p>
-            <div v-if="userStore.loginUser !== null">
+            <p class="message-out-nickname">보낸 사람: {{ store.messages[props.day].senderNickname }}</p>
+            <div v-if="userStore.loginUser !== null" class="message-inner-look-btn">
                 <!-- 메시지 조회 가능 날짜 이후 -->
                 <button v-if="canViewMessage && (userStore.loginUser.email === route.params.email || userStore.loginUser.email === store.messages[props.day].sender)"
                     @click="afterMessageOpenDayModalToggle">조회</button>
@@ -80,6 +81,8 @@
             </div>
 
         </div>
+
+        <div class="message-date-word">{{ currDate }}({{ props.day+1 }}일차) 메시지</div>
     </div>
 </template>
 
