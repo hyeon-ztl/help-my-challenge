@@ -5,6 +5,7 @@ public class Goal {
 	String email;
 	String name;
 	String startDate;
+	int startDayOfWeek;
 	String endDate;
 	int day;
 	int goalCode;
@@ -17,12 +18,13 @@ public class Goal {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Goal(int goalId, String email, String name, String startDate, String endDate, int day, int goalCode, String goalName,
+	public Goal(int goalId, String email, String name, String startDate, int startDayOfWeek,String endDate, int day, int goalCode, String goalName,
 			String goalDescription, String text, String pledge) {
 		this.goalId = goalId;
 		this.email = email;
 		this.name = name;
 		this.startDate = startDate;
+		this.startDayOfWeek = startDayOfWeek;
 		this.endDate = endDate;
 		this.day = day;
 		this.goalCode = goalCode;
@@ -62,6 +64,14 @@ public class Goal {
 
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
+	}
+
+	public int getStartDayOfWeek() {
+		return startDayOfWeek;
+	}
+
+	public void setStartDayOfWeek(int startDayOfWeek) {
+		this.startDayOfWeek = startDayOfWeek;
 	}
 
 	public String getEndDate() {
@@ -123,8 +133,9 @@ public class Goal {
 	@Override
 	public String toString() {
 		return "Goal [goalId=" + goalId + ", email=" + email + ", name=" + name + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", day=" + day + ", goalCode=" + goalCode + ", goalName=" + goalName
-				+ ", goalDescription=" + goalDescription + ", text=" + text + ", pledge=" + pledge + "]";
+				+ ", startDayOfWeek=" + startDayOfWeek + ", endDate=" + endDate + ", day=" + day + ", goalCode="
+				+ goalCode + ", goalName=" + goalName + ", goalDescription=" + goalDescription + ", text=" + text
+				+ ", pledge=" + pledge + "]";
 	}
 	
 }
