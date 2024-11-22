@@ -60,6 +60,18 @@
                 </div>
                 </div> 
             </div>
+
+            <!-- 목표 공유하기 모달 -->
+            <button @click="goalShareModalToggle">공유하기</button>
+
+            <div class="modal-wrap" v-show="goalShareModal">
+                <div class="modal-container">
+                    <GoalShare @close-share-modal="goalShareModalToggle"/>
+                <div class="modal-btn">
+                    <button @click="goalShareModalToggle" class="modal-close-btn">X</button>
+                </div>
+            </div>
+            </div>
         </div>
 
         <!-- 목표가 없는 경우 등록 창 보여주기 -->
@@ -111,7 +123,6 @@
             </div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -125,6 +136,7 @@ import GoalRegist from './GoalRegist.vue';
 import GoalUpdateText from './GoalUpdateText.vue';
 import GoalUpdate from './GoalUpdate.vue';
 import GoalDelete from './GoalDelete.vue';
+import GoalShare from './GoalShare.vue';
 
 const store = useGoalStore();
 const userStore = useUserStore();
@@ -171,6 +183,12 @@ const closeConfirmModal = function() {
 const goalTextUpdateModal = ref(false);
 const goalTextUpdateModalToggle = function() {
     goalTextUpdateModal.value = !goalTextUpdateModal.value;
+};
+
+// 공유 모달
+const goalShareModal = ref(false);
+const goalShareModalToggle = function() {
+    goalShareModal.value = !goalShareModal.value;
 };
 
 // 공통 모달
