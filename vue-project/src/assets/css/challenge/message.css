@@ -1,24 +1,14 @@
-/* 메세지 전체 레이아웃 */
-.message-container {
-    margin-top: 2rem;
-    width: 100%;
-    /* border: 3px solid red; */
-    display: flex; 
-    flex-direction: column;
-    align-content: center;
-}
+
 
 /* 응원의 한마디 남기기 */
 .message-incourage {
-font-size: 20px;
+font-size: 18px;
 font-family: AppleBold;
 line-height: 20px;
-padding-inline: 1.2rem;
 color: #4B4B4B;
 margin-block: 1.0rem;
-    
-
 }
+
 
 /* 상단 요일부분 */
 .week-container {
@@ -26,7 +16,6 @@ margin-block: 1.0rem;
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7열 고정 */
     gap: 10px; /* 각 칸 사이 간격 */
-    padding-inline: 1.2rem;
     margin-bottom: 0.5rem;
 }
 
@@ -41,7 +30,6 @@ margin-block: 1.0rem;
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7열 고정 */
     gap: 10px; 
-    padding-inline: 1.0rem; 
     }
     
  .day-item.blank {

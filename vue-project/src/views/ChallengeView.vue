@@ -14,13 +14,6 @@
 </script>
 
 <style scoped>
-    .challenge-view-layout {
-      margin-top: 2rem;
-      width: 100%;
-      border: 3px solid red;
-      display: flex; 
-      flex-direction: column;
-      align-content: center;
-    }
+
   
 </style>

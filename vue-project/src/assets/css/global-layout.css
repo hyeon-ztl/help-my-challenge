@@ -65,9 +65,12 @@ html, body {
       /* border: 1px solid lightblue;  */
    }
 
-  /* 모든 요소와 가상 요소에 border-box 적용 */
-  /* *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  } */
+   .padding-all-element-inline {
+    padding-inline: 2.0rem;
+   }
+
+   .margin-all-element-block {
+    margin-block: 0.8rem;
+   }
+
+

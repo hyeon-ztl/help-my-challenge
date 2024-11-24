@@ -88,3 +88,29 @@ overflow-x: hidden; /* 가로 스크롤 방지 */
   box-sizing: content-box;
 }
 
+.header-font-family {
+  font-size: 18px;
+  font-family: AppleBold;
+  line-height: 20px;
+  color: #4B4B4B;
+  margin-block: 1.0rem;
+  }
+
+  .font-charcol-color {
+      color: #4B4B4B;
+  }
+
+  .font-grey-color {
+    color: #858585;
+  }
+ 
+  .font-apple-semi-bold{
+    font-family: AppleSemiBold;
+    color: #4B4B4B;
+    font-size: 18px;
+  }
+
+  .font-apple-small-message {
+    font-family: AppleMedium;
+    font-size: 12px;
+  }

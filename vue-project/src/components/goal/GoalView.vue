@@ -2,68 +2,93 @@
     <div>
         <!-- 목표가 있는 경우 목표 보여주기 -->
         <div v-if="store.goal">
-            <p v-if="diff < 0">{{ store.goal.name }}님 운동 시작 {{ -diff }}일 전</p>
-            <p v-if="diff > 0">{{ store.goal.name }}님 운동 시작 {{ diff }}일차</p>
-            <div>
-                <p>{{store.goal.goalName}} {{ store.goal.goalDescription }}</p>
-                <p>{{ store.goal.startDate }} 시작</p>
+
+            <!-- 운동 헤더 -->
+            <p v-if="diff < 0" class="header-font-family ">{{ store.goal.name }}님 운동 시작 {{ -diff }}일 전</p>
+            <p v-if="diff > 0" class="header-font-family ">{{ store.goal.name }}님 운동 시작 {{ diff }}일차</p>
+
+            <!-- 운동목표 -->
+            <div class="goal-first-container padding-all-element-inline">
+                <div class="goal-first-container-img">GOAL</div>
+                <div>
+                    <p class="goal-first-container-txt font-charcol-color font-apple-semi-bold">{{store.goal.goalName}} {{ store.goal.goalDescription }}</p>
+                    <p class="goal-first-container-start-date font-apple-small-message"># {{ store.goal.startDate }} 시작</p>
+                </div>
             </div>
-            <div>
-                <p>challenge</p>
-                <p>{{ store.goal.day }}일 도전</p>
+
+            <!-- n일 도전 -->
+            <div class="goal-second-container">
+                <div class="goal-second-container-challenge padding-all-element-inline">
+                    <p class="font-apple-small-message goal-second-container-txt">challenge</p>
+                    <p class="font-apple-semi-bold">{{ store.goal.day }}일 도전</p>
+                    <img class="goal-second-container-img">
+                </div>
+
+                <!--실패공약  -->
+                <div class="goal-second-container-fail padding-all-element-inline">
+                <p class="font-apple-small-message goal-second-container-txt">실패 공약</p>
+                <p class="font-apple-semi-bold">{{ store.goal.pledge }}</p>
+                <img class="goal-second-container-img">
+                </div>
             </div>
-            <div>
-            <p>실패 공약</p>
-            <p>{{ store.goal.pledge }}</p>
-            </div>
-            <div>
-                <p>{{ store.goal.name }}의 한마디</p>
-                <p>{{ store.goal.text }}</p>
+
+
+            <!-- 현래의 한마디 -->
+            <p class="header-font-family">{{ store.goal.name }}의 한마디</p>
+            <div class="goal-third-container padding-all-element-inline">
+                <p class="goal-third-container-txt">{{ store.goal.text }}</p>
                 <div v-if="userStore.loginUser !== null">
-                    <button @click="goalTextUpdateModalToggle" v-if="userStore.loginUser.email === route.params.email">한마디수정</button>
-                
+                    <!-- 한마디 수정 버튼 -->
+                    <button @click="goalTextUpdateModalToggle" v-if="userStore.loginUser.email === route.params.email" class="goal-third-container-btn">한마디수정</button>
+                    
                     <div class="modal-wrap" v-show="goalTextUpdateModal">
-                    <div class="modal-container">
+                        <div class="modal-container">
                             <GoalUpdateText/>
-                        <div class="modal-btn">
-                            <button @click="goalTextUpdateModalToggle" class="modal-close-btn">X</button>
+                            <div class="modal-btn">
+                                <button @click="goalTextUpdateModalToggle" class="modal-close-btn">X</button>
+                            </div>
                         </div>
                     </div>
-                    </div>
                 </div>
             </div>
+            
+            <!-- 우측하단 버튼 컨테이너 -->
+            <div class="button-goal-container">
+                <!-- 목표 공유하기 버튼 -->
+                <button @click="goalShareModalToggle" class="button-goal-share">공유하기</button>
 
-            <!-- 목표 시작 이전 목표 수정 가능 -->
-            <div v-if="new Date() < new Date(store.goal.startDate)">
-                <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email">목표수정하기</button>
-                
-                <div class="modal-wrap" v-show="goalModal">
-                <div class="modal-container">
-                        <GoalUpdate/>
-                    <div class="modal-btn">
-                        <button @click="goalModalToggle" class="modal-close-btn">X</button>
+                <!-- 목표 시작 이전 목표 수정 가능 -->
+                <div v-if="new Date() < new Date(store.goal.startDate)">
+                    <!-- 목표 수정 버튼 -->
+                    <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email" class="button-goal-modify">목표수정하기</button>
+                    
+                    <div class="modal-wrap" v-show="goalModal">
+                    <div class="modal-container">
+                            <GoalUpdate/>
+                        <div class="modal-btn">
+                            <button @click="goalModalToggle" class="modal-close-btn">X</button>
+                        </div>
                     </div>
+                    </div> 
                 </div>
-                </div> 
-            </div>
 
-            <!-- 목표 시작 이후 목표 삭제만 가능 -->
-            <div v-if="new Date() > new Date(store.goal.startDate)">
-                <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email">목표삭제하기</button>
-                
-                <div class="modal-wrap" v-show="goalModal">
-                <div class="modal-container">
-                        <GoalDelete @close-modal="goalModalToggle"/>
-                    <div class="modal-btn">
-                        <button @click="goalModalToggle" class="modal-close-btn">X</button>
+                <!-- 목표 시작 이후 목표 삭제만 가능 -->
+                <div v-if="new Date() > new Date(store.goal.startDate)">
+                    <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email" class="button-goal-delete">목표삭제하기</button>
+                    
+                    <div class="modal-wrap" v-show="goalModal">
+                    <div class="modal-container">
+                            <GoalDelete @close-modal="goalModalToggle"/>
+                        <div class="modal-btn">
+                            <button @click="goalModalToggle" class="modal-close-btn">X</button>
+                        </div>
                     </div>
+                    </div> 
                 </div>
-                </div> 
+
             </div>
 
             <!-- 목표 공유하기 모달 -->
-            <button @click="goalShareModalToggle">공유하기</button>
-
             <div class="modal-wrap" v-show="goalShareModal">
                 <div class="modal-container">
                     <GoalShare @close-share-modal="goalShareModalToggle"/>
