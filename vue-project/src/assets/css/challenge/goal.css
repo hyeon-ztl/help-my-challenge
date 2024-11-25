@@ -44,7 +44,7 @@
     flex-direction: row;
     align-items: center;
 
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.3rem;
 }
 
 .goal-second-container-challenge {
@@ -82,13 +82,13 @@
 
 .goal-second-container-img {
     position: absolute; /* 부모를 기준으로 위치 지정 */
-    width: 30px;
-    height: 30px;
-    background-color: grey;
+    width: 50px;
+    height: 50px;
+    /* background-color: grey; */
 
     right: 0; /* 부모의 오른쪽 끝에 위치 */
     bottom: 0; /* 부모의 아래쪽 끝에 위치 */
-    transform: translate(-50%, -50%); /* 패딩 내에 적절하게 맞춰 위치 조정 */
+    transform: translate(-30%, -30%); /* 패딩 내에 적절하게 맞춰 위치 조정 */
 
     background-size: cover;
     background-position: center;
@@ -96,7 +96,7 @@
 }
 
 
-/* == 첫번째 컨테이너 == */
+/* == 세번째 컨테이너 == */
 
 .goal-third-container {
     position: relative;
@@ -111,9 +111,14 @@
     justify-content: center;
     align-items: center;
 
-    margin-bottom: 1.5rem;
+    margin-block-start: 1.5rem;
 }
 
+.goal-third-img-container {
+    position: absolute;
+    width: 100%;
+    top: -5%;
+}
 .goal-third-container-txt {
     display: flex; /* Flex 컨테이너로 설정 */
     justify-content: center; /* 가로 중앙 정렬 */
@@ -127,9 +132,22 @@
 
 .goal-third-container-btn {
     position: absolute; /* 부모를 기준으로 위치 지정 */
+    display:flex;
+
+    width: 30px;
+    height: 30px;
+
+    background-color: rgb(224, 224, 224);
+    border-radius: 20px;
+    border: 1px solid rgb(185, 185, 185);
+
 
     right: 0; /* 부모의 오른쪽 끝에 위치 */
     bottom: 0; /* 부모의 아래쪽 끝에 위치 */
-    transform: translate(-50%, -50%); /* 패딩 내에 적절하게 맞춰 위치 조정 */
+    transform: translate(-80%, -50%); /* 패딩 내에 적절하게 맞춰 위치 조정 */
+}
 
+.goal-third-container-btn-img {
+
+    opacity: 0.7;
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="search-layout" :class = "{'search-layout-main': isMainSearch, 'search-layout-video': !isMainSearch }">
       <input type="text" v-model.trim="keyword" @keyup.enter="search" class="search-input" placeholder="Search"/>
-      <button @click="search" class="search-btn">검색</button>
+      <button @click="search" class="search-btn"><img src="@/assets/icon/search.png" class="icon-img-container"></button>
     </div>
   </template>
   

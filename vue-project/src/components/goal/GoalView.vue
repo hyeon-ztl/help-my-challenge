@@ -4,8 +4,14 @@
         <div v-if="store.goal">
 
             <!-- 운동 헤더 -->
-            <p v-if="diff < 0" class="header-font-family ">{{ store.goal.name }}님 운동 시작 {{ -diff }}일 전</p>
-            <p v-if="diff >= 0" class="header-font-family ">{{ store.goal.name }}님 운동 시작 {{ diff+1 }}일차</p>
+            <p v-if="diff < 0" class="header-font-family">
+                <span>{{ store.goal.name }}</span>님 운동 시작 
+                <span class="highlight">{{ -diff }}</span>일 전
+            </p>
+            <p v-if="diff >= 0" class="header-font-family">
+                <span>{{ store.goal.name }}</span> 님 운동 시작 
+                <span class="highlight">{{ diff + 1 }}</span> 일차
+            </p>
 
             <!-- 운동목표 -->
             <div class="goal-first-container padding-all-element-inline">
@@ -21,25 +27,32 @@
                 <div class="goal-second-container-challenge padding-all-element-inline">
                     <p class="font-apple-small-message goal-second-container-txt">challenge</p>
                     <p class="font-apple-semi-bold">{{ store.goal.day }}일 도전</p>
-                    <img class="goal-second-container-img">
+                    <div  class="goal-second-container-img">
+                      <img src="@/assets/img/challenge.png" class="goal-img-container">
+                    </div>
                 </div>
 
                 <!--실패공약  -->
                 <div class="goal-second-container-fail padding-all-element-inline">
                 <p class="font-apple-small-message goal-second-container-txt">실패 공약</p>
                 <p class="font-apple-semi-bold">{{ store.goal.pledge }}</p>
-                <img class="goal-second-container-img">
+                <div  class="goal-second-container-img">
+                      <img src="@/assets/img/failed.png" class="goal-img-container">
+                    </div>
                 </div>
             </div>
 
 
             <!-- 현래의 한마디 -->
-            <p class="header-font">{{ store.goal.name }}의 한마디</p>
+            <p class="header-font-family">{{ store.goal.name }}의 한마디</p>
             <div class="goal-third-container padding-all-element-inline">
+                <img src="@/assets/img/note-edge.png" class ="goal-third-img-container">
                 <p class="goal-third-container-txt">{{ store.goal.text }}</p>
                 <div v-if="userStore.loginUser !== null">
                     <!-- 한마디 수정 버튼 -->
-                    <button @click="goalTextUpdateModalToggle" v-if="userStore.loginUser.email === route.params.email" class="goal-third-container-btn">한마디수정</button>
+                    <button @click="goalTextUpdateModalToggle" v-if="userStore.loginUser.email === route.params.email" class="goal-third-container-btn">
+                        <img src="@/assets/icon/edit-black.png" class="icon-img-container goal-third-container-btn-img ">
+                    </button>
                     
                     <div class="modal-wrap" v-show="goalTextUpdateModal">
                         <div class="modal-container">
@@ -55,12 +68,16 @@
             <!-- 우측하단 버튼 컨테이너 -->
             <div class="button-goal-container">
                 <!-- 목표 공유하기 버튼 -->
-                <button @click="goalShareModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email" class="button-goal-share">공유하기</button>
+                <button @click="goalShareModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email" class="button-goal-share">
+                    <img src="@/assets/icon/share.png" class="icon-img-container">
+                </button>
 
                 <!-- 목표 시작 이전 목표 수정 가능 -->
                 <div v-if="new Date() < new Date(store.goal.startDate)">
                     <!-- 목표 수정 버튼 -->
-                    <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email" class="button-goal-modify">목표수정하기</button>
+                    <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email" class="button-goal-modify">
+                        <img src="@/assets/icon/edit-white.png" class="icon-img-container">
+                    </button>
                     
                     <div class="modal-wrap" v-show="goalModal">
                     <div class="modal-container">
@@ -74,7 +91,9 @@
 
                 <!-- 목표 시작 이후 목표 삭제만 가능 -->
                 <div v-if="new Date() > new Date(store.goal.startDate)">
-                    <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email" class="button-goal-delete">목표삭제하기</button>
+                    <button @click="goalModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email" class="button-goal-delete">
+                        <img src="@/assets/icon/delete.png" class="icon-img-container">
+                    </button>
                     
                     <div class="modal-wrap" v-show="goalModal">
                     <div class="modal-container">
@@ -121,14 +140,18 @@
                 <div class="goal-second-container-challenge padding-all-element-inline">
                     <p class="font-apple-small-message goal-second-container-txt">challenge</p>
                     <p class="font-apple-semi-bold">N일 도전</p>
-                    <img class="goal-second-container-img">
+                    <div  class="goal-second-container-img">
+                      <img src="@/assets/img/challenge.png" class="goal-img-container">
+                    </div>
                 </div>
 
                 <!--실패공약  -->
                 <div class="goal-second-container-fail padding-all-element-inline">
                 <p class="font-apple-small-message goal-second-container-txt">실패 공약</p>
                 <p class="font-apple-semi-bold">공약을 등록해주세요</p>
-                <img class="goal-second-container-img">
+                <div  class="goal-second-container-img">
+                      <img src="@/assets/img/failed.png" class="goal-img-container">
+                </div>
                 </div>
             </div>
 
@@ -137,7 +160,6 @@
             <p class="header-font-family"> OO 의 한마디</p>
             <div class="goal-third-container padding-all-element-inline">
                 <p class="goal-third-container-txt"> 내 운동이 망할리가 없어! 당연하다구</p>
-
             </div>
 
             <!-- 등록버튼들  -->

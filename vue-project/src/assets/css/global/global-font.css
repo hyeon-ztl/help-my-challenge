@@ -96,6 +96,15 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Current';
+  src: url('/fonts/Current-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 /* 기본 폰트 설정 */
 html, body {
 width: 100%;
@@ -121,7 +130,7 @@ overflow-x: hidden; /* 가로 스크롤 방지 */
   font-family: AppleBold;
   line-height: 20px;
   color: #4B4B4B;
-  margin-block: 0.8rem;
+  margin-block: 1rem;
   }
 
 .header-font-family-challenge {
@@ -143,10 +152,14 @@ overflow-x: hidden; /* 가로 스크롤 방지 */
   .font-apple-semi-bold{
     font-family: AppleSemiBold;
     color: #4B4B4B;
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .font-apple-small-message {
     font-family: AppleMedium;
     font-size: 12px;
+  }
+
+  .highlight {
+    color: #62AE72;
   }

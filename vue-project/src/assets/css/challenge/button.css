@@ -13,16 +13,21 @@
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
+
 }
 
+
+
 .button-goal-modify {
+    display: flex;
+
     margin-block: 0.5rem;
     width: 100%;
     aspect-ratio: 1 / 1;
     
     border : 0px;
     border-radius: 50%;   
-    background-color: rgb(217, 240, 184);
+    background-color: rgba(189, 221, 143, 0.767);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     
     color: white;
@@ -32,13 +37,15 @@
 }
 
 .button-goal-delete {
+    display: flex;
+
     margin-block: 0.5rem;
     width: 100%;
     aspect-ratio: 1 / 1;
     
     border : 0px;
     border-radius: 50%;   
-    background-color: rgb(217, 240, 184);
+    background-color: rgba(189, 221, 143, 0.767);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     
     color: white;
@@ -48,13 +55,15 @@
 }
 
 .button-goal-share {
+    display: flex;
+
     margin-block: 0.5rem;
     width: 100%;
     aspect-ratio: 1 / 1;
     
     border : 0px;
     border-radius: 50%;   
-    background-color: rgb(247, 173, 234);
+    background-color: rgba(134, 187, 113, 0.733);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     
     color: white;
