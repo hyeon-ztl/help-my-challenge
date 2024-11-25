@@ -20,7 +20,7 @@ VALUES (100, '체중'),
 DROP TABLE IF EXISTS `goal`;
 CREATE TABLE `goal` (
     `goal_id` INT PRIMARY KEY AUTO_INCREMENT,          -- 목표 고유 ID
-    `email` VARCHAR(50) NOT NULL,                      -- 목표를 설정한 사용자, 카카오 API에 맞게 수정
+    `email` VARCHAR(50) NOT NULL UNIQUE,               -- 목표를 설정한 사용자, 카카오 API에 맞게 수정
     `name` VARCHAR(50) NOT NULL,
     `start_date` DATE NOT NULL,                        -- 시작 날짜
     `end_date` DATE NOT NULL,                          -- 종료 날짜
@@ -59,7 +59,7 @@ CREATE TABLE `random_message` (
     `stickerId` INT NOT NULL
 );
 
-INSERT INTO `random_message` (`content`) VALUES
+INSERT INTO `random_message` (`content`, `stickerId`) VALUES
 ('포기하지 마세요, 더 강해질 수 있어요.', 4),
 ('노력은 절대 배신하지 않습니다.', 1),
 ('오늘도 한계를 넘어서세요.', 3),
@@ -159,7 +159,7 @@ INSERT INTO `random_message` (`content`) VALUES
 ('한 걸음씩 꾸준히 나아가세요.', 4),
 ('작은 변화가 큰 결과를 만듭니다.', 3),
 ('작은 변화가 큰 결과를 만듭니다.', 2),
-('노력은 절대 배신하지 않습니다.', 4)
+('노력은 절대 배신하지 않습니다.', 4);
 
 commit;
 
