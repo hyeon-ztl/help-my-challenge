@@ -1,0 +1,10 @@
+.review-list-layout{
+    width: 100%;
+    border: 1px solid blue;
+}
+
+.thin-divider {
+    width: 100%;
+    border-top: 0.5px solid rgb(194, 194, 194); /* 0.5px의 상단 구분선 */
+    margin: 1rem 0;
+  }

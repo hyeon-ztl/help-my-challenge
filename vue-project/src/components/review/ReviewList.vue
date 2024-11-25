@@ -1,14 +1,8 @@
 <template>
+    <hr class="thin-divider">
     <div>
-        <h3>리뷰 목록</h3>
-        <p>리뷰 개수 : {{ store.reviewCount }}</p>
+        <p class="font-apple-semi-bold">리뷰 {{ store.reviewCount }}</p>
         <table v-if="store.reviewCount > 0">
-            <thead>
-                <tr>
-                    <th>작성자</th>
-                    <th>내용</th>
-                </tr>
-            </thead>
             <tbody>
                 <tr v-for="review in store.reviewList" :key="review.reviewId">
                     <td>{{ review.nickname }}</td>
