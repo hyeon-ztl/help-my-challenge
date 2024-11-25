@@ -5,7 +5,7 @@
 
             <!-- 운동 헤더 -->
             <p v-if="diff < 0" class="header-font-family ">{{ store.goal.name }}님 운동 시작 {{ -diff }}일 전</p>
-            <p v-if="diff > 0" class="header-font-family ">{{ store.goal.name }}님 운동 시작 {{ diff }}일차</p>
+            <p v-if="diff >= 0" class="header-font-family ">{{ store.goal.name }}님 운동 시작 {{ diff+1 }}일차</p>
 
             <!-- 운동목표 -->
             <div class="goal-first-container padding-all-element-inline">
@@ -55,7 +55,7 @@
             <!-- 우측하단 버튼 컨테이너 -->
             <div class="button-goal-container">
                 <!-- 목표 공유하기 버튼 -->
-                <button @click="goalShareModalToggle" class="button-goal-share">공유하기</button>
+                <button @click="goalShareModalToggle" v-if="userStore.loginUser && userStore.loginUser.email === route.params.email" class="button-goal-share">공유하기</button>
 
                 <!-- 목표 시작 이전 목표 수정 가능 -->
                 <div v-if="new Date() < new Date(store.goal.startDate)">
@@ -105,7 +105,7 @@
         <div v-else>
 
             <!-- 운동 헤더 -->
-            <p class="header-font-family ">{{ userStore.loginUser.nickname }}님 운동 시작 대기 중</p>
+            <p class="header-font-family ">OO님 운동 시작 대기 중</p>
 
             <!-- 운동목표 -->
             <div class="goal-first-container padding-all-element-inline">
@@ -134,7 +134,7 @@
 
 
             <!-- 현래의 한마디 -->
-            <p class="header-font-family">{{ userStore.loginUser.nickname }}의 한마디</p>
+            <p class="header-font-family">OO의 한마디</p>
             <div class="goal-third-container padding-all-element-inline">
                 <p class="goal-third-container-txt"> 내 운동이 망할리가 없어! 당연하다구</p>
 
