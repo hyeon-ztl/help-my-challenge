@@ -1,6 +1,6 @@
 <template>
 
-    <div class="review-regist-layout padding-all-element-inline-15">
+    <div class="review-regist-layout padding-all-element-inline-10">
         <div class="regist-input-box">
             <template v-if="!isInput">
                 <div @click="scrollToInput">
@@ -10,7 +10,7 @@
             <template v-else>
                 <div class="font-charcol-color regist-input-nickname">{{ userStore.loginUser.nickname }}</div>
                 <textarea id="content" v-model="review.content" rows="5" cols="30" maxlength="200"
-                    class="regist-input-realbox" placeholder="리뷰를 남겨보세요." @keyup.enter="registReview"></textarea>
+                    class="regist-input-realbox" placeholder="리뷰를 남겨 보세요." @keyup.enter="registReview"></textarea>
                 <div class="regist-input-sub-container">
                     <p class="regist-input-txt-size">{{ review.content.length }}/200</p>
                     <div>
@@ -26,7 +26,7 @@
 
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, nextTick } from 'vue';
 import { useReviewStore } from '@/stores/review';
 import { useUserStore } from '@/stores/user';
 
@@ -63,14 +63,18 @@ const isInput = ref(false);
 
 // 입력창 활성화 시 스크롤 최상단 이동 함수
 const scrollToInput = function () {
-    const inputBox = document.getElementById('content');
-    if (inputBox) {
-        inputBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
+    // isInput을 true로 변경해서 입력창이 나타나도록 함
     isInput.value = true;
-    console.log('isInput 값:', isInput.value);
 
+    // DOM 업데이트 이후에 스크롤 실행
+    nextTick(() => {
+        const inputBox = document.getElementById('content');
+        if (inputBox) {
+            inputBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+
+    console.log('isInput 값:', isInput.value);
 };
 </script>
 
