@@ -69,6 +69,10 @@ html, body {
     padding-inline: 1.8rem;
    }
 
+   .padding-all-element-inline-15{
+    padding-inline: 1.5rem;
+   }
+
    .margin-all-element-block {
     margin-block: 0.8rem;
    }
