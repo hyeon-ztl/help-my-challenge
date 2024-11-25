@@ -39,6 +39,7 @@
 .regist-input-realbox {
     background-color: #f1f1f1;
     padding-inline: 12px;
+    padding-right: 18px;
     padding-block: 3px;
 
     width: 100%;
