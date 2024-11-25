@@ -22,7 +22,7 @@
         <label for="goalDescription" class="modal-alarm">목표 수치</label>
         <input type="text" id="goalDescription" v-model="goal.goalDescription" placeholder="5키로 감량" class="modal-input">
         <label for="pledge" class="modal-alarm">실패 공약</label>
-        <input type="text" id="pledge" v-model="goal.pledge" placeholder="성공 못하면 밥 사드립니다." class="modal-input">
+        <input type="text" id="pledge" v-model="goal.pledge" class="modal-input">
         
         <div id="modal-alarm-btns">
             <button @click="triggerConfirm" class="modal-regist-btn" :disabled="isButtonDisabled">등록</button>
@@ -47,7 +47,7 @@ const goal = ref({
     goalCode: 500,
     goalDescription: '',
     text: '나 운동할거야',
-    pledge: '',
+    pledge: '성공 못하면 추첨을 통해 밥 사드릴게요( ´･･)ﾉ(._.`)',
 });
 
 // 초기화 함수
@@ -58,7 +58,7 @@ const resetGoal = function() {
     goal.value.day = '';
     goal.value.goalCode = 500;
     goal.value.goalDescription = '';
-    goal.value.pledge = '';
+    goal.value.pledge = '성공 못하면 추첨을 통해 밥 사드릴게요( ´･･)ﾉ(._.`)';
 };
 
 // 종료일 설정
@@ -98,4 +98,6 @@ const triggerConfirm = function() {
 </script>
 
 <style scoped>
+
+    
 </style>
