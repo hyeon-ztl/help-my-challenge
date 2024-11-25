@@ -3,7 +3,6 @@
         <!-- <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p> -->
 
         <!-- 메시지가 없는 경우 뒤에 배경 표시 -->
-        
         <div v-if="store.messages[props.day] === null" class="message-click-container"> 
             <div class="message-none-circle">
                 <!-- 로그인을 한 경우 등록버튼 표시 -->

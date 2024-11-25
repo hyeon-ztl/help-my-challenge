@@ -99,26 +99,50 @@
             </div>
         </div>
 
-        <!-- 목표가 없는 경우 등록 창 보여주기 -->
-        <div v-if="!store.goal">
-            <div>
-                <p>목표를 등록해주세요.</p>
-            </div>
-            <div>
-                <p>challenge</p>
-                <p>목표를 등록해주세요.</p>
-            </div>
-            <div>
-                <p>실패 공약</p>
-                <p>공약을 등록해주세요</p>
-            </div>
-            <div>
-                <p>한마디</p>
-                <p>한마디를 등록해주세요.</p>
+
+        <!-- ======목표 생성 전====== -->
+
+        <div v-else>
+
+            <!-- 운동 헤더 -->
+            <p class="header-font-family ">{{ userStore.loginUser.nickname }}님 운동 시작 대기 중</p>
+
+            <!-- 운동목표 -->
+            <div class="goal-first-container padding-all-element-inline">
+                <div class="goal-first-container-img">GOAL</div>
+                <div>
+                    <p class="goal-first-container-txt font-charcol-color font-apple-semi-bold">목표를 등록해주세요</p>
+                    <p class="goal-first-container-start-date font-apple-small-message"># 시작일 </p>
+                </div>
             </div>
 
-            <div>
-                <button @click="goalRegistModalToggle">등록</button>
+            <!-- n일 도전 -->
+            <div class="goal-second-container">
+                <div class="goal-second-container-challenge padding-all-element-inline">
+                    <p class="font-apple-small-message goal-second-container-txt">challenge</p>
+                    <p class="font-apple-semi-bold">N일 도전</p>
+                    <img class="goal-second-container-img">
+                </div>
+
+                <!--실패공약  -->
+                <div class="goal-second-container-fail padding-all-element-inline">
+                <p class="font-apple-small-message goal-second-container-txt">실패 공약</p>
+                <p class="font-apple-semi-bold">공약을 등록해주세요</p>
+                <img class="goal-second-container-img">
+                </div>
+            </div>
+
+
+            <!-- 현래의 한마디 -->
+            <p class="header-font-family">{{ userStore.loginUser.nickname }}의 한마디</p>
+            <div class="goal-third-container padding-all-element-inline">
+                <p class="goal-third-container-txt"> 내 운동이 망할리가 없어! 당연하다구</p>
+
+            </div>
+
+            <!-- 등록버튼들  -->
+            <div class="button-goal-container"> 
+                <button @click="goalRegistModalToggle" class="button-goal-modify">등록</button>
             </div>
 
             <!-- 등록 컴포넌트 모달 -->
@@ -147,7 +171,11 @@
                 </div>
             </div>
             </div>
+
         </div>
+
+        <!-- ================= -->
+
     </div>
 </template>
 

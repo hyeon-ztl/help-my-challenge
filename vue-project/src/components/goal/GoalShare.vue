@@ -1,16 +1,20 @@
 <template>
     <div class="modal-background">
         <p class="modal-alarm">목표 공유하기</p>
-        <div id="#modal-alarm-btns">
-            <img src="/src/assets/sharing_btn/kakao_btn.png" width="50" @click="sendKakao">
-            <p>카카오톡</p>
+        <div class="modal-alarm-div-colum">
+            <div>
+                <img src="/src/assets/sharing_btn/kakao_btn.png" width="50" @click="sendKakao">
+                <p>카카오톡</p>
+            </div>
 
-            <img src="/src/assets/sharing_btn/x_btn.png" width="50" @click="sendX">
-            <p>X</p>
+            <div>
+                <img src="/src/assets/sharing_btn/x_btn.png" width="50" @click="sendX">
+                <p>X</p>
+            </div>
         </div>
-        <div>
-            <input type="text" v-model="currUrl" readonly class="modal-input">
-            <button class="modal-regist-btn" @click="urlCopy">복사</button>
+        <div class="modal-alarm-div-colum">
+            <input type="text" v-model="currUrl" readonly class="modal-share-copy">
+            <button class="modal-share-regist-btn" @click="urlCopy">복사</button>
         </div>
     </div>
 </template>

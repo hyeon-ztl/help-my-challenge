@@ -68,6 +68,34 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'RiaSans2';
+  src: url('/fonts/RiaSans.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RiaSans';
+  src: url('/fonts/RiaSans-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LotteHappyBold';
+  src: url('/fonts/LotteHappyBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LotteHappyMedium';
+  src: url('/fonts/LotteHappyMedium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* 기본 폰트 설정 */
 html, body {
 width: 100%;

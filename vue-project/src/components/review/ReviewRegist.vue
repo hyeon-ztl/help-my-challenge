@@ -1,6 +1,6 @@
 <template>
     <div>
-        <fieldset>
+        <div>
             <div class="regist-input-box" @click="scrollToInput">
                 <textarea
                     id="content"
@@ -16,7 +16,7 @@
             <div>
                 <button @click="registReview" class="regist-input-btn">등록</button>
             </div>
-        </fieldset>
+        </div>
     </div>
 </template>
 
