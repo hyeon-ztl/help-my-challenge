@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,9 +31,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class MessageController {
 	
 	private final MessageService service;
+	private final OpenAiChatModel openAiChatModel;
 	
-	public MessageController(MessageService service) {
+	public MessageController(MessageService service, OpenAiChatModel openAiChatModel) {
 		this.service = service;
+		this.openAiChatModel = openAiChatModel;
 	}
 
 	@GetMapping("/message/{receiver}")
@@ -93,11 +96,22 @@ public class MessageController {
 	@PostMapping("/message")
 	@Operation(summary="메시지를 등록합니다.")
 	public ResponseEntity<?> registMessage(@RequestBody Message message) {
-		if(service.registMessage(message)) {
-			return new ResponseEntity<Message>(message, HttpStatus.CREATED);
-		}
-		
-		return new ResponseEntity<String>("메시지 등록에 실패하였습니다.", HttpStatus.BAD_REQUEST);
+		String command = "'" + message.getContent() + "' 에 욕설이 있으면 예, 없으면 아니오 라고 대답해";
+        
+		// GPT를 호출하여 응답 받기
+        String response = openAiChatModel.call(command);
+        System.out.println(command);
+        System.out.println(response);
+
+        if(response.equals("아니오")) {
+        	if(service.registMessage(message)) {
+        		return new ResponseEntity<Message>(message, HttpStatus.CREATED);
+        	} else {
+        		return new ResponseEntity<String>("메시지 등록에 실패하였습니다.", HttpStatus.BAD_REQUEST);
+        	}
+        } else {
+        	return new ResponseEntity<String>("욕설이 감지되었습니다.", HttpStatus.BAD_REQUEST);        	
+        }
 	}
 	
 	@PutMapping("/message")

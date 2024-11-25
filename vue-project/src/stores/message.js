@@ -32,6 +32,7 @@ export const useMessageStore = defineStore('message', () => {
       data: inputMessage,
     })
       .then((response) => {
+        console.log(response.data);
         const day = response.data.day;
         messages.value[day] = response.data; // 새로 등록된 메시지 저장
         currentMessage.value = response.data; // 현재 메시지 업데이트
