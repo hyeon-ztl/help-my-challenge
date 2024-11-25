@@ -1,4 +1,8 @@
 .review-regist-layout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     margin-top: 1.2rem;
     width: 100%;
     border: 1px solid grey;
@@ -12,15 +16,17 @@
 /*gpt 나중에 수정하기*/
 
 .regist-input-box {
-    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+
     border-radius: 8px;
     padding: 8px;
     margin-bottom: 16px;
     width: 100%;
-    max-width: 400px;
 }
 
 .regist-input-realbox {
+    background-color: #f1f1f1;
+
     width: 100%;
     border: none;
     outline: none;

@@ -3,13 +3,14 @@
         <!-- <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p> -->
 
         <!-- 메시지가 없는 경우 뒤에 배경 표시 -->
-        
         <div v-if="store.messages[props.day] === null" class="message-click-container"> 
-            <div class="message-none-circle">
+            <!-- class="message-none-circle" -->
+            <div >
                 <!-- 로그인을 한 경우 등록버튼 표시 -->
                 <div v-if="userStore.loginUser !== null">
                     <!-- 등록버튼 -->
-                    <button v-if="userStore.loginUser.email !== route.params.email" @click="modalToggle" class="message-out-regist-btn">+</button>
+                    <!-- message-out-regist-btn -->
+                    <button v-if="userStore.loginUser.email !== route.params.email" @click="modalToggle" >+</button>
                     <div class="modal-wrap" v-show="modalCheck">
                     <div class="modal-container">
                             <MessageRegist :day="props.day" @open-confirm-modal="openConfirmModal"/>
