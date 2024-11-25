@@ -8,7 +8,10 @@
             referrerpolicy="strict-origin-when-cross-origin" 
             allowfullscreen>
         </iframe>
-        <div>{{videoTitle}}</div>
+        <div>{{store.video.snippet.title}}</div>
+        <div>{{store.video.snippet.channelTitle}}</div>
+        <div>{{store.video.snippet.description}}</div>
+        <div>{{store.video.snippet.publishTime}}</div>
         <div class="detail-box box-border-radius">
             <ReviewView />
         </div>
@@ -24,8 +27,7 @@
     const store = useYoutubeStore();
 
     const videoUrl = computed(()=>{
-        const videoSrc = store.video;
-        // console.log(videoSrc);
+        const videoSrc = store.video.id.videoId;
         return `https://www.youtube.com/embed/${videoSrc}`;
     });
 

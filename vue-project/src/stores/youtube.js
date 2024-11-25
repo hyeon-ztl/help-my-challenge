@@ -5,7 +5,7 @@ import router from '@/router';
 
 export const useYoutubeStore = defineStore('youtube', () => {
   const videoList = ref([]);
-  const video = ref(null);
+  const video = ref(JSON.parse(sessionStorage.getItem('clickedVideo')) || null);
 
   // 검색 수행
   const youtubeSearch = function (searchKeyword) {
@@ -34,9 +34,9 @@ export const useYoutubeStore = defineStore('youtube', () => {
 
   // 비디오 클릭
   const clickVideo = function(clickedVideo) {
-    sessionStorage.setItem('clickedVideo', clickedVideo.id.videoId);
-    // sessionStroage.setItem('VideoInfo', clickVideo);
-    video.value = clickedVideo.id.videoId;
+    sessionStorage.setItem('clickedVideo', JSON.stringify(clickedVideo));
+    video.value = clickedVideo;
+    console.log(video.value);
     router.push({name: 'detail'});
   };
 
