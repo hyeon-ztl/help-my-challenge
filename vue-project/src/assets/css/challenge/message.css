@@ -151,9 +151,10 @@ margin-block: 1.0rem;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 80%; /* 부모 요소 크기에 맞춤 */
-        aspect-ratio: 1 / 1; 
+        aspect-ratio: 1 / 1;
         background-color: #d3d3d3; /* 빈 원의 색상 */
         border-radius: 50%; /* 원형으로 만듦 */
+        z-index: 0; /* z-index를 낮은 값으로 유지 */
     }
 
     
@@ -169,14 +170,15 @@ margin-block: 1.0rem;
         height: 100%;
         border-radius: 50%;
         font-size: 1.3rem;
+
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
-        
-        z-index: 2;
 
-        background-color: transparent; 
+        cursor: pointer;
+        z-index: 3;
+        background-color: transparent;
+
     }  
     
 
