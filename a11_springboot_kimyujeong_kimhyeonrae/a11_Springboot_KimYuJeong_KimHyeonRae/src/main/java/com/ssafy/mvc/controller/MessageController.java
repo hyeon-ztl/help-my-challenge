@@ -96,7 +96,7 @@ public class MessageController {
 	@PostMapping("/message")
 	@Operation(summary="메시지를 등록합니다.")
 	public ResponseEntity<?> registMessage(@RequestBody Message message) {
-		String command = "'" + message.getContent() + "' 에 욕설이 있으면 예, 없으면 아니오 라고 대답해";
+		String command = "'" + message.getContent() + "' 에 욕설이 있으면 무조건 '예', 없으면 무조건 '아니오' 라고 대답해.";
         
 		// GPT를 호출하여 응답 받기
         String response = openAiChatModel.call(command);
@@ -110,7 +110,9 @@ public class MessageController {
         		return new ResponseEntity<String>("메시지 등록에 실패하였습니다.", HttpStatus.BAD_REQUEST);
         	}
         } else {
-        	return new ResponseEntity<String>("욕설이 감지되었습니다.", HttpStatus.BAD_REQUEST);        	
+        	return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "AI가 욕설을 감지했습니다.")); // JSON 형식 응답        	
         }
 	}
 	
