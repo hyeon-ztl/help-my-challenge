@@ -2,26 +2,26 @@
     <hr class="thin-divider">
     <div>
         <p class="font-apple-semi-bold">리뷰 {{ store.reviewCount }}</p>
-        <table v-if="store.reviewCount > 0">
-            <tbody>
-                <tr v-for="review in store.reviewList" :key="review.reviewId">
-                    <td>{{ review.nickname }}</td>
-                    <td v-if="updateReviewId !== review.reviewId"> 
+        <div v-if="store.reviewCount > 0">
+            <div>
+                <div v-for="review in store.reviewList" :key="review.reviewId">
+                    <div>{{ review.nickname }}</div>
+                    <div v-if="updateReviewId !== review.reviewId"> 
                         {{ review.content }}
                         {{ review.registDay }}
                         <button v-if="userStore.loginUser && userStore.loginUser.email === review.email"
                             @click="updateMode(review.reviewId)">수정</button>
                         <button v-if="userStore.loginUser && userStore.loginUser.email === review.email" 
                             @click="removeReview(review.reviewId)">삭제</button>
-                    </td>
-                    <td v-if="updateReviewId === review.reviewId">
+                    </div>
+                    <div v-if="updateReviewId === review.reviewId">
                         <input type="text" v-model="store.review.content">
                         <button @click="updateReview">저장</button>
                         <button @click="updateReviewId = ''">취소</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
