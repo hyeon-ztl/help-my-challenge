@@ -4,26 +4,12 @@
         <input type="text" id="name" v-model="store.goal.name" class="modal-input">
 
         <label for="startDate" class="modal-alarm">시작 일자</label> 
-        <Datepicker 
-            v-model="tempStartDate" 
-            :format="dateFormat" 
-            :locale="customLocale"
-            :week-starts-on="0"
-            class="modal-input"
-            :placeholder="store.goal.startDate"
-        />
+        <input type="date" v-model="tempStartDate" class="modal-input">
 
         <label for="endDate" class="modal-alarm">종료 일자</label>
-        <Datepicker 
-            v-model="tempEndDate" 
-            :format="dateFormat"
-            :locale="customLocale"
-            :week-starts-on="0" 
+        <input type="date" v-model="tempEndDate" class="modal-input">
 
-            class="modal-input"
-            :placeholder="store.goal.endDate"
-        />
-        <p>{{ errorMessage }}</p>
+        <p v-if="!tempEndDate" class="modal-alarm" style="color:red">종료일은 시작일 이후이어야 합니다.</p>
 
         <label for="goalCode" class="modal-alarm">목표 설정</label>
         <select name="goalCode" id="goalCode" v-model="store.goal.goalCode" class="modal-input">
@@ -42,42 +28,28 @@
 </template>
 
 <script setup>
-    import { ref, onMounted } from 'vue';
+    import { ref, watch, onMounted } from 'vue';
     import { useRoute }  from 'vue-router';
     import { useGoalStore } from '@/stores/goal';
-    import Datepicker from 'vue3-datepicker';
-    import { ko } from 'date-fns/locale';
 
     const store = useGoalStore();
     const route = useRoute();
 
-    const tempStartDate = ref(null);
-    const tempEndDate = ref(null);
+    const tempStartDate = ref('');
+    const tempEndDate = ref('');
+
     onMounted(()=>{
         store.getGoal(route.params.email);
+        tempStartDate.value = store.goal.startDate;
+        tempEndDate.value = store.goal.endDate;
     });
 
-    // DatePicker 관련 메서드
-    // 원하는 날짜 형식
-    const dateFormat = 'yyyy-MM-dd'; 
-
-    // customLocale 설정
-    const customLocale = {
-        ...ko,
-        options: {
-            ...ko.options,
-        },
-    };
-
-    // 날짜 포맷팅 함수
-    const formatDate = (date) => {
-        if (!date) return '';
-        const d = new Date(date);
-        const year = d.getFullYear();
-        const month = String(d.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
-        const day = String(d.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    };
+    // 종료일 설정
+    watch([tempStartDate, tempEndDate], ([newStartDate, newEndDate]) => {
+        if (newStartDate && newEndDate && new Date(newEndDate) < new Date(newStartDate)) {
+            tempEndDate.value = null; // 종료일 초기화
+        }
+    });
 
     // 일차수 계산 함수
     const calculateDays = (startDate, endDate) => {
@@ -90,20 +62,16 @@
         return Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24)); // 올림 처리
     };
 
-    const errorMessage = ref('');
     const updateGoal = function() {
         if(tempStartDate.value !== null) {
-            tempStartDate.value = formatDate(tempStartDate.value);
             if(tempStartDate.value !== store.goal.startDate) {
                 store.goal.startDate = tempStartDate.value;
             }
         }
 
         if(tempEndDate.value !== null) {
-            tempEndDate.value = formatDate(tempEndDate.value);
             if(tempEndDate.value !== store.goal.EndDate) {
                 if(new Date(store.goal.startDate) > new Date(tempEndDate.value)) {
-                    errorMessage.value = '종료일은 시작일 이후여야 합니다!';
                     tempEndDate.value = null;
                     return;
                 } else {
