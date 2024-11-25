@@ -6,8 +6,8 @@ import router from '@/router'
 const REST_API_URL = `http://localhost:8080/api-goal/goal`;
 
 export const useGoalStore = defineStore('goal', () => {
-  // const goal = ref(JSON.parse(sessionStorage.getItem('goal')) || null);
   const goal = ref(JSON.parse(sessionStorage.getItem('goal')) || null);
+  // const goal = ref(null);
   
   const getGoal = function(email) {
     console.log("getGoal 호출됨, email:", email);
