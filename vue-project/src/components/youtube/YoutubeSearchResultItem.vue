@@ -2,6 +2,7 @@
     <li @click="clickVideo" class="result-item">
         <img :src="video.snippet.thumbnails.default.url" class="result-item-img">
         <span class="result-item-title">{{ videoTitle }}</span>
+        <div class="result-item-date">{{ videoDate }}</div>
     </li>
 </template>
 
@@ -18,6 +19,10 @@
 
     const videoTitle = computed(()=>{
        return _.unescape(props.video.snippet.title);
+    });
+
+    const videoDate = computed(()=>{
+       return _.unescape(props.video.snippet.publishTime);
     });
 
     console.log(props.video);
