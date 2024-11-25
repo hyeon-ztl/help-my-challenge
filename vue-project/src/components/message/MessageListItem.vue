@@ -26,6 +26,7 @@
                         <div class="modal-background">
                             <p class="modal-alarm">메시지 업로드 시 수정 및 삭제가 불가능합니다.</p>
                             <p class="modal-alarm">등록하시겠습니까?</p>
+                            <p class="modal-alarm" v-if="store.errorMessage" style="color: red;">{{ store.errorMessage }} 취소하고 재등록해주십시오.</p>
                             <div id="modal-alarm-btns">
                                 <button @click="registMessage" class="modal-regist-btn">등록</button>
                                 <button @click="closeConfirmModal" class="modal-regist-btn" id="modal-alarm-btns-cancel">취소</button>
@@ -192,6 +193,8 @@ const openConfirmModal = function(message) {
 }
 const closeConfirmModal = function() {
     registModal.value = !registModal.value;
+    store.errorMessage = '';
+    window.location.reload();
 }
 
 // 스티커 url

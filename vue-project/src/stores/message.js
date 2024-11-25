@@ -8,6 +8,7 @@ const REST_API_URL = `http://localhost:8080/api-message`;
 export const useMessageStore = defineStore('message', () => {
   const messages = ref({}); // day별 메시지 저장
   const currentMessage = ref(null); // 현재 선택된 메시지
+  const errorMessage = ref("");
 
   const getMessage = async function (email, startDate, day) {
     try {
@@ -32,6 +33,7 @@ export const useMessageStore = defineStore('message', () => {
       data: inputMessage,
     })
       .then((response) => {
+        console.log(response.data);
         const day = response.data.day;
         messages.value[day] = response.data; // 새로 등록된 메시지 저장
         currentMessage.value = response.data; // 현재 메시지 업데이트
@@ -39,7 +41,15 @@ export const useMessageStore = defineStore('message', () => {
           name: 'challenge',
           params: {email: inputMessage.receiver},
         });
-      });
+      })
+      .catch((error)=>{
+          if (error.response && error.response.data && error.response.data.error) {
+            errorMessage.value = error.response.data.error; // 서버에서 전달한 에러 메시지 저장
+          } else {
+            // 일반적인 에러 처리
+            alert("메시지 등록에 실패하였습니다.");
+          }
+        });
   };
 
   const loadMessagesFromSession = function() {
@@ -55,6 +65,7 @@ export const useMessageStore = defineStore('message', () => {
   return {
     messages,
     currentMessage,
+    errorMessage,
     getMessage,
     registMessage,
   };
