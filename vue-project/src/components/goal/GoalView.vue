@@ -34,7 +34,7 @@
 
 
             <!-- 현래의 한마디 -->
-            <p class="header-font-family">{{ store.goal.name }}의 한마디</p>
+            <p class="header-font">{{ store.goal.name }}의 한마디</p>
             <div class="goal-third-container padding-all-element-inline">
                 <p class="goal-third-container-txt">{{ store.goal.text }}</p>
                 <div v-if="userStore.loginUser !== null">
@@ -105,7 +105,7 @@
         <div v-else>
 
             <!-- 운동 헤더 -->
-            <p class="header-font-family ">OO님 운동 시작 대기 중</p>
+            <p class="header-font-family "> OO 님 운동 시작 대기 중</p>
 
             <!-- 운동목표 -->
             <div class="goal-first-container padding-all-element-inline">
@@ -134,7 +134,7 @@
 
 
             <!-- 현래의 한마디 -->
-            <p class="header-font-family">OO의 한마디</p>
+            <p class="header-font-family"> OO 의 한마디</p>
             <div class="goal-third-container padding-all-element-inline">
                 <p class="goal-third-container-txt"> 내 운동이 망할리가 없어! 당연하다구</p>
 

@@ -9,7 +9,7 @@
 
 /* 메세지 전체 레이아웃 */
 .message-container {
-    margin-top: 2rem;
+    margin-top: 1.0rem;
     width: 100%;
     /* border: 3px solid red; */
     display: flex; 
