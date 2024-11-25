@@ -33,8 +33,16 @@
   }
 
   .result-item-title {
-    margin:1.2rem;
+    margin-top:1.0rem;
+    margin-inline:1.0rem;
     font-size: 20px;
-    color: black;
+    font-family: AppleBold;
+    color: rgb(49, 49, 49);
+  }
+
+  .result-item-date {
+    margin-inline: 1.0rem;
+    font-size: 12px;
+    font-family: AppleBold;
   }
 
