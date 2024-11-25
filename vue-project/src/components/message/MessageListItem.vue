@@ -11,7 +11,7 @@
                 <div v-if="userStore.loginUser !== null">
                     <!-- 등록버튼 -->
                     <div class="message-out-regist-btn">
-                        <button v-if="userStore.loginUser.email === route.params.email" @click="modalToggle" class="message-out-regist-btn">+</button>
+                        <button v-if="userStore.loginUser.email !== route.params.email" @click="modalToggle" class="message-out-regist-btn">+</button>
                     </div>
                 </div>    
             </div>
@@ -45,8 +45,12 @@
         </div>
 
         <!-- 등록 버튼을 눌렀을 때 로그인하지 않은 경우 -->
-        <div v-else-if="store.messages[props.day] === null && userStore.loginUser === null">
-            <button @click="modalToggle">등록</button>
+        <div v-else-if="store.messages[props.day] === null && userStore.loginUser !== null">
+            <div class="message-none-circle"> 
+                <div class="message-out-regist-btn">
+                    <button @click="modalToggle"  class="message-out-regist-btn">+</button>
+                </div>
+            </div>
 
             <div class="modal-wrap" v-show="modalCheck">
             <div class="modal-container">
