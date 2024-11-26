@@ -23,6 +23,7 @@ margin-block: 1.0rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: AppleMedium;
 }
 
 /* 메세지 전체 정렬 */
@@ -110,7 +111,7 @@ margin-block: 1.0rem;
         position: absolute;
         color: transparent; /* 내부 텍스트는 투명하게 */
         font-weight: bold;
-        font-family: AppleExtraBold;
+        font-family: LotteHappyBold;
         z-index: 1;
         -webkit-text-stroke: 1px white; /* 흰색 테두리 */
         pointer-events: none;
@@ -120,7 +121,7 @@ margin-block: 1.0rem;
     .message-out-nickname {
         position: relative;
         color: black; /* 검정색 텍스트 */
-        font-weight: bold;
+        font-family: LotteHappyBold;
         z-index: 2; /* 테두리보다 앞에 */
         pointer-events: none;
     }
