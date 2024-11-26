@@ -25,11 +25,10 @@
 
   .result-item-img {
     width: 100%;
-    aspect-ratio: 16 / 9; 
-    background-size: cover; /* 비율 유지하며 영역에 맞게 자름 */
-    background-position: center; /* 중앙 정렬 */
-    background-repeat: no-repeat; /* 반복 방지 */
-    border-radius: 10px; 
+    aspect-ratio: 16 / 9; /* 16:9 비율 유지 */
+    object-fit: cover; /* 비율 유지하며 이미지가 잘리지 않도록 */
+    border-radius: 10px; /* 둥근 모서리 */
+    display: block; /* inline-block 여백 문제 방지 */
   }
 
   .result-item-title {
