@@ -17,7 +17,10 @@
                 </div>
 
                 <!-- 검색안했을때 메인 싸핏 -->
-                <div v-if="isMain" class="header-ssafit-main-btn">SSAFIT</div>
+                <div v-if="isMain" class="main-ssafit-container">
+                    <div class="header-ssafit-main-btn">SSAFIT</div>
+                    <div class="help-challenge"> 내 챌린지를 도와줘 !</div>
+                </div>
 
                 <!-- 챌린지 들어가면 챌린지 버튼 없어지기 비활성화 -->
                 <div v-if="store.loginUser !== null && !isChallengeView" class="button-goal-container">
@@ -64,5 +67,34 @@
 </script>
 
 <style scoped>
+/*헤더 메인 요소 */
+.header-ssafit-main-btn {
+    position: relative;
+    text-align: center;
+    font-family: 'LotteHappyBold';
+    font-size: 45px;
+    color: rgb(65, 88, 139);
+  }
+  
+
+.help-challenge {
+    position: relative;
+
+    font-size: 15px;
+    text-align: center;
+    font-family: 'AppleRegular';
+    color: gray;
+}
+
+.main-ssafit-container {
+    position: absolute; /* 부모 요소(.phone-box)를 기준으로 위치 설정 */
+
+    display: flex;
+    flex-direction: column;
+
+    top: 48%; /* 부모의 높이의 50% 지점 */
+    left: 50%; /* 부모의 너비의 50% 지점 */
+    transform: translate(-50%, -50%); /* 정확히 중앙 정렬 */
+}
 
 </style>

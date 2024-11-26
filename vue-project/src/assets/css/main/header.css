@@ -1,16 +1,5 @@
 
-/*헤더 메인 요소 */
-.header-ssafit-main-btn {
-    position: absolute; /* 부모 요소(.phone-box)를 기준으로 위치 설정 */
-    top: 48%; /* 부모의 높이의 50% 지점 */
-    left: 50%; /* 부모의 너비의 50% 지점 */
-    transform: translate(-50%, -50%); /* 정확히 중앙 정렬 */
-    text-align: center;
-    font-family: 'LotteHappyBold';
-    font-size: 45px;
-    color: rgb(65, 88, 139);
-  }
-  
+
   
   /* 헤더 요소 */
   .header-layout {
@@ -91,7 +80,8 @@
 
       border: 0;
       color: #767676;
-    
+      
+
       display: flex; /* Flexbox 활성화 */
       justify-content: center; /* 가로 중앙 정렬 */
       align-items: center; /* 세로 중앙 정렬 */
