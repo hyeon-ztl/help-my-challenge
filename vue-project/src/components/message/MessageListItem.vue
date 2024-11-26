@@ -3,7 +3,7 @@
         <!-- <p>{{ currDate }}({{ props.day+1 }}일차) 메시지</p> -->
 
         <!-- 메시지가 없는 경우 뒤에 배경 표시 -->
-        <div v-if="store.messages[props.day] === null" class="message-click-container"> 
+        <div v-if="store.messages[props.day] === null && userStore.loginUser !== null" class="message-click-container" > 
             <!-- class="message-none-circle" -->
             <!-- 안에서 작게 모달이 뜸 -->
             <div class="message-none-circle">
@@ -45,7 +45,7 @@
         </div>
 
         <!-- 등록 버튼을 눌렀을 때 로그인하지 않은 경우 -->
-        <div v-else-if="store.messages[props.day] === null && userStore.loginUser !== null">
+        <div v-else-if="store.messages[props.day] === null && userStore.loginUser === null" class="message-click-container" >
             <div class="message-none-circle"> 
                 <div class="message-out-regist-btn">
                     <button @click="modalToggle"  class="message-out-regist-btn">+</button>

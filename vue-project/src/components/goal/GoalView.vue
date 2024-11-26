@@ -5,11 +5,11 @@
 
             <!-- 운동 헤더 -->
             <p v-if="diff < 0" class="header-font-family">
-                <span>{{ store.goal.name }}</span>님 운동 시작 
+                <span>{{ store.goal.name }}</span> 운동 
                 <span class="highlight">{{ -diff }}</span>일 전
             </p>
             <p v-if="diff >= 0" class="header-font-family">
-                <span>{{ store.goal.name }}</span> 님 운동 시작 
+                <span>{{ store.goal.name }}</span> 운동  
                 <span class="highlight">{{ diff + 1 }}</span> 일차
             </p>
 
