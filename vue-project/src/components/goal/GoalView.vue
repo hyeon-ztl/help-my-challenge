@@ -26,7 +26,7 @@
             <div class="goal-second-container">
                 <div class="goal-second-container-challenge padding-all-element-inline">
                     <p class="font-apple-small-message goal-second-container-txt">challenge</p>
-                    <p class="font-apple-semi-bold">{{ store.goal.day }}일 도전</p>
+                    <p class="font-apple-semi-bold">{{ store.goal.day }}일간의 도전</p>
                     <div  class="goal-second-container-img">
                       <img src="@/assets/img/challenge.png" class="goal-img-container">
                     </div>
@@ -139,7 +139,7 @@
             <div class="goal-second-container">
                 <div class="goal-second-container-challenge padding-all-element-inline">
                     <p class="font-apple-small-message goal-second-container-txt">challenge</p>
-                    <p class="font-apple-semi-bold">N일 도전</p>
+                    <p class="font-apple-semi-bold">N일간의 도전</p>
                     <div  class="goal-second-container-img">
                       <img src="@/assets/img/challenge.png" class="goal-img-container">
                     </div>
