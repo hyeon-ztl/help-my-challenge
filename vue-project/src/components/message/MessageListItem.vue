@@ -11,7 +11,7 @@
                 <div v-if="userStore.loginUser !== null">
                     <!-- 등록버튼 -->
                     <div class="message-out-regist-btn">
-                        <button v-if="userStore.loginUser.email === route.params.email" @click="modalToggle" class="message-out-regist-btn">+</button>
+                        <button v-if="userStore.loginUser.email !== route.params.email" @click="modalToggle" class="message-out-regist-btn">+</button>
                     </div>
                 </div>    
             </div>
