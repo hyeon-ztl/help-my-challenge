@@ -44,7 +44,7 @@
         day: Number,
     });
 
-    const stickers = [1, 2, 3, 4]; // 스티커 ID 배열
+    const stickers = [1, 2, 3, 4, 5]; // 스티커 ID 배열
 
     const selectSticker = (id) => {
         message.value.stickerId = id;
@@ -52,7 +52,7 @@
 
     const message = ref({
         receiver: route.params.email,
-        sender: userStore.loginUser.email,
+        sender: '',
         senderNickname: '',
         goalId: goalStore.goal.goalId,
         content: '',
@@ -61,6 +61,7 @@
     });
 
     const triggerConfirm = function() {
+        message.value.sender = userStore.loginUser.email;
         emit('open-confirm-modal', message.value);
     }
 
