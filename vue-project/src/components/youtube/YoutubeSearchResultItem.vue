@@ -1,6 +1,6 @@
 <template>
     <li @click="clickVideo" class="result-item">
-        <img :src="video.snippet.thumbnails.default.url" class="result-item-img">
+        <img :src="video.snippet.thumbnails.high.url" class="result-item-img">
         <span class="result-item-title">{{ videoTitle }}</span>
         <div class="result-item-date">{{ videoDate }}</div>
     </li>
