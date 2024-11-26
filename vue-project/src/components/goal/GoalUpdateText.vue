@@ -1,8 +1,11 @@
 <template>
     <div id="modal-user-input">
         <p class="modal-alarm">한마디를 적어주세요!</p>
-        <textarea type="text" v-model="text" class="modal-textarea"></textarea>
+        <textarea type="text" rows="10" 
+                cols="30" v-model="text" class="modal-textarea"></textarea>
+        <div id="modal-alarm-btns">
         <button @click="updateText" class="modal-regist-btn">저장</button>
+        </div>
     </div>
 </template>
 

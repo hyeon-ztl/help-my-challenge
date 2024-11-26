@@ -23,7 +23,9 @@
         <input type="text" id="goalDescription" v-model="store.goal.goalDescription" class="modal-input">
         <label for="pledge" class="modal-alarm">실패 공약</label>
         <input type="text" id="pledge" v-model="store.goal.pledge" class="modal-input">
-        <button @click="updateGoal" class="modal-regist-btn">수정</button>
+        <div id="modal-alarm-btns">
+            <button @click="updateGoal" class="modal-regist-btn">수정</button>
+        </div>
     </div>
 </template>
 

@@ -8,7 +8,7 @@
             <textarea 
                 v-model="message.content" 
                 id="content" 
-                rows="5" 
+                rows="10" 
                 cols="30" 
                 maxlength="500"
                 placeholder=" 내용 입력"
@@ -25,7 +25,9 @@
                 @click="selectSticker(id)"
                 >
         </div>
-        <button @click="triggerConfirm" class="modal-regist-btn">등록</button>
+        <div id="modal-alarm-btns">
+            <button @click="triggerConfirm" class="modal-regist-btn">등록</button>
+        </div>
     </div>
 </template>
 

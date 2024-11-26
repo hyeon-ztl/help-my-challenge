@@ -74,15 +74,11 @@ public class MessageController {
 	    LocalDate targetDate = startDateParsed.plusDays(day); // StartDate + day
 	    LocalDate currentDate = LocalDate.now(); // 현재 날짜
 
-	    Message message;
+	    Message message = service.searchMessageByDay(info);
 
-	    if (targetDate.isBefore(currentDate) || targetDate.isEqual(currentDate)) {
+	    if (message == null && targetDate.isBefore(currentDate) || targetDate.isEqual(currentDate)) {
 	        // StartDate + day가 현재 날짜 이전이면 랜덤 메시지 생성
-	    	System.out.println("목표 시작 날짜 : " + startDateParsed + ", 타겟 날짜 : " + targetDate + ", 오늘 날짜 : " + currentDate);
 	        message = service.createRandomMessage(day % 100 + 1);
-	    } else {
-	        // 해당 일차에 해당하는 메시지 조회
-	        message = service.searchMessageByDay(info);
 	    }
 
 	    if (message != null) {

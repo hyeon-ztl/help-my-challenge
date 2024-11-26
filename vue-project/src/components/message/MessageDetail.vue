@@ -1,6 +1,6 @@
 <template>
     <div id="message-detail-background">
-        <p class="modal-label">
+        <p class="modal-alarm">
             From. {{ props.message.senderNickname }}
         </p>
         <p id="message-detail-content">
