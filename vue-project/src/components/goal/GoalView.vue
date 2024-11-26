@@ -159,12 +159,15 @@
             <!-- 현래의 한마디 -->
             <p class="header-font-family"> OO 의 한마디</p>
             <div class="goal-third-container padding-all-element-inline">
+                <img src="@/assets/img/note-edge.png" class ="goal-third-img-container">
                 <p class="goal-third-container-txt"> 내 운동이 망할리가 없어! 당연하다구</p>
             </div>
 
             <!-- 등록버튼들  -->
             <div class="button-goal-container"> 
-                <button @click="goalRegistModalToggle" class="button-goal-modify">등록</button>
+                <button @click="goalRegistModalToggle" class="button-goal-modify">
+                    <img src="@/assets/icon/regist.png" class="icon-img-container goal-third-container-btn-img ">
+                </button>
             </div>
 
             <!-- 등록 컴포넌트 모달 -->
