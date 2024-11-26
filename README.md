@@ -11,11 +11,12 @@
 
 - Front : Vue
 - Back : SpringBoot, MySQL
-- API : Kakao, Youtube, X
+- API : Kakao, Youtube, X, ChatGPT
 - 협업 툴 : SSAFYGitLab, Notion
 - 디자인 Figma
 
 ## 2. 개발 기간 및 작업 관리
+
 
 ## 3. 페이지별 기능
 
